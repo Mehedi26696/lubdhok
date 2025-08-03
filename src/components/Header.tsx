@@ -17,8 +17,8 @@ export default function Header() {
                 <span className="text-white font-bold text-xl">L</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">Lubdhok Batch</h1>
-                <p className="text-sm text-violet-100">Study Materials Hub</p>
+                <h1 className="text-xl font-bold text-white">Lubdhok-29</h1>
+                
               </div>
             </Link>
           </div>
@@ -37,12 +37,7 @@ export default function Header() {
             >
               Study Materials
             </Link>
-            <Link 
-              href="/members" 
-              className="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 backdrop-blur-sm"
-            >
-              Members
-            </Link>
+             
             <Link 
               href="/events" 
               className="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 backdrop-blur-sm"
@@ -55,12 +50,7 @@ export default function Header() {
             >
               Projects
             </Link>
-            <Link 
-              href="/announcements" 
-              className="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 backdrop-blur-sm"
-            >
-              Announcements
-            </Link>
+             
             <Link 
               href="/about" 
               className="text-white/90 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 backdrop-blur-sm"
@@ -113,13 +103,7 @@ export default function Header() {
               >
                 Study Materials
               </Link>
-              <Link
-                href="/members"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Members
-              </Link>
+               
               <Link
                 href="/events"
                 className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
@@ -134,13 +118,7 @@ export default function Header() {
               >
                 Projects
               </Link>
-              <Link
-                href="/announcements"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Announcements
-              </Link>
+               
               <Link
                 href="/about"
                 className="block px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"

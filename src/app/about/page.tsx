@@ -108,7 +108,7 @@ export default function AboutPage() {
           {/* Hero Image */}
           <div className="relative w-full h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mx-auto max-w-5xl">
             <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&h=600&fit=crop"
+              src="/batch.jpg"
               alt="Lubdhok Batch 2024"
               fill
               className="object-cover"

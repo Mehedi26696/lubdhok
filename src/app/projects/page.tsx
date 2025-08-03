@@ -27,7 +27,7 @@ const projects: Project[] = [
     status: 'completed',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Socket.io', 'JWT'],
     team: ['Rahul Sharma', 'Priya Patel', 'Anjali Verma'],
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop',
+    image: '/projects/campus-management.jpg',
     githubUrl: 'https://github.com/lubdhok-batch/campus-management',
     liveUrl: 'https://campus-management-demo.vercel.app',
     startDate: '2023-08-01',
@@ -43,7 +43,7 @@ const projects: Project[] = [
     status: 'ongoing',
     technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
     team: ['Arjun Singh', 'Vikash Kumar', 'Rahul Sharma'],
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+    image: '/projects/ai-study-assistant.jpg',
     githubUrl: 'https://github.com/lubdhok-batch/ai-study-assistant',
     startDate: '2023-10-01',
     achievements: ['80% accuracy in recommendations', 'Featured in college newsletter']
@@ -57,7 +57,7 @@ const projects: Project[] = [
     status: 'completed',
     technologies: ['React Native', 'Firebase', 'Redux', 'Expo', 'Node.js'],
     team: ['Sneha Gupta', 'Anjali Verma', 'Priya Patel'],
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop',
+    image: '/projects/batch-connect-app.jpg',
     githubUrl: 'https://github.com/lubdhok-batch/batch-connect',
     startDate: '2023-06-01',
     endDate: '2023-11-30',
@@ -72,7 +72,7 @@ const projects: Project[] = [
     status: 'ongoing',
     technologies: ['Arduino', 'Raspberry Pi', 'Python', 'MQTT', 'InfluxDB', 'Grafana'],
     team: ['Arjun Singh', 'Vikash Kumar'],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    image: '/projects/iot-monitoring.jpg',
     githubUrl: 'https://github.com/lubdhok-batch/iot-monitoring',
     startDate: '2023-09-01',
     achievements: ['15 sensor nodes deployed', 'Real-time data visualization']
@@ -86,7 +86,7 @@ const projects: Project[] = [
     status: 'planned',
     technologies: ['ROS', 'OpenCV', 'Python', 'Arduino', 'RFID', 'Computer Vision'],
     team: ['Arjun Singh', 'Rahul Sharma', 'Vikash Kumar'],
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop',
+    image: '/projects/library-automation.jpg',
     startDate: '2024-02-01',
     achievements: []
   },
@@ -99,7 +99,7 @@ const projects: Project[] = [
     status: 'ongoing',
     technologies: ['Python', 'Scikit-learn', 'IoT Sensors', 'Data Analytics', 'Solar Technology'],
     team: ['Priya Patel', 'Sneha Gupta', 'Vikash Kumar'],
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop',
+    image: '/projects/solar-research.jpg',
     startDate: '2023-07-01',
     achievements: ['Published preliminary findings', 'Grant funding secured']
   }

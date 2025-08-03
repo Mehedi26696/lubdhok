@@ -39,7 +39,7 @@ export default function ContactPage() {
       department: 'Computer Science Engineering',
       email: 'rahul.sharma@example.com',
       phone: '+91 98765 43210',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
+      image: '/team/rahul.jpg',
       responsibilities: ['Overall coordination', 'External communications', 'Strategic planning']
     },
     {
@@ -48,7 +48,7 @@ export default function ContactPage() {
       department: 'Electronics Engineering',
       email: 'priya.patel@example.com',
       phone: '+91 87654 32109',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b75b4fc2?w=300&h=300&fit=crop&crop=face',
+      image: '/team/priya.jpg',
       responsibilities: ['Study materials management', 'Academic activities', 'Exam coordination']
     },
     {
@@ -57,7 +57,7 @@ export default function ContactPage() {
       department: 'Civil Engineering',
       email: 'sneha.gupta@example.com',
       phone: '+91 76543 21098',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
+      image: '/team/sneha.jpg',
       responsibilities: ['Event planning', 'Cultural activities', 'Community engagement']
     },
     {
@@ -66,7 +66,7 @@ export default function ContactPage() {
       department: 'Mechanical Engineering',
       email: 'arjun.singh@example.com',
       phone: '+91 65432 10987',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
+      image: '/team/arjun.jpg',
       responsibilities: ['Technical projects', 'Innovation initiatives', 'Industry partnerships']
     }
   ]
