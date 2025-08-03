@@ -28,6 +28,7 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
       notes: materials.filter(m => m.type === 'note'),  
       assignments: materials.filter(m => m.type === 'assignment'),
       lectures: materials.filter(m => m.type === 'lecture'),
+      code: materials.filter(m => m.type === 'code'),
       books: materials.filter(m => m.type === 'books')
     }
   }
@@ -138,155 +139,164 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
                     </div>
 
                     {/* Material Type Sections */}
-                    <div className="space-y-16">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-8">
                       {/* Slides Section */}
                       {organizedMaterials.slides.length > 0 && (
-                        <div className="relative">
-                          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-green-400 to-green-600 rounded-full opacity-30"></div>
-                          <div className="pl-8">
-                            <div className="flex items-center mb-8">
-                              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-lg mr-6 transform hover:scale-110 transition-all duration-300">
-                                <span className="text-3xl text-white">📊</span>
-                              </div>
-                              <div>
-                                <h4 className="text-2xl font-bold text-gray-800 mb-1">Presentation Slides</h4>
-                                <p className="text-gray-600">Visual learning materials and presentations</p>
-                              </div>
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">📊</span>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                              {organizedMaterials.slides.map((material, idx) => (
-                                <div key={material.id} 
-                                     className="animate-fade-in-up"
-                                     style={{ animationDelay: `${idx * 0.1}s` }}>
-                                  <MaterialCard material={material} />
-                                </div>
-                              ))}
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Slides</h4>
+                              <p className="text-sm text-gray-600">Presentations ({organizedMaterials.slides.length})</p>
                             </div>
+                          </div>
+                          <div className="space-y-4">
+                            {organizedMaterials.slides.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
                           </div>
                         </div>
                       )}
 
                       {/* Notes Section */}
                       {organizedMaterials.notes.length > 0 && (
-                        <div className="relative">
-                          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-purple-400 to-purple-600 rounded-full opacity-30"></div>
-                          <div className="pl-8">
-                            <div className="flex items-center mb-8">
-                              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg mr-6 transform hover:scale-110 transition-all duration-300">
-                                <span className="text-3xl text-white">📝</span>
-                              </div>
-                              <div>
-                                <h4 className="text-2xl font-bold text-gray-800 mb-1">Study Notes</h4>
-                                <p className="text-gray-600">Comprehensive notes and summaries</p>
-                              </div>
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">📝</span>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                              {organizedMaterials.notes.map((material, idx) => (
-                                <div key={material.id} 
-                                     className="animate-fade-in-up"
-                                     style={{ animationDelay: `${idx * 0.1}s` }}>
-                                  <MaterialCard material={material} />
-                                </div>
-                              ))}
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Notes</h4>
+                              <p className="text-sm text-gray-600">Study Materials ({organizedMaterials.notes.length})</p>
                             </div>
+                          </div>
+                          <div className="space-y-4">
+                            {organizedMaterials.notes.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
                           </div>
                         </div>
                       )}
 
                       {/* Assignments Section */}
                       {organizedMaterials.assignments.length > 0 && (
-                        <div className="relative">
-                          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-orange-400 to-orange-600 rounded-full opacity-30"></div>
-                          <div className="pl-8">
-                            <div className="flex items-center mb-8">
-                              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg mr-6 transform hover:scale-110 transition-all duration-300">
-                                <span className="text-3xl text-white">📋</span>
-                              </div>
-                              <div>
-                                <h4 className="text-2xl font-bold text-gray-800 mb-1">Assignments</h4>
-                                <p className="text-gray-600">Practice problems and coursework</p>
-                              </div>
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-orange-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">📋</span>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                              {organizedMaterials.assignments.map((material, idx) => (
-                                <div key={material.id} 
-                                     className="animate-fade-in-up"
-                                     style={{ animationDelay: `${idx * 0.1}s` }}>
-                                  <MaterialCard material={material} />
-                                </div>
-                              ))}
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Assignments</h4>
+                              <p className="text-sm text-gray-600">Practice Work ({organizedMaterials.assignments.length})</p>
                             </div>
+                          </div>
+                          <div className="space-y-4">
+                            {organizedMaterials.assignments.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
                           </div>
                         </div>
                       )}
 
                       {/* Lectures Section */}
                       {organizedMaterials.lectures.length > 0 && (
-                        <div className="relative">
-                          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-full opacity-30"></div>
-                          <div className="pl-8">
-                            <div className="flex items-center mb-8">
-                              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg mr-6 transform hover:scale-110 transition-all duration-300">
-                                <span className="text-3xl text-white">🎓</span>
-                              </div>
-                              <div>
-                                <h4 className="text-2xl font-bold text-gray-800 mb-1">Lecture Materials</h4>
-                                <p className="text-gray-600">Recorded lectures and audio materials</p>
-                              </div>
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">🎓</span>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                              {organizedMaterials.lectures.map((material, idx) => (
-                                <div key={material.id} 
-                                     className="animate-fade-in-up"
-                                     style={{ animationDelay: `${idx * 0.1}s` }}>
-                                  <MaterialCard material={material} />
-                                </div>
-                              ))}
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Lectures</h4>
+                              <p className="text-sm text-gray-600">Video Content ({organizedMaterials.lectures.length})</p>
                             </div>
+                          </div>
+                          <div className="space-y-4">
+                            {organizedMaterials.lectures.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Code Section */}
+                      {organizedMaterials.code.length > 0 && (
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-cyan-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">💻</span>
+                            </div>
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Source Code</h4>
+                              <p className="text-sm text-gray-600">Programming Files ({organizedMaterials.code.length})</p>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            {organizedMaterials.code.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
                           </div>
                         </div>
                       )}
 
                       {/* Books Section */}
                       {organizedMaterials.books.length > 0 && (
-                        <div className="relative">
-                          <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-teal-400 to-teal-600 rounded-full opacity-30"></div>
-                          <div className="pl-8">
-                            <div className="flex items-center mb-8">
-                              <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg mr-6 transform hover:scale-110 transition-all duration-300">
-                                <span className="text-3xl text-white">📚</span>
-                              </div>
-                              <div>
-                                <h4 className="text-2xl font-bold text-gray-800 mb-1">Reference Books</h4>
-                                <p className="text-gray-600">Textbooks and reference materials</p>
-                              </div>
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-teal-200/50 hover:shadow-xl transition-all duration-300">
+                          <div className="flex items-center mb-6">
+                            <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center shadow-md mr-4">
+                              <span className="text-2xl text-white">📚</span>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                              {organizedMaterials.books.map((material, idx) => (
-                                <div key={material.id} 
-                                     className="animate-fade-in-up"
-                                     style={{ animationDelay: `${idx * 0.1}s` }}>
-                                  <MaterialCard material={material} />
-                                </div>
-                              ))}
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-800">Books</h4>
+                              <p className="text-sm text-gray-600">References ({organizedMaterials.books.length})</p>
                             </div>
                           </div>
-                        </div>
-                      )}
-
-                      {/* Empty State for Theory Course */}
-                      {subject.materials.length === 0 && (
-                        <div className="text-center py-16">
-                          <div className="w-32 h-32 bg-gradient-to-br from-violet-100 to-purple-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-lg">
-                            <span className="text-6xl">📭</span>
+                          <div className="space-y-4">
+                            {organizedMaterials.books.map((material, idx) => (
+                              <div key={material.id} 
+                                   className="animate-fade-in-up"
+                                   style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <MaterialCard material={material} />
+                              </div>
+                            ))}
                           </div>
-                          <h4 className="text-2xl font-bold text-gray-800 mb-4">No Materials Yet</h4>
-                          <p className="text-gray-600 text-lg max-w-md mx-auto">
-                            Study materials for this subject will be uploaded soon. Check back later!
-                          </p>
                         </div>
                       )}
                     </div>
+
+                    {/* Empty State for Theory Course */}
+                    {subject.materials.length === 0 && (
+                      <div className="text-center py-16">
+                        <div className="w-32 h-32 bg-gradient-to-br from-violet-100 to-purple-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-lg">
+                          <span className="text-6xl">📭</span>
+                        </div>
+                        <h4 className="text-2xl font-bold text-gray-800 mb-4">No Materials Yet</h4>
+                        <p className="text-gray-600 text-lg max-w-md mx-auto">
+                          Study materials for this subject will be uploaded soon. Check back later!
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )
               })}

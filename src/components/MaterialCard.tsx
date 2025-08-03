@@ -39,6 +39,14 @@ const materialTypeConfig = {
     buttonColor: 'bg-orange-600 hover:bg-orange-700',
     label: 'Assignment'
   },
+  code: {
+    icon: '💻',
+    bgColor: 'bg-gradient-to-br from-cyan-50 to-cyan-100/50',
+    borderColor: 'border-cyan-200/50',
+    textColor: 'text-cyan-700',
+    buttonColor: 'bg-cyan-600 hover:bg-cyan-700',
+    label: 'Code'
+  },
   books: {
     icon: '📚',
     bgColor: 'bg-gradient-to-br from-teal-50 to-teal-100/50',
