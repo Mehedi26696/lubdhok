@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lubdhok Batch - Study Materials Hub",
-  description: "A centralized platform for Lubdhok batch to share study materials, lectures, slides, notes, and assignments organized by semester.",
-  keywords: "study materials, lectures, notes, assignments, Lubdhok batch, academic resources",
+  title: "Lubdhok",
+  description: "Official website of Lubdhok university batch. Access study materials, events, projects, announcements, and connect with batch members all in one place.",
+  keywords: "Lubdhok batch, university batch, study materials, events, projects, announcements, batch members, academic resources",
 };
 
 export default function RootLayout({
