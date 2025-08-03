@@ -101,7 +101,7 @@ export default function AboutPage() {
             About Lubdhok Batch 2024
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-12">
-            We are more than just a batch - we're a community of passionate engineers, innovators, and leaders 
+            We are more than just a batch - we&apos;re a community of passionate engineers, innovators, and leaders 
             committed to excellence, collaboration, and making a positive impact in the world.
           </p>
           
@@ -296,8 +296,8 @@ export default function AboutPage() {
         <div className="text-center bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-3xl p-12 text-white">
           <h2 className="text-4xl font-bold mb-6">Want to Connect?</h2>
           <p className="text-xl mb-8 text-violet-100 max-w-2xl mx-auto">
-            Whether you're a fellow student, industry professional, or academic researcher, 
-            we'd love to hear from you and explore collaboration opportunities.
+            Whether you&apos;re a fellow student, industry professional, or academic researcher, 
+            we&apos;d love to hear from you and explore collaboration opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

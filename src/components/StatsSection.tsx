@@ -2,7 +2,7 @@ import { semesters } from '@/data/studyMaterials'
 
 export default function StatsSection() {
   const totalSemesters = semesters.length
-  const totalSubjects = semesters.reduce((acc, semester) => acc + semester.subjects.length, 0)
+  // const totalSubjects = semesters.reduce((acc, semester) => acc + semester.subjects.length, 0)
   const totalMaterials = semesters.reduce((acc, semester) => 
     acc + semester.subjects.reduce((subAcc, subject) => subAcc + subject.materials.length, 0), 0
   )

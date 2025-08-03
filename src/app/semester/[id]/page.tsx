@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { semesters } from '@/data/studyMaterials'
+import { semesters, StudyMaterial } from '@/data/studyMaterials'
 import MaterialCard from '@/components/MaterialCard'
 
 interface SemesterPageProps {
@@ -22,7 +22,7 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
   const totalMaterials = semester.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)
 
   // Function to organize materials by type for theory courses
-  const organizeTheoryMaterials = (materials: any[]) => {
+  const organizeTheoryMaterials = (materials: StudyMaterial[]) => {
     return {
       slides: materials.filter(m => m.type === 'slide'),
       notes: materials.filter(m => m.type === 'note'),  
@@ -119,7 +119,7 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
             </div>
 
             <div className="space-y-20">
-              {theorySubjects.map((subject, index) => {
+              {theorySubjects.map((subject) => {
                 const organizedMaterials = organizeTheoryMaterials(subject.materials)
                 
                 return (
@@ -368,7 +368,7 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
               Semester Content Coming Soon
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              We're working hard to organize and upload all the study materials for this semester. 
+              We&apos;re working hard to organize and upload all the study materials for this semester. 
               Check back soon for comprehensive resources including lectures, slides, notes, and assignments.
             </p>
           </div>

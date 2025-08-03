@@ -158,7 +158,7 @@ export default function EventsPage() {
               Upcoming Events
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't miss out on these exciting upcoming events and activities
+              Don&apos;t miss out on these exciting upcoming events and activities
             </p>
           </div>
 
@@ -249,7 +249,7 @@ export default function EventsPage() {
               Past Events
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Celebrating the memorable moments and successful events we've organized
+              Celebrating the memorable moments and successful events we&apos;ve organized
             </p>
           </div>
 
@@ -343,7 +343,7 @@ export default function EventsPage() {
         <div className="text-center bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-3xl p-12 text-white">
           <h2 className="text-4xl font-bold mb-6">Have an Event Idea?</h2>
           <p className="text-xl mb-8 text-violet-100 max-w-2xl mx-auto">
-            Want to organize an event for our batch? We'd love to hear your ideas and help bring them to life!
+            Want to organize an event for our batch? We&apos;d love to hear your ideas and help bring them to life!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

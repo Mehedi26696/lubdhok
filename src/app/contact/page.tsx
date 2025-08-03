@@ -87,8 +87,8 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            We'd love to hear from you! Whether you have questions, suggestions, or want to collaborate with us, 
-            don't hesitate to reach out to the Lubdhok Batch 2024 team.
+            We&apos;d love to hear from you! Whether you have questions, suggestions, or want to collaborate with us, 
+            don&apos;t hesitate to reach out to the Lubdhok Batch 2024 team.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export default function ContactPage() {
               Send us a Message
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Have a specific question or message? Fill out the form below and we'll get back to you as soon as possible.
+              Have a specific question or message? Fill out the form below and we&apos;ll get back to you as soon as possible.
             </p>
           </div>
 

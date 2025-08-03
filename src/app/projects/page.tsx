@@ -108,7 +108,7 @@ const projects: Project[] = [
 export default function ProjectsPage() {
   const completedProjects = projects.filter(project => project.status === 'completed')
   const ongoingProjects = projects.filter(project => project.status === 'ongoing')
-  const plannedProjects = projects.filter(project => project.status === 'planned')
+  // const plannedProjects = projects.filter(project => project.status === 'planned')
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -159,7 +159,7 @@ export default function ProjectsPage() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             Discover the innovative projects developed by the Lubdhok Batch 2024. From web applications to AI research, 
-            we're building solutions that matter.
+            we&apos;re building solutions that matter.
           </p>
         </div>
 
@@ -340,7 +340,7 @@ export default function ProjectsPage() {
           <h2 className="text-4xl font-bold mb-6">Have a Project Idea?</h2>
           <p className="text-xl mb-8 text-violet-100 max-w-2xl mx-auto">
             Want to collaborate on a project or share your innovative idea with the batch? 
-            Let's build something amazing together!
+            Let&apos;s build something amazing together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

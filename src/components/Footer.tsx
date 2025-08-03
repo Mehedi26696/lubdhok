@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 mt-12 relative overflow-hidden">
@@ -51,10 +53,10 @@ export default function Footer() {
               <h3 className="font-bold text-white text-lg mb-4">Quick Links</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="/" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                  <Link href="/" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
                     <span className="w-2 h-2 bg-violet-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="/semesters" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
@@ -111,11 +113,7 @@ export default function Footer() {
               <div className="flex items-center space-x-4 text-gray-400 text-sm">
                 <span>Crafted with</span>
                 <div className="flex items-center space-x-2">
-                  <img 
-                    src="https://nextjs.org/static/favicon/favicon-32x32.png" 
-                    alt="Next.js" 
-                    className="w-4 h-4"
-                  />
+                  <span className="bg-black text-white px-2 py-1 rounded text-xs font-bold">Next.js</span>
                   <span>&</span>
                   <div className="w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded"></div>
                 </div>

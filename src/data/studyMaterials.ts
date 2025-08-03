@@ -452,15 +452,7 @@ export const semesters: Semester[] = [
 				credits: 1.5,
 				type: "lab",
 				materials: [
-					{
-						id: "eng1215-lab1",
-						title: "English Language Lab Tasks",
-						description: "Language skills development exercises",
-						type: "other",
-						subject: "Developing English Language Skills Lab",
-						uploadDate: "2024-02-24",
-						viewUrl: "#",
-					},
+					 
 				],
 			},
 		],

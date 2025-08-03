@@ -98,7 +98,7 @@ export default function Home() {
                 <h3 className="text-3xl font-bold text-gray-800 mb-4">Our Vision</h3>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   To become leaders and innovators in our respective fields, contributing positively to society 
-                  while maintaining the bonds and values we've built together.
+                  while maintaining the bonds and values we&apos;ve built together.
                 </p>
               </div>
             </div>
