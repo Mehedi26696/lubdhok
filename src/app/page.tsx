@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { semesters } from '@/data/studyMaterials'
 
 export default function Home() {
   return (

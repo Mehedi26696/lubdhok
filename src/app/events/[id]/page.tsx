@@ -2,17 +2,18 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { getEventById, type Event } from '@/data/events'
+import { getEventById } from '@/data/events'
 import { notFound } from 'next/navigation'
 
 interface EventDetailsPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default function EventDetailsPage({ params }: EventDetailsPageProps) {
-  const event = getEventById(params.id)
+export default async function EventDetailsPage({ params }: EventDetailsPageProps) {
+  const { id } = await params
+  const event = getEventById(id)
 
   if (!event) {
     notFound()
