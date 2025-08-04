@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { projectSemesters, getProjectsByCourse } from '@/data/projects'
+import { projectSemesters, type AcademicProject, type ProjectCourse, type ProjectSemester } from '@/data/projects'
 
 interface CourseProjectPageProps {
   params: Promise<{
@@ -13,8 +13,8 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
   const { courseId } = await params
 
   // Find the course and semester
-  let course: any = null
-  let semester: any = null
+  let course: ProjectCourse | null = null
+  let semester: ProjectSemester | null = null
 
   for (const sem of projectSemesters) {
     const foundCourse = sem.courses.find(c => c.id === courseId)
@@ -25,16 +25,9 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
     }
   }
 
-  if (!course || course.projects.length === 0) {
+  if (!course || !semester || course.projects.length === 0) {
     notFound()
   }
-
-  // Get unique team members across all projects
-  const allTeamMembers = Array.from(new Set(
-    course.projects.flatMap((project: any) => 
-      Array.from({ length: project.teamSize }, (_, i) => `Team Member ${i + 1}`)
-    )
-  ))
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-purple-50/30">
@@ -116,7 +109,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
 
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-200/50 hover:shadow-xl transition-all duration-300 group">
                 <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">�</div>
-                <div className="text-2xl font-bold text-gray-800 mb-1">{Array.from(new Set(course.projects.flatMap((p: any) => p.technologies))).length}</div>
+                <div className="text-2xl font-bold text-gray-800 mb-1">{Array.from(new Set(course.projects.flatMap((p: AcademicProject) => p.technologies))).length}</div>
                 <div className="text-gray-600 font-medium text-sm">Technologies</div>
               </div>
             </div>
@@ -135,7 +128,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {course.projects.map((project: any, index: number) => (
+            {course.projects.map((project: AcademicProject, index: number) => (
               <div 
                 key={project.id}
                 className="bg-white/70 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl border border-violet-200/50 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 group"
