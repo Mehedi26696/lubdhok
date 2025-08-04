@@ -194,6 +194,7 @@ export const events: Event[] = [
             '/events/tour2.jpg',
             '/events/tour3.jpg',
             '/events/tour4.jpg',
+            '/events/tour5.jpg',
         ],
         organizer: '28th Batch',
     },
