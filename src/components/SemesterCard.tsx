@@ -6,10 +6,15 @@ interface SemesterCardProps {
 }
 
 export default function SemesterCard({ semester }: SemesterCardProps) {
+  // Filter out question banks from subject counts
+  const regularSubjects = semester.subjects.filter(subject => 
+    subject.name !== 'Question Banks' && !subject.code.startsWith('QB-')
+  )
+  
   const totalMaterials = semester.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)
-  const totalSubjects = semester.subjects.length
-  const theorySubjects = semester.subjects.filter(subject => subject.type === 'theory').length
-  const labSubjects = semester.subjects.filter(subject => subject.type === 'lab').length
+  const totalSubjects = regularSubjects.length
+  const theorySubjects = regularSubjects.filter(subject => subject.type === 'theory').length
+  const labSubjects = regularSubjects.filter(subject => subject.type === 'lab').length
 
   return (
     <div className="group relative bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 rounded-2xl shadow-lg border border-violet-200/50 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden h-full flex flex-col">
@@ -71,7 +76,7 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {semester.subjects
+                {regularSubjects
                   .filter(subject => subject.type === 'theory')
                   .map((subject) => (
                     <span 
@@ -95,7 +100,7 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {semester.subjects
+                {regularSubjects
                   .filter(subject => subject.type === 'lab')
                   .map((subject) => (
                     <span 
