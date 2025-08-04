@@ -17,9 +17,11 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
     notFound()
   }
 
-  const theorySubjects = semester.subjects.filter(subject => subject.type === 'theory')
+  const theorySubjects = semester.subjects.filter(subject => subject.type === 'theory' && subject.name !== 'Question Banks')
   const labSubjects = semester.subjects.filter(subject => subject.type === 'lab')
-  const totalMaterials = semester.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)
+  const questionSubjects = semester.subjects.filter(subject => subject.name === 'Question Banks')
+  const actualSubjects = semester.subjects.filter(subject => subject.name !== 'Question Banks')
+  const totalMaterials = actualSubjects.reduce((acc, subject) => acc + subject.materials.length, 0)
 
   // Function to organize materials by type for theory courses
   const organizeTheoryMaterials = (materials: StudyMaterial[]) => {
@@ -88,7 +90,7 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-violet-200/50 hover:shadow-xl transition-all duration-300 group">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📚</div>
-                <div className="text-3xl font-bold text-gray-800 mb-2">{semester.subjects.length}</div>
+                <div className="text-3xl font-bold text-gray-800 mb-2">{actualSubjects.length}</div>
                 <div className="text-gray-600 font-medium">Total Subjects</div>
               </div>
               
@@ -368,8 +370,47 @@ export default async function SemesterPage({ params }: SemesterPageProps) {
           </div>
         )}
 
+        {/* Questions Section */}
+        {questionSubjects.length > 0 && (
+          <div className="mb-20">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+                Question Banks
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Previous year questions, sample papers, and practice problems for exam preparation
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {questionSubjects.map((questionSubject) => 
+                questionSubject.materials.map((material, index) => (
+                  <div key={material.id} 
+                       className="transform hover:scale-[1.02] transition-all duration-300"
+                       style={{ animationDelay: `${index * 0.1}s` }}>
+                    <MaterialCard material={material} />
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Empty State for Questions */}
+            {questionSubjects.every(subject => subject.materials.length === 0) && (
+              <div className="text-center py-16">
+                <div className="w-32 h-32 bg-gradient-to-br from-red-100 to-pink-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-lg">
+                  <span className="text-6xl">❓</span>
+                </div>
+                <h4 className="text-2xl font-bold text-gray-800 mb-4">Question Banks Coming Soon</h4>
+                <p className="text-gray-600 text-lg max-w-md mx-auto">
+                  Previous year questions and practice problems will be uploaded soon. Check back later!
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Empty State for Entire Semester */}
-        {semester.subjects.length === 0 && (
+        {actualSubjects.length === 0 && (
           <div className="text-center py-24">
             <div className="w-40 h-40 bg-gradient-to-br from-violet-100 via-purple-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-12 shadow-2xl">
               <span className="text-8xl">📚</span>

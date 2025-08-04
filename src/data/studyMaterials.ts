@@ -3,7 +3,7 @@ export interface StudyMaterial {
 	id: string;
 	title: string;
 	description: string;
-	type: "lecture" | "slide" | "note" | "assignment" | "other" | "books" | "code";
+	type: "lecture" | "slide" | "note" | "assignment" | "other" | "books" | "code" | "question";
 	viewUrl?: string;
 	uploadDate: string;
 	subject: string;
@@ -195,6 +195,35 @@ export const semesters: Semester[] = [
 						uploadDate: "2024-01-20",
 						viewUrl: "https://drive.google.com/drive/folders/189Ujc8XQnjpLrCwdmwx20NznNw6Uhljl?usp=sharing",
 					},
+				],
+			},
+			// Question Banks
+			{
+				id: "questions-1",
+				name: "Question Banks",
+				code: "QB-1",
+				credits: 0,
+				type: "theory",
+				materials: [
+					{
+						id: "Previous-Years-Questions",
+						title: "Previous Years' Question Bank",
+						description: "All previous years' exam questions",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2024-02-10",
+						viewUrl: "https://drive.google.com/drive/folders/1XqJc4at9OPa3jvHnSRHaHx7thQ5wQjyZ?usp=sharing",
+					},
+					{
+						id: "29th-Batch-Questions",
+						title: "29th Batch Question Bank",
+						description: "All exam questions from the 29th batch",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2024-02-12",
+						viewUrl: "https://drive.google.com/drive/folders/1iveL6D_yfFrCNoxDgQD6Qem0YBgZww4y?usp=sharing",
+					},
+					 
 				],
 			},
 			// Lab Courses
@@ -455,6 +484,34 @@ export const semesters: Semester[] = [
 					 
 				],
 			},
+			// Question Banks
+			{
+				id: "questions-2",
+				name: "Question Banks",
+				code: "QB-2",
+				credits: 0,
+				type: "theory",
+				materials: [
+					{
+						id: "Previous-Years-Questions-2",
+						title: "Previous Years' Question Bank",
+						description: "All previous years' exam questions for Semester II",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2024-05-25",
+						viewUrl: "https://drive.google.com/drive/folders/1DMZQeNvmhycFLb7-Q5oFCRv8XS3PyQKH?usp=sharing",
+					},
+					{
+						id: "29th-Batch-Questions-2",
+						title: "29th Batch Question Bank",
+						description: "All exam questions from the 29th batch for Semester II",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2024-05-27",
+						viewUrl: "https://drive.google.com/drive/folders/1degoYnf8luWi5Y71Oj5okqYCrUGUiwpH?usp=sharing",
+					},
+				],
+			},
 		],
 	},
 	{
@@ -660,6 +717,36 @@ export const semesters: Semester[] = [
 					 
 				],
 			},
+            
+			// Question Banks
+			{
+				id: "questions-3",
+				name: "Question Banks",
+				code: "QB-3",
+				credits: 0,
+				type: "theory",
+				materials: [
+					{
+						id: "Previous-Years-Questions-3",
+						title: "Previous Years' Question Bank",
+						description: "All previous years' exam questions for Semester III",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2025-01-25",
+						viewUrl: "https://drive.google.com/drive/folders/1lotUdFUpmVrM0FYJUCXfqUt4OeuSpk_6?usp=sharing",
+					},
+					{
+						id: "29th-Batch-Questions-3",
+						title: "29th Batch Question Bank",
+						description: "All exam questions from the 29th batch for Semester III",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2025-02-27",
+						viewUrl: "https://drive.google.com/drive/folders/1iUmhUxDEam26C91Go8hLDXS2tZmRKbb6?usp=sharing",
+					},
+				],
+			},
+            
 		],
 	},
 	{
@@ -884,6 +971,35 @@ export const semesters: Semester[] = [
 				type: "lab",
 				materials: [
 				 
+				],
+			},
+
+			// Question Banks
+			{
+				id: "questions-4",
+				name: "Question Banks",
+				code: "QB-4",
+				credits: 0,
+				type: "theory",
+				materials: [
+					{
+						id: "Previous-Years-Questions-4",
+						title: "Previous Years' Question Bank",
+						description: "All previous years' exam questions for Semester IV",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2025-07-25",
+						viewUrl: "https://drive.google.com/drive/folders/1VZl3JvF4aZ2zpIN_e-OBdukGsVcbKrr8?usp=sharing",
+					},
+					{
+						id: "29th-Batch-Questions-4",
+						title: "29th Batch Question Bank",
+						description: "All exam questions from the 29th batch for Semester IV",
+						type: "question",
+						subject: "Various",
+						uploadDate: "2025-08-27",
+						viewUrl: "https://drive.google.com/drive/folders/1gD3jyuk8xs3_BxlGgBV0Rk4N2RQd8FZT?usp=sharing",
+					},
 				],
 			},
 		],

@@ -19,14 +19,11 @@ export default function Footer() {
                   <span className="text-white font-bold text-lg">L</span>
                 </div>
                 <div>
-                  <span className="font-bold text-xl text-white">Lubdhok Batch</span>
-                  <p className="text-gray-400 text-sm">Study Materials Hub</p>
+                  <span className="font-bold text-xl text-white">Lubdhok</span>
+                 
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">
-                A modern, centralized platform for sharing academic resources. Empowering students with 
-                organized access to lectures, slides, notes, and assignments across all semesters.
-              </p>
+              
               
               {/* Social Links */}
               <div className="flex space-x-4">
@@ -59,16 +56,34 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <a href="/semesters" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                  <Link href="/semesters" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
                     All Semesters
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/about" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                  <Link href="/about" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
                     <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
                     About Us
-                  </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/events" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-pink-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/projects" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-cyan-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-gray-300 hover:text-violet-400 transition-colors duration-300 flex items-center group">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></span>
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -79,7 +94,7 @@ export default function Footer() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xl">📚</span>
+                    <span className="text-xl">🎓</span>
                     <span className="text-gray-300 text-sm font-medium">Lectures</span>
                   </div>
                 </div>
@@ -101,21 +116,29 @@ export default function Footer() {
                     <span className="text-gray-300 text-sm font-medium">Assignments</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700/50 pt-8 mt-12">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-gray-400 text-sm">
-                © {new Date().getFullYear()} Lubdhok Batch Study Hub. Made with ❤️ for academic success.
-              </p>
-              <div className="flex items-center space-x-4 text-gray-400 text-sm">
-                <span>Crafted with</span>
-                <div className="flex items-center space-x-2">
-                  <span className="bg-black text-white px-2 py-1 rounded text-xs font-bold">Next.js</span>
-                  <span>&</span>
-                  <div className="w-4 h-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded"></div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">💻</span>
+                    <span className="text-gray-300 text-sm font-medium">Code</span>
+                  </div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">📚</span>
+                    <span className="text-gray-300 text-sm font-medium">Books</span>
+                  </div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">❓</span>
+                    <span className="text-gray-300 text-sm font-medium">Questions</span>
+                  </div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xl">🔬</span>
+                    <span className="text-gray-300 text-sm font-medium">Lab Work</span>
+                  </div>
                 </div>
               </div>
             </div>

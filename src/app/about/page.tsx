@@ -268,22 +268,17 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Rahul Sharma', role: 'Batch Representative', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face' },
-              { name: 'Priya Patel', role: 'Academic Coordinator', image: 'https://images.unsplash.com/photo-1494790108755-2616b75b4fc2?w=300&h=300&fit=crop&crop=face' },
-              { name: 'Sneha Gupta', role: 'Event Manager', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face' }
+              { name: 'Rahul Sharma', role: 'Batch Representative', initials: 'RS', color: 'from-blue-500 to-purple-600' },
+              { name: 'Priya Patel', role: 'Academic Coordinator', initials: 'PP', color: 'from-pink-500 to-red-500' },
+              { name: 'Sneha Gupta', role: 'Event Manager', initials: 'SG', color: 'from-green-500 to-teal-500' }
             ].map((leader, index) => (
               <div 
                 key={index}
                 className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 text-center shadow-xl border border-violet-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative w-32 h-32 mx-auto mb-6">
-                  <Image
-                    src={leader.image}
-                    alt={leader.name}
-                    fill
-                    className="rounded-2xl object-cover shadow-lg"
-                  />
+                <div className={`relative w-32 h-32 mx-auto mb-6 bg-gradient-to-br ${leader.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+                  <span className="text-4xl font-bold text-white">{leader.initials}</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">{leader.name}</h3>
                 <p className="text-violet-600 font-medium">{leader.role}</p>

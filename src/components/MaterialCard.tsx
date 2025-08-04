@@ -55,6 +55,14 @@ const materialTypeConfig = {
     buttonColor: 'bg-teal-600 hover:bg-teal-700',
     label: 'Books'
   },
+  question: {
+    icon: '❓',
+    bgColor: 'bg-gradient-to-br from-red-50 to-red-100/50',
+    borderColor: 'border-red-200/50',
+    textColor: 'text-red-700',
+    buttonColor: 'bg-red-600 hover:bg-red-700',
+    label: 'Questions'
+  },
   other: {
     icon: '📄',
     bgColor: 'bg-gradient-to-br from-gray-50 to-gray-100/50',
