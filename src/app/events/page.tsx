@@ -77,7 +77,7 @@ export default function EventsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
+          {[...events].reverse().map((event) => (
             <div key={event.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <ImageCarousel images={event.images} eventTitle={event.title} />
               

@@ -15,8 +15,129 @@ export interface Event {
 
 export const events: Event[] = [
     {
+        id: '0',
+        title: 'CSEDU Freshers Week 2023',
+        description:
+            'A week-long celebration to welcome the new batch of Computer Science and Engineering students with various activities, workshops, and cultural programs.',
+        date: '2023-09-21 to 2023-09-27',
+        time: '10:00 AM - 5:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/freshers20231.jpg',
+            '/events/freshers20232.jpg',
+            '/events/freshers20233.jpg'
+        ],
+        organizer: '28th Batch',
+    },
+    {
+        id: '001',
+        title: 'CSEDU Indooor Games 2023',
+        description:
+            'Intra-batch indoor games competition including chess, carrom, and table tennis. Compete for the championship and showcase your skills.',
+        date: '2023-08-24 to 2023-08-26',
+        time: '10:00 AM - 5:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'social',
+        images: [
+             '/events/indoor20231.jpg',
+        ],
+        organizer: 'CSEDU Students Club',
+    },
+    {
+        id: '001a',
+        title: 'Freshers Reception and Farewell 2023',
+        description:
+            'A grand event to welcome the new batch and bid farewell to the graduating students with cultural performances, speeches, and awards.',
+        date: '2024-02-07',
+        time: '5:00 PM - 10:00 PM',
+        location: 'TSC Auditorium, University of Dhaka',
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/reception20231.jpg',
+            '/events/reception20232.jpg',
+            '/events/reception20233.jpg',
+            '/events/reception20234.jpg',
+            '/events/reception20235.jpg'
+        ],
+        organizer: '28th Batch',
+    },
+    {
+        id: '001b',
+        title: 'Food Festival 2024',
+        description:
+            'A grand food festival featuring traditional Bangladeshi cuisine, international dishes, and homemade specialties from batch members.',
+        date: '2024-02-19',
+        time: '12:00 PM - 5:00 PM',
+        location: 'Science Complex, University of Dhaka',
+        type: 'past',
+        category: 'cultural',
+        images: [
+            '/events/food20241.jpg',
+            '/events/food20242.jpg'
+        ],
+        organizer: 'CSEDU Students Club,Genetic Engineering and Biotechnology Department'
+    },
+    {
+        id: '002',
+        title: 'CSEDU Annual Tour 2024 - Fortis Downtown Resort',
+        description:
+            'A one-day educational cum recreational tour to Fortis Downtown Resort with team-building activities, sightseeing, and bonding sessions.',
+        date: '2024-03-04',
+        time: '8:00 AM Departure',
+        location: 'Fortis Downtown Resort',
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/tour20241.jpg',
+            '/events/tour20242.jpg'
+        ],
+        organizer: '27th Batch',
+    },
+    {
+        id: '001c',
+        title: 'CSEDUIC Presents Battle of the Brains 2024',
+        description:
+            'A thrilling coding competition between the 29th and 28th batch, featuring algorithmic problem solving, teamwork, and exciting prizes. Teams from both batches compete to showcase their programming skills and claim the title of best coders.',
+        date: '2024-10-24',
+        time: '2:00 PM - 6:00 PM',
+        location: 'Computer Science and Engineering Department, Lab 3',
+        type: 'past',
+        category: 'technical',
+        images: [
+            '/events/battle20241.jpg',
+            '/events/battle20242.jpg',
+            '/events/battle20243.jpg'
+        ],
+        organizer: 'CSEDU IC Club',
+        highlights: [
+            'Intense head-to-head coding rounds',
+            'Live scoreboard and commentary',
+            'Special prizes for top performers'
+        ]
+    },
+    {
+        id: '003',
+        title: 'CSEDU IFTAR 2024',
+        description:
+            'A special Iftar gathering for the CSEDU community to break the fast together with delicious food and prayer.',
+        date: '2024-3-23',
+        time: '5:30 PM - 7:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'cultural',
+        images: [
+            '/events/iftar20241.jpg',
+            '/events/iftar20242.jpg'
+        ],
+        organizer: 'CSEDU Students Club',
+    },
+    {
         id: '1',
-        title: 'Freshers Week 2024',
+        title: 'CSEDU Freshers Week 2024',
         description:
             'Welcome celebration for new batch members with orientation, ice-breaking activities, cultural programs, and introduction to university life.',
         date: '2024-10-27 to 2024-11-02',
@@ -39,24 +160,6 @@ export const events: Event[] = [
     },
     {
         id: '2',
-        title: 'Annual Tour 2025 - Manikganj Dera Resort & Spa',
-        description:
-            'One-day educational cum recreational tour to Manikganj Dera Resort with team-building activities, sightseeing, and bonding sessions.',
-        date: '2024-12-28',
-        time: '8:00 AM Departure',
-        location: 'Manikganj Dera Resort & Spa',
-        type: 'past',
-        category: 'social',
-        images: [
-            '/events/tour1.jpg',
-            '/events/tour2.jpg',
-            '/events/tour3.jpg',
-            '/events/tour4.jpg',
-        ],
-        organizer: '28th Batch',
-    },
-    {
-        id: '3',
         title: 'TT Fest 2024',
         description:
             'Intra-batch Table Tennis tournament with singles and doubles categories. Show your skills and compete for the championship.',
@@ -73,6 +176,26 @@ export const events: Event[] = [
         ],
         organizer: '29th Batch',
     },
+
+    {
+        id: '3',
+        title: 'Annual Tour 2025 - Manikganj Dera Resort & Spa',
+        description:
+            'One-day educational cum recreational tour to Manikganj Dera Resort with team-building activities, sightseeing, and bonding sessions.',
+        date: '2024-12-28',
+        time: '8:00 AM Departure',
+        location: 'Manikganj Dera Resort & Spa',
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/tour1.jpg',
+            '/events/tour2.jpg',
+            '/events/tour3.jpg',
+            '/events/tour4.jpg',
+        ],
+        organizer: '28th Batch',
+    },
+  
     {
         id: '4',
         title: 'Bhojon Utshab 1432',
@@ -103,6 +226,7 @@ export const events: Event[] = [
         type: 'past',
         category: 'cultural',
         images: [
+            '/events/cultural0.jpg',
             '/events/cultural1.jpg',
             '/events/cultural2.jpg',
             '/events/cultural3.jpg',
@@ -110,6 +234,22 @@ export const events: Event[] = [
             '/events/cultural5.jpg'
         ],
         organizer: '29th Batch',
+    },
+    {
+        id: '6',
+        title: 'CSEDU IFTAR 2025',
+        description:
+            'Annual Iftar gathering for the CSEDU community featuring delicious food and prayer.',
+        date: '2025-03-15',
+        time: '5:30 PM - 7:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'cultural',
+        images: [
+            '/events/iftar20251.jpg',
+            '/events/iftar20252.jpg'
+        ],
+        organizer: 'CSEDU Students Club',
     }
 ]
 
