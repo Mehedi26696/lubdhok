@@ -14,8 +14,23 @@ export interface Event {
 }
 
 export const events: Event[] = [
+     {
+        id: '1',
+        title: 'CSEDU Indooor Games 2023',
+        description:
+            'Intra-batch indoor games competition including chess, carrom, and table tennis. Compete for the championship and showcase your skills.',
+        date: '2023-08-24 to 2023-08-26',
+        time: '10:00 AM - 5:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'social',
+        images: [
+             '/events/indoor20231.jpg',
+        ],
+        organizer: 'CSEDU Students Club',
+    },
     {
-        id: '0',
+        id: '2',
         title: 'CSEDU Freshers Week 2023',
         description:
             'A week-long celebration to welcome the new batch of Computer Science and Engineering students with various activities, workshops, and cultural programs.',
@@ -31,23 +46,9 @@ export const events: Event[] = [
         ],
         organizer: '28th Batch',
     },
+   
     {
-        id: '001',
-        title: 'CSEDU Indooor Games 2023',
-        description:
-            'Intra-batch indoor games competition including chess, carrom, and table tennis. Compete for the championship and showcase your skills.',
-        date: '2023-08-24 to 2023-08-26',
-        time: '10:00 AM - 5:00 PM',
-        location: 'Computer Science and Engineering Department',
-        type: 'past',
-        category: 'social',
-        images: [
-             '/events/indoor20231.jpg',
-        ],
-        organizer: 'CSEDU Students Club',
-    },
-    {
-        id: '001a',
+        id: '3',
         title: 'Freshers Reception and Farewell 2023',
         description:
             'A grand event to welcome the new batch and bid farewell to the graduating students with cultural performances, speeches, and awards.',
@@ -66,7 +67,7 @@ export const events: Event[] = [
         organizer: '28th Batch',
     },
     {
-        id: '001b',
+        id: '4',
         title: 'Food Festival 2024',
         description:
             'A grand food festival featuring traditional Bangladeshi cuisine, international dishes, and homemade specialties from batch members.',
@@ -82,7 +83,7 @@ export const events: Event[] = [
         organizer: 'CSEDU Students Club,Genetic Engineering and Biotechnology Department'
     },
     {
-        id: '002',
+        id: '5',
         title: 'CSEDU Annual Tour 2024 - Fortis Downtown Resort',
         description:
             'A one-day educational cum recreational tour to Fortis Downtown Resort with team-building activities, sightseeing, and bonding sessions.',
@@ -98,13 +99,29 @@ export const events: Event[] = [
         organizer: '27th Batch',
     },
     {
-        id: '001c',
+        id: '6',
+        title: 'CSEDU IFTAR 2024',
+        description:
+            'A special Iftar gathering for the CSEDU community to break the fast together with delicious food and prayer.',
+        date: '2024-03-23',
+        time: '5:30 PM - 7:00 PM',
+        location: 'Computer Science and Engineering Department',
+        type: 'past',
+        category: 'cultural',
+        images: [
+            '/events/iftar20241.jpg',
+            '/events/iftar20242.jpg'
+        ],
+        organizer: 'CSEDU Students Club',
+    },
+    {
+        id: '7',
         title: 'CSEDUIC Presents Battle of the Brains 2024',
         description:
             'A thrilling coding competition between the 29th and 28th batch, featuring algorithmic problem solving, teamwork, and exciting prizes. Teams from both batches compete to showcase their programming skills and claim the title of best coders.',
         date: '2024-10-24',
         time: '2:00 PM - 6:00 PM',
-        location: 'Computer Science and Engineering Department, Lab 3',
+        location: 'Computer Science and Engineering Department',
         type: 'past',
         category: 'technical',
         images: [
@@ -119,24 +136,9 @@ export const events: Event[] = [
             'Special prizes for top performers'
         ]
     },
+    
     {
-        id: '003',
-        title: 'CSEDU IFTAR 2024',
-        description:
-            'A special Iftar gathering for the CSEDU community to break the fast together with delicious food and prayer.',
-        date: '2024-3-23',
-        time: '5:30 PM - 7:00 PM',
-        location: 'Computer Science and Engineering Department',
-        type: 'past',
-        category: 'cultural',
-        images: [
-            '/events/iftar20241.jpg',
-            '/events/iftar20242.jpg'
-        ],
-        organizer: 'CSEDU Students Club',
-    },
-    {
-        id: '1',
+        id: '8',
         title: 'CSEDU Freshers Week 2024',
         description:
             'Welcome celebration for new batch members with orientation, ice-breaking activities, cultural programs, and introduction to university life.',
@@ -159,7 +161,7 @@ export const events: Event[] = [
         organizer: '29th Batch',
     },
     {
-        id: '2',
+        id: '9',
         title: 'TT Fest 2024',
         description:
             'Intra-batch Table Tennis tournament with singles and doubles categories. Show your skills and compete for the championship.',
@@ -178,7 +180,7 @@ export const events: Event[] = [
     },
 
     {
-        id: '3',
+        id: '10',
         title: 'Annual Tour 2025 - Manikganj Dera Resort & Spa',
         description:
             'One-day educational cum recreational tour to Manikganj Dera Resort with team-building activities, sightseeing, and bonding sessions.',
@@ -195,28 +197,25 @@ export const events: Event[] = [
         ],
         organizer: '28th Batch',
     },
-  
-    {
-        id: '4',
-        title: 'Bhojon Utshab 1432',
+     {
+        id: '11',
+        title: 'CSEDU IFTAR 2025',
         description:
-            'Grand food festival featuring traditional Bangladeshi cuisine, international dishes, and homemade specialties from batch members.',
-        date: '2024-04-30',
-        time: '12:00 PM - 5:00 PM',
-        location: 'Department of Genetic Engineering and Biotechnology',
+            'Annual Iftar gathering for the CSEDU community featuring delicious food and prayer.',
+        date: '2025-03-15',
+        time: '5:30 PM - 7:00 PM',
+        location: 'Computer Science and Engineering Department',
         type: 'past',
         category: 'cultural',
         images: [
-            '/events/food1.jpg',
-            '/events/food2.jpg',
-            '/events/food3.jpg',
-            '/events/food4.jpg',
-            '/events/food5.jpg'
+            '/events/iftar20251.jpg',
+            '/events/iftar20252.jpg'
         ],
-        organizer: 'CSEDU Students Club, RMEDU Students Club, Genetic Engineering and Biotechnology Department',
+        organizer: 'CSEDU Students Club',
     },
+
     {
-        id:'5',
+        id:'12',
         title: 'CSEDU Annual Cultural Programme and Prize Giving Ceremony 2025', 
         description:
             'Annual cultural event showcasing talents from all batches with performances, awards, and recognition of outstanding contributions.',
@@ -235,22 +234,28 @@ export const events: Event[] = [
         ],
         organizer: '29th Batch',
     },
+  
     {
-        id: '6',
-        title: 'CSEDU IFTAR 2025',
+        id: '13',
+        title: 'Bhojon Utshab 1432',
         description:
-            'Annual Iftar gathering for the CSEDU community featuring delicious food and prayer.',
-        date: '2025-03-15',
-        time: '5:30 PM - 7:00 PM',
-        location: 'Computer Science and Engineering Department',
+            'Grand food festival featuring traditional Bangladeshi cuisine, international dishes, and homemade specialties from batch members.',
+        date: '2025-04-30',
+        time: '12:00 PM - 5:00 PM',
+        location: 'Department of Genetic Engineering and Biotechnology',
         type: 'past',
         category: 'cultural',
         images: [
-            '/events/iftar20251.jpg',
-            '/events/iftar20252.jpg'
+            '/events/food1.jpg',
+            '/events/food2.jpg',
+            '/events/food3.jpg',
+            '/events/food4.jpg',
+            '/events/food5.jpg'
         ],
-        organizer: 'CSEDU Students Club',
-    }
+        organizer: 'CSEDU Students Club, RMEDU Students Club, Genetic Engineering and Biotechnology Department',
+    },
+    
+   
 ]
 
 // Helper functions for categorizing events
