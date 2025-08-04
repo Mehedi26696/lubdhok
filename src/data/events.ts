@@ -109,8 +109,8 @@ export const events: Event[] = [
         type: 'past',
         category: 'cultural',
         images: [
-            '/events/iftar20241.jpg',
-            '/events/iftar20242.jpg'
+            '/events/Iftar20241.jpg',
+            '/events/Iftar20242.jpg'
         ],
         organizer: 'CSEDU Students Club',
     },
@@ -208,8 +208,8 @@ export const events: Event[] = [
         type: 'past',
         category: 'cultural',
         images: [
-            '/events/iftar20251.jpg',
-            '/events/iftar20252.jpg'
+            '/events/Iftar20251.jpg',
+            '/events/Iftar20252.jpg'
         ],
         organizer: 'CSEDU Students Club',
     },
