@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function AboutPage() {
   const stats = [
@@ -191,12 +192,12 @@ export default function AboutPage() {
             >
               Get in Touch
             </a>
-            <a 
+            <Link 
               href="/events"
               className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-violet-600 transition-all duration-300 shadow-xl transform hover:-translate-y-1"
             >
               See Our Events
-            </a>
+            </Link>
           </div>
         </div>
       </div>
