@@ -103,7 +103,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
               
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-indigo-200/50 hover:shadow-xl transition-all duration-300 group">
                 <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">👥</div>
-                <div className="text-2xl font-bold text-gray-800 mb-1">{Math.max(...course.projects.map((p: any) => p.teamSize))}</div>
+                <div className="text-2xl font-bold text-gray-800 mb-1">{Math.max(...course.projects.map((p: AcademicProject) => p.teamSize))}</div>
                 <div className="text-gray-600 font-medium text-sm">Max Team Size</div>
               </div>
 
