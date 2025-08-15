@@ -195,7 +195,7 @@ export const projectSemesters: ProjectSemester[] = [
               { name: "Ishrat Jahan Mim", githubUsername: "Ishrat001" },
               { name: "Tasmia Sultana Sumi", githubUsername: "HIDDENtas12345" }
             ],
-            coverImage: "/projects/sem4/edu.png",
+            coverImage: "/projects/sem4/platr.png",
             sourceCodeUrl: "https://github.com/Mim1726/Android-Project-DU-CodeBots"
           }
 
