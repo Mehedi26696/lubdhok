@@ -834,6 +834,16 @@ export const semesters: Semester[] = [
 						viewUrl:
 							"https://github.com/Mehedi26696/Database-Management-System-I/tree/main/Books",
 					},
+					{
+						id: "cse2201-ref2",
+						title: "SQL Notes",
+						description: "Important SQL concepts and queries",
+						type: "note",
+						subject: "Database Management Systems - I",
+						uploadDate: "2025-08-01",
+						viewUrl:
+							"https://github.com/Mehedi26696/Database-Management-System-I/tree/main/Notes",
+					}
 				],
 			},
 			{
@@ -891,7 +901,7 @@ export const semesters: Semester[] = [
 						subject: "Data and Telecommunication",
 						uploadDate: "2025-08-05",
 						viewUrl:
-							"https://drive.google.com/drive/folders/1d2UKMZgD-yXua5jDZc9560F3WrppnzEC?usp=sharing",
+							"https://github.com/Mehedi26696/DataCom/tree/main/Author%20Slides",
 					},
 					{
 						id: "cse2203-assign1",
@@ -901,7 +911,7 @@ export const semesters: Semester[] = [
 						subject: "Data and Telecommunication",
 						uploadDate: "2025-08-07",
 						viewUrl:
-							"https://drive.google.com/drive/folders/1cnLhBemgCL9f8_CtcC3MhjFaTg75YssV?usp=sharing",
+							"https://github.com/Mehedi26696/DataCom/tree/main/Assignment",
 					},
 					{
 						id: "cse2203-ref1",
@@ -911,7 +921,7 @@ export const semesters: Semester[] = [
 						subject: "Data and Telecommunication",
 						uploadDate: "2025-08-03",
 						viewUrl:
-							"https://drive.google.com/drive/folders/1LRTy6u2a8T1icW-re26uZ0pemz0wW9bm?usp=sharing",
+							"https://github.com/Mehedi26696/DataCom/tree/main/Book",
 					},
 				],
 			},
@@ -1039,7 +1049,18 @@ export const semesters: Semester[] = [
 				code: "CSE-2214",
 				credits: 0.75,
 				type: "lab",
-				materials: [],
+				materials: [
+					{
+						id: "cse2214-lab1",
+						title: "Data and Telecommunication Lab Tasks",
+						description: "Hands-on data communication lab experiments",
+						type: "other",
+						subject: "Data and Telecommunication Lab",
+						uploadDate: "2025-08-07",
+						viewUrl:
+							"https://github.com/Mehedi26696/DataCom/tree/main/Lab",
+					},
+				],
 			},
 			{
 				id: "cse2216",
@@ -1047,7 +1068,28 @@ export const semesters: Semester[] = [
 				code: "CSE-2216",
 				credits: 1.5,
 				type: "lab",
-				materials: [],
+				materials: [
+					{
+						id: "cse2216-lab1",
+						title: "Application Development Lab Tasks",
+						description: "Hands-on application development projects",
+						type: "other",
+						subject: "Application Development Lab",
+						uploadDate: "2025-08-07",
+						viewUrl:
+							"https://drive.google.com/drive/folders/1vNAYmncB0kXQZLRF10fPQBfnoR94x4dh?usp=sharing",
+					},
+					{
+						id: "cse2216-lab2",
+						title: "Application Development Lab Assignment",
+						description: "Complete the assigned application development project",
+						type: "other",
+						subject: "Application Development Lab",
+						uploadDate: "2025-08-07",
+						viewUrl:
+							"https://drive.google.com/drive/folders/1E4mp_U1glG0cOprfxqfftF_Do9VnfJQv?usp=sharing",
+					},
+				],
 			},
 
 			// Question Banks
