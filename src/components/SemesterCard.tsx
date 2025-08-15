@@ -24,12 +24,12 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
       {/* Simple corner accent */}
       <div className="absolute top-0 right-0 w-16 h-16 bg-violet-400/10 rounded-full -translate-y-8 translate-x-8"></div>
       
-      <div className="relative p-5 flex flex-col h-full">
+      <div className="relative p-4 sm:p-5 flex flex-col h-full">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-lg font-semibold text-white leading-snug">
+          <h3 className="text-base sm:text-lg font-semibold text-white leading-snug">
             {semester.name}
           </h3>
-          <span className="bg-violet-600 text-white text-xs font-medium px-2.5 py-1 rounded-md shadow-sm ml-3 flex-shrink-0">
+          <span className="bg-violet-600 text-white text-xs font-medium px-2 sm:px-2.5 py-1 rounded-md shadow-sm ml-2 sm:ml-3 flex-shrink-0">
             {totalSubjects} courses
           </span>
         </div>
@@ -38,29 +38,29 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
           {semester.description}
         </p>
 
-        <div className="flex gap-3 mb-5">
-          <div className="bg-slate-700/70 rounded-lg p-3 flex-1 border border-slate-600/30">
+        <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-5">
+          <div className="bg-slate-700/70 rounded-lg p-2 sm:p-3 flex-1 border border-slate-600/30">
             <div className="flex items-center text-violet-400 mb-1.5">
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
               <span className="font-medium text-xs">Materials</span>
             </div>
-            <p className="text-lg font-semibold text-white">{totalMaterials}</p>
+            <p className="text-base sm:text-lg font-semibold text-white">{totalMaterials}</p>
           </div>
           
-          <div className="bg-slate-700/70 rounded-lg p-3 flex-1 border border-slate-600/30">
+          <div className="bg-slate-700/70 rounded-lg p-2 sm:p-3 flex-1 border border-slate-600/30">
             <div className="flex items-center text-emerald-400 mb-1.5">
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <span className="font-medium text-xs">Types</span>
             </div>
-            <p className="text-lg font-semibold text-white">{theorySubjects}T + {labSubjects}L</p>
+            <p className="text-base sm:text-lg font-semibold text-white">{theorySubjects}T + {labSubjects}L</p>
           </div>
         </div>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           
           {/* Theory Courses */}
           {theorySubjects > 0 && (

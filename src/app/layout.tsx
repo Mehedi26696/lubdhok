@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Lubdhok",
   description: "Official website of Lubdhok university batch. Access study materials, events, projects, announcements, and connect with batch members all in one place.",
   keywords: "Lubdhok batch, university batch, study materials, events, projects, announcements, batch members, academic resources",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function RootLayout({

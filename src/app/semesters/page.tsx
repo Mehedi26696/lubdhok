@@ -39,41 +39,41 @@ export default function SemestersPage() {
             <span>Academic Resources</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-violet-100 to-purple-100 bg-clip-text text-transparent mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-violet-100 to-purple-100 bg-clip-text text-transparent mb-6">
             Study Materials
           </h1>
           
           <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto mb-6"></div>
           
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
             Browse comprehensive study materials organized by semester. Each semester contains subjects with 
             lectures, slides, notes, and assignments shared by the Lubdhok batch community.
           </p>
           
-          <div className="flex justify-center items-center space-x-8 mt-8">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-8">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">{semesters.length}</div>
-              <div className="text-sm text-slate-400">Semesters</div>
+              <div className="text-xl sm:text-2xl font-bold text-white">{semesters.length}</div>
+              <div className="text-xs sm:text-sm text-slate-400">Semesters</div>
             </div>
-            <div className="w-px h-8 bg-slate-600"></div>
+            <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">
+              <div className="text-xl sm:text-2xl font-bold text-white">
                 {semesters.reduce((acc, sem) => acc + sem.subjects.filter(s => !s.code.startsWith('QB-')).length, 0)}
               </div>
-              <div className="text-sm text-slate-400">Subjects</div>
+              <div className="text-xs sm:text-sm text-slate-400">Subjects</div>
             </div>
-            <div className="w-px h-8 bg-slate-600"></div>
+            <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">
+              <div className="text-xl sm:text-2xl font-bold text-white">
                 {semesters.reduce((acc, sem) => acc + sem.subjects.reduce((total, sub) => total + sub.materials.length, 0), 0)}
               </div>
-              <div className="text-sm text-slate-400">Materials</div>
+              <div className="text-xs sm:text-sm text-slate-400">Materials</div>
             </div>
           </div>
         </div>
 
         {/* Semesters Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
           {semesters.map((semester, index) => (
             <div 
               key={semester.id}

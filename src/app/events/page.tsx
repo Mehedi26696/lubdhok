@@ -20,7 +20,7 @@ function ImageCarousel({ images, eventTitle }: { images: string[], eventTitle: s
   if (images.length === 0) return null
 
   return (
-    <div className="relative h-56 w-full overflow-hidden group">
+    <div className="relative h-48 sm:h-56 w-full overflow-hidden group">
       <Image
         src={images[currentImageIndex]}
         alt={`${eventTitle} - Image ${currentImageIndex + 1}`}
@@ -35,28 +35,28 @@ function ImageCarousel({ images, eventTitle }: { images: string[], eventTitle: s
         <>
           <button
             onClick={prevImage}
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-0 group-hover:opacity-100"
+            className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-1.5 sm:p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-80 sm:opacity-0 group-hover:opacity-100"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button
             onClick={nextImage}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-0 group-hover:opacity-100"
+            className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-1.5 sm:p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-80 sm:opacity-0 group-hover:opacity-100"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
           
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          <div className="absolute bottom-2 sm:bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-2">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-200 ${
                   index === currentImageIndex 
                     ? 'bg-orange-400 scale-110 shadow-lg shadow-orange-400/50' 
                     : 'bg-white/60 hover:bg-white/80 hover:scale-105'
@@ -108,40 +108,40 @@ export default function EventsPage() {
             <span>Community Events</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-orange-100 to-amber-100 bg-clip-text text-transparent mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-orange-100 to-amber-100 bg-clip-text text-transparent mb-6">
             Our Events
           </h1>
           
           <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full mx-auto mb-6"></div>
           
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
             Join us in celebrating our journey through memorable events, competitions, and gatherings that strengthen our batch community
           </p>
           
-          <div className="flex justify-center items-center space-x-8 mt-8">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-8">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">{events.length}</div>
-              <div className="text-sm text-slate-400">Total Events</div>
+              <div className="text-xl sm:text-2xl font-bold text-white">{events.length}</div>
+              <div className="text-xs sm:text-sm text-slate-400">Total Events</div>
             </div>
-            <div className="w-px h-8 bg-slate-600"></div>
+            <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">
+              <div className="text-xl sm:text-2xl font-bold text-white">
                 {events.filter(e => e.type === 'upcoming').length}
               </div>
-              <div className="text-sm text-slate-400">Upcoming</div>
+              <div className="text-xs sm:text-sm text-slate-400">Upcoming</div>
             </div>
-            <div className="w-px h-8 bg-slate-600"></div>
+            <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">
+              <div className="text-xl sm:text-2xl font-bold text-white">
                 {new Set(events.map(e => e.category)).size}
               </div>
-              <div className="text-sm text-slate-400">Categories</div>
+              <div className="text-xs sm:text-sm text-slate-400">Categories</div>
             </div>
           </div>
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
           {[...events].reverse().map((event, index) => (
             <div 
               key={event.id} 
@@ -154,46 +154,46 @@ export default function EventsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
               
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
                     event.type === 'upcoming' 
                       ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' 
                       : 'bg-slate-600/40 text-slate-300 border border-slate-500/30'
                   }`}>
                     {event.type === 'upcoming' ? 'Upcoming' : 'Completed'}
                   </span>
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 border border-orange-400/30 rounded-full text-xs font-medium capitalize">
+                  <span className="px-2 sm:px-3 py-1 bg-orange-500/20 text-orange-300 border border-orange-400/30 rounded-full text-xs font-medium capitalize">
                     {event.category}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-orange-200 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 group-hover:text-orange-200 transition-colors duration-300">
                   {event.title}
                 </h3>
                 <p className="text-slate-300 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {event.description}
                 </p>
                 
-                <div className="space-y-2 mb-6">
+                <div className="space-y-2 mb-4 sm:mb-6">
                   <div className="flex items-center text-sm text-slate-400">
-                    <svg className="w-4 h-4 mr-2 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    {event.date}
+                    <span className="truncate">{event.date}</span>
                   </div>
                   <div className="flex items-center text-sm text-slate-400">
-                    <svg className="w-4 h-4 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 mr-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    {event.location}
+                    <span className="truncate">{event.location}</span>
                   </div>
                 </div>
                 
                 <Link 
                   href={`/events/${event.id}`}
-                  className={`inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  className={`inline-flex items-center justify-center w-full px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                     event.type === 'upcoming'
                       ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl'
                       : 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-lg hover:shadow-xl'

@@ -15,7 +15,7 @@ export default function Header() {
             <Link href="/" className="flex items-center space-x-3">
                
               <div>
-                <h1 className="text-xl font-bold text-white/95 drop-shadow-sm">Lubdhok-CSEDU-29</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-white/95 drop-shadow-sm">Lubdhok-CSEDU-29</h1>
                 
               </div>
             </Link>
@@ -85,18 +85,18 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="md:hidden bg-slate-900/95 backdrop-blur-md rounded-lg border border-slate-700/50 mx-2 mb-4">
+            <div className="px-4 pt-2 pb-3 space-y-1">
               <Link
                 href="/"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/semesters"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Study Materials
@@ -104,14 +104,14 @@ export default function Header() {
                
               <Link
                 href="/events"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Events
               </Link>
               <Link
                 href="/projects"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Projects
@@ -119,14 +119,14 @@ export default function Header() {
                
               <Link
                 href="/about"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact

@@ -86,7 +86,7 @@ export default function HomePage() {
                 <div className="w-16 h-px bg-white/60"></div>
               </div>
               
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
                 <span className="text-white drop-shadow-2xl [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">LUBDHOK</span>
               </h1>
               
@@ -95,10 +95,10 @@ export default function HomePage() {
 
             {/* Clean Subtitle */}
             <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white drop-shadow-lg">
                 29th Batch • CSEDU 
               </h2>
-              <p className="text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+              <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-lg px-4">
                 A community of passionate engineers building tomorrow&apos;s technology through innovation and collaboration.
               </p>
             </div>
@@ -133,22 +133,22 @@ export default function HomePage() {
               </svg>
               <span>Latest Updates</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent mb-6">
               Community Highlights
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-4">
               Stay updated with our latest projects, events, and study materials.
             </p>
           </div>
 
           {/* Rolling Animation Container */}
-          <div className="relative h-96 overflow-hidden rounded-2xl bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 backdrop-blur-sm border border-slate-600/30 shadow-2xl">
+          <div className="relative h-80 sm:h-96 overflow-hidden rounded-2xl bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 backdrop-blur-sm border border-slate-600/30 shadow-2xl mx-2 sm:mx-0">
             {/* Animated rolling cards */}
             <div className="absolute inset-0 flex items-center">
-              <div className="flex space-x-6 animate-scroll-left">
+              <div className="flex space-x-4 sm:space-x-6 animate-scroll-left">
                 {/* First set of items */}
                 {rollingItems.map((item, index) => (
-                  <div key={`first-${item.id}-${index}`} className="flex-shrink-0 w-80 h-72">
+                  <div key={`first-${item.id}-${index}`} className="flex-shrink-0 w-72 sm:w-80 h-64 sm:h-72">
                     {item.type === 'semester' && (
                       <div className="group relative bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-violet-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                         <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -331,14 +331,14 @@ export default function HomePage() {
           </div>
 
           {/* Quick Action Buttons */}
-          <div className="flex justify-center space-x-4 mt-12">
-            <Link href="/semesters" className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4">
+            <Link href="/semesters" className="px-4 sm:px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 shadow-lg hover:shadow-xl text-center">
                Study Materials
             </Link>
-            <Link href="/events" className="px-6 py-3 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg font-semibold hover:from-teal-700 hover:to-teal-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+            <Link href="/events" className="px-4 sm:px-6 py-3 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg font-semibold hover:from-teal-700 hover:to-teal-800 transition-all duration-200 shadow-lg hover:shadow-xl text-center">
               View Events
             </Link>
-            <Link href="/projects" className="px-6 py-3 bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-lg font-semibold hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+            <Link href="/projects" className="px-4 sm:px-6 py-3 bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-lg font-semibold hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl text-center">
               Explore Projects
             </Link>
           </div>

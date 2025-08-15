@@ -225,6 +225,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Better mobile scroll experience */
+@media (max-width: 768px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    overscroll-behavior: contain;
+  }
+}
+
 /* Seamless page background */
 body {
   background: linear-gradient(135deg, #020617 0%, #0f172a 25%, #1e293b 50%, #334155 75%, #475569 100%);
@@ -272,6 +283,33 @@ body {
     font-size: 1.5rem;
     line-height: 2rem;
   }
+  
+  /* Better mobile container spacing */
+  .container-mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Mobile-optimized card spacing */
+  .card-mobile {
+    padding: 1rem;
+  }
+  
+  /* Better mobile typography */
+  .text-mobile-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .text-mobile-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .text-mobile-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 @media (min-width: 641px) {
@@ -285,6 +323,69 @@ body {
   .text-responsive-xl {
     font-size: 2.5rem;
     line-height: 3rem;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 768px) {
+  /* Better mobile spacing */
+  .mobile-px {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-py {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* Mobile grid improvements */
+  .mobile-grid-gap {
+    gap: 1rem;
+  }
+  
+  /* Better mobile buttons */
+  .mobile-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Mobile typography adjustments */
+  .mobile-text-scale h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  
+  .mobile-text-scale h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .mobile-text-scale h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  /* Better mobile image containers */
+  .mobile-img-container {
+    height: 12rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-text h1 {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  .tablet-text h2 {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 }
 

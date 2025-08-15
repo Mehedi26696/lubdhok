@@ -1083,7 +1083,7 @@ export const semesters: Semester[] = [
 						id: "cse2216-lab2",
 						title: "Application Development Lab Assignment",
 						description: "Complete the assigned application development project",
-						type: "other",
+						type: "assignment",
 						subject: "Application Development Lab",
 						uploadDate: "2025-08-07",
 						viewUrl:
