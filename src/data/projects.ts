@@ -180,6 +180,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/murir.png",
             sourceCodeUrl: "https://github.com/srs4929/Murir_Tin_Frontend"
+          },
+          {
+            id: "cse2201-project5",
+            title: "Platr – Your Personal Recipe Companion",
+            description: "Platr is a beautifully designed Flutter-based recipe application that helps users explore, create, and manage a wide variety of recipes.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase", "Firebase Storage","Firebase Firestore"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31" },
+              { name: "Suraya Jannat Mim", githubUsername: "Mim1726" },
+              { name: "Ishrat Jahan Mim", githubUsername: "Ishrat001" },
+              { name: "Tasmia Sultana Sumi", githubUsername: "HIDDENtas12345" }
+            ],
+            coverImage: "/projects/sem4/edu.png",
+            sourceCodeUrl: "https://github.com/Mim1726/Android-Project-DU-CodeBots"
           }
 
         ]
