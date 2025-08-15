@@ -2,11 +2,13 @@ import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<footer className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 relative overflow-hidden">
-			{/* Background decorative elements */}
-			<div className="absolute inset-0 pointer-events-none select-none opacity-60">
-				<div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-500/8 to-violet-500/8 rounded-full -translate-x-24 -translate-y-24"></div>
-				<div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-indigo-500/8 to-purple-500/8 rounded-full translate-x-16 translate-y-16"></div>
+		<footer className="bg-transparent relative overflow-hidden">
+			{/* Background decorative elements that blend with page */}
+			<div className="absolute inset-0 pointer-events-none select-none">
+				{/* Gradient overlay that extends the page background */}
+				<div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-800/80 to-transparent"></div>
+				<div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-emerald-500/8 to-teal-500/8 rounded-full -translate-x-24 -translate-y-24"></div>
+				<div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-violet-500/8 to-purple-500/8 rounded-full translate-x-16 translate-y-16"></div>
 			</div>
 
 			<div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,7 +92,11 @@ export default function Footer() {
 						<div className="text-gray-400 text-center md:text-left">
 							<span>{`© ${new Date().getFullYear()} Lubdhok-CSEDU29. All rights reserved.`}</span>
 						</div>
-						 
+						<div className="flex items-center space-x-2 text-gray-400">
+							<span>Made with</span>
+							<span className="text-red-400">♥</span>
+							<span>by Lubdhok</span>
+						</div>
 					</div>
 				</div>
 			</div>

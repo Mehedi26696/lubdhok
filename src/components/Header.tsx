@@ -7,56 +7,57 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-6">
+        <div className="flex justify-between items-center py-4">
           {/* Logo and Brand */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
+               
               <div>
-                <h1 className="text-xl font-bold text-white">Lubdhok-CSEDU-29</h1>
-                <p className="text-xs text-slate-300">Computer Science & Engineering • University of Dhaka</p>
+                <h1 className="text-xl font-bold text-white/95 drop-shadow-sm">Lubdhok-CSEDU-29</h1>
+                
               </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-2">
+          <nav className="hidden md:flex space-x-1">
             <Link 
               href="/" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               Home
             </Link>
             <Link 
               href="/semesters" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               Study Materials
             </Link>
              
             <Link 
               href="/events" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               Events
             </Link>
             <Link 
               href="/projects" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               Projects
             </Link>
              
             <Link 
               href="/about" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className="text-white hover:text-emerald-200 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:font-bold transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
               Contact
             </Link>
@@ -66,7 +67,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:text-emerald-200 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 transition-all duration-200 hover:backdrop-blur-sm hover:shadow-lg"
+              className="inline-flex items-center justify-center p-2 text-white hover:text-white/80 focus:outline-none transition-all duration-300"
             >
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
@@ -85,17 +86,17 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-white/20 bg-black/30 backdrop-blur-xl rounded-b-lg shadow-2xl">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                 href="/"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/semesters"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Study Materials
@@ -103,14 +104,14 @@ export default function Header() {
                
               <Link
                 href="/events"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Events
               </Link>
               <Link
                 href="/projects"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Projects
@@ -118,14 +119,14 @@ export default function Header() {
                
               <Link
                 href="/about"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="block px-4 py-3 rounded-lg text-base font-medium text-white hover:text-emerald-200 hover:bg-white/20 hover:font-bold transition-all duration-200 hover:backdrop-blur-sm"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:font-bold transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
