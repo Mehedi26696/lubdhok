@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function ContactPage() {
  
  
@@ -125,18 +127,18 @@ export default function ContactPage() {
             Join our study groups, participate in events, or connect with us on campus at the Computer Science Department, University of Dhaka.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <Link 
               href="/events"
               className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               View Our Events
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/semesters"
               className="border-2 border-green-500/50 text-green-300 hover:text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-green-500/20 hover:border-green-400 transition-all duration-300 shadow-lg transform hover:-translate-y-1 backdrop-blur-sm"
             >
               Study Materials
-            </a>
+            </Link>
           </div>
         </div>
       </div>

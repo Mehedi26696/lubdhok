@@ -86,19 +86,7 @@ export default function Footer() {
 				 
 				</div>
 
-				{/* Bottom Bar */}
-				<div className="border-t border-slate-700/40 py-4">
-					<div className="flex flex-col md:flex-row items-center justify-between gap-2 text-sm">
-						<div className="text-gray-400 text-center md:text-left">
-							<span>{`© ${new Date().getFullYear()} Lubdhok-CSEDU29. All rights reserved.`}</span>
-						</div>
-						<div className="flex items-center space-x-2 text-gray-400">
-							<span>Made with</span>
-							<span className="text-red-400">♥</span>
-							<span>by Lubdhok</span>
-						</div>
-					</div>
-				</div>
+ 
 			</div>
 		</footer>
 	);
