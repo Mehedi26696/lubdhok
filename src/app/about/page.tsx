@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function AboutPage() {
   const stats = [
     { label: 'Batch Members', value: '60', icon: '👥' },
-    { label: 'Academic Year', value: '2nd', icon: '📚' },
+    { label: 'Academic Year', value: '3rd', icon: '📚' },
     { label: 'Department', value: 'CSE', icon: '💻' },
     { label: 'Years Together', value: '2', icon: '📅' },
   ]
@@ -51,30 +51,37 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-purple-50/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-slate-800/30 to-slate-700/30 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl font-extrabold mb-8 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
-            Lubdhok-29
+          <h1 className="text-6xl md:text-7xl font-extrabold mb-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent leading-tight">
+            Lubdhok-CSEDU-29
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-12">
-            We are 60 Computer Science students at Dhaka University, currently in our 2nd year. 
+          <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            We are 60 Computer Science students at Dhaka University, currently in our 3rd year. 
             Together we learn, grow, and support each other through our academic journey.
           </p>
           
           {/* Hero Image */}
-          <div className="relative w-full h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mx-auto max-w-5xl">
+          <div className="relative w-full h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mx-auto max-w-5xl border border-slate-700/50">
             <Image
               src="/batch.jpg"
               alt="Lubdhok Batch - Dhaka University CS Students"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-violet-900/70 via-purple-900/30 to-transparent flex items-end">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-cyan-900/30 to-transparent flex items-end">
               <div className="p-8 text-white">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Computer Science, Dhaka University</h2>
-                <p className="text-lg md:text-xl text-violet-100">2nd Year Students - Lubdhok-29</p>
+                <p className="text-lg md:text-xl text-cyan-200">3rd Year Students - Lubdhok-CSEDU-29</p>
               </div>
             </div>
           </div>
@@ -85,44 +92,25 @@ export default function AboutPage() {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 text-center shadow-xl border border-violet-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500"
+              className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 text-center shadow-xl border border-slate-700/50 hover:shadow-2xl hover:scale-105 hover:bg-slate-700/50 transition-all duration-500"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="text-4xl mb-4">{stat.icon}</div>
-              <div className="text-3xl md:text-4xl font-bold text-violet-600 mb-2">{stat.value}</div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">{stat.value}</div>
+              <div className="text-slate-300 font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
-          <div className="bg-gradient-to-br from-violet-500 to-purple-600 rounded-3xl p-12 text-white shadow-2xl transform hover:scale-105 transition-all duration-500">
-            <div className="text-5xl mb-6">🎯</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Goal</h2>
-            <p className="text-xl leading-relaxed text-violet-100">
-              To create a supportive learning environment where all 60 of us can excel in our Computer Science studies, 
-              help each other with coursework, and build friendships that will last beyond university.
-            </p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-3xl p-12 text-white shadow-2xl transform hover:scale-105 transition-all duration-500">
-            <div className="text-5xl mb-6">🔮</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Vision</h2>
-            <p className="text-xl leading-relaxed text-blue-100">
-              To graduate as skilled Computer Science professionals who maintain strong connections with each other 
-              and contribute positively to the tech industry while staying connected as the Lubdhok family.
-            </p>
-          </div>
-        </div>
+       
 
         {/* Core Values */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               What We Value
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               The simple principles that guide us as Computer Science students at Dhaka University
             </p>
           </div>
@@ -131,12 +119,12 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <div 
                 key={index}
-                className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 text-center shadow-xl border border-violet-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 text-center shadow-xl border border-slate-700/50 hover:shadow-2xl hover:scale-105 hover:bg-slate-700/50 transition-all duration-500"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="text-5xl mb-6">{value.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-4">{value.title}</h3>
+                <p className="text-slate-300 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -145,17 +133,17 @@ export default function AboutPage() {
         {/* Journey Timeline */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Our Journey So Far
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              From new students to second-year Computer Science majors
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              From new students to third-year Computer Science majors
             </p>
           </div>
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-violet-400 to-purple-600 rounded-full"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-400 to-blue-600 rounded-full"></div>
             
             {timeline.map((item, index) => (
               <div 
@@ -164,42 +152,21 @@ export default function AboutPage() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
-                  <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-violet-200/50 hover:shadow-2xl transition-all duration-500">
-                    <div className="text-2xl font-bold text-violet-600 mb-2">{item.year}</div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <div className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-700/50 hover:shadow-2xl hover:bg-slate-700/50 transition-all duration-500">
+                    <div className="text-2xl font-bold text-cyan-400 mb-2">{item.year}</div>
+                    <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
+                    <p className="text-slate-300 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
                 
                 {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full border-4 border-slate-800 shadow-lg z-10"></div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Contact CTA */}
-        <div className="text-center bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-3xl p-12 text-white">
-          <h2 className="text-4xl font-bold mb-6">Want to Connect?</h2>
-          <p className="text-xl mb-8 text-violet-100 max-w-2xl mx-auto">
-            Whether you&apos;re a fellow student, from other batches, or want to know more about our batch, 
-            feel free to reach out to us!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact"
-              className="bg-white text-violet-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-violet-50 transition-all duration-300 shadow-xl transform hover:-translate-y-1"
-            >
-              Get in Touch
-            </a>
-            <Link 
-              href="/events"
-              className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-violet-600 transition-all duration-300 shadow-xl transform hover:-translate-y-1"
-            >
-              See Our Events
-            </Link>
-          </div>
-        </div>
+ 
+ 
       </div>
     </div>
   )

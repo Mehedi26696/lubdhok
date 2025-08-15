@@ -1,208 +1,522 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { semesters } from '@/data/studyMaterials'
+import { events } from '@/data/events'
+import { getAllProjects } from '@/data/projects'
 
-export default function Home() {
+export default function HomePage() {
+  // Get sample data for rolling animation
+  const allProjects = getAllProjects()
+  const recentEvents = events.slice(0, 6)
+  const availableSemesters = semesters.slice(0, 4)
+  
+  // Create rolling items combining all types
+  const rollingItems = [
+    ...availableSemesters.map(semester => ({
+      id: semester.id,
+      type: 'semester' as const,
+      data: semester
+    })),
+    ...allProjects.map(project => ({
+      id: project.id,
+      type: 'project' as const,
+      data: project
+    })),
+    ...recentEvents.map(event => ({
+      id: event.id,
+      type: 'event' as const,
+      data: event
+    }))
+  ]
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/batch.jpg"
-            alt="LUBDHOK Batch 29"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Enhanced Visual Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Primary floating orbs */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/12 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-teal-500/12 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-violet-500/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
         
-        {/* University Badge */}
-        <div className="absolute top-6 left-6 z-10">
-          <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-white/20 flex items-center space-x-2">
-            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-            <span className="text-gray-800 text-sm font-medium">University of Dhaka</span>
-          </div>
-        </div>
+        {/* Secondary accent orbs */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-400/6 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-48 h-48 bg-teal-400/6 rounded-full blur-2xl"></div>
         
-        <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          <div className="space-y-8">
-            {/* Main Title with Batch Number */}
+        {/* Subtle geometric patterns */}
+        <div className="absolute top-40 left-1/2 w-2 h-2 bg-emerald-400/20 rounded-full"></div>
+        <div className="absolute top-60 right-1/4 w-1 h-1 bg-teal-400/20 rounded-full"></div>
+        <div className="absolute bottom-40 left-1/3 w-1.5 h-1.5 bg-violet-400/20 rounded-full"></div>
+        
+        {/* Flowing lines */}
+        <div className="absolute top-0 left-1/2 w-px h-32 bg-gradient-to-b from-emerald-500/20 to-transparent"></div>
+        <div className="absolute bottom-0 right-1/3 w-px h-24 bg-gradient-to-t from-teal-500/20 to-transparent"></div>
+        
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(20,184,166,0.06),transparent_50%)]"></div>
+      </div>
+
+      {/* Hero Section - Clean & Simple */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Background image with darker brightness */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/batch.jpg)',
+            filter: 'brightness(0.6) contrast(1.1) saturate(1.1)'
+          }}
+        ></div>
+
+        
+
+        
+
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <div className="space-y-10">
+            {/* Clean Main Title */}
             <div className="space-y-6">
-              <div className="flex items-center justify-center space-x-4">
-                <div className="w-12 h-px bg-white/60"></div>
-                <span className="text-white/90 font-medium tracking-wide text-sm uppercase">CSEDU-29th Batch</span>
-                <div className="w-12 h-px bg-white/60"></div>
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                <div className="w-16 h-px bg-white/60"></div>
+                <span className="text-white font-medium text-sm uppercase tracking-wider">Computer Science & Engineering</span>
+                <div className="w-16 h-px bg-white/60"></div>
               </div>
-              <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-white drop-shadow-lg">
-                LUBDHOK
-              </h1>
-            </div>
-            
-            {/* Subtitle with Department */}
-            <div className="space-y-3">
-              <p className="text-2xl md:text-3xl font-medium text-white/90 max-w-3xl mx-auto drop-shadow-md">
-                Computer Science and Engineering
-              </p>
-              <p className="text-lg md:text-xl text-blue-200 font-medium max-w-3xl mx-auto drop-shadow-md">
-                University of Dhaka
-              </p>
-            </div>
-            
-            {/* Description */}
-            <p className="text-lg md:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-              A community of passionate engineers building tomorrow&apos;s technology. 
-              Where innovation meets collaboration, and friendships shape futures.
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Link
-                href="/semesters"
-                className="px-8 py-3 bg-white text-gray-900 rounded-lg font-medium text-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg"
-              >
-                Explore Resources
-              </Link>
               
-              <Link
-                href="#discover"
-                className="px-8 py-3 border border-white/50 text-white rounded-lg font-medium text-lg hover:border-white hover:bg-white/10 transition-colors duration-200 backdrop-blur-sm"
-              >
-                Discover More
-                <svg className="inline-block w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none">
+                <span className="text-white drop-shadow-2xl [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">LUBDHOK</span>
+              </h1>
+              
+              <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto shadow-lg"></div>
             </div>
+
+            {/* Clean Subtitle */}
+            <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white drop-shadow-lg">
+                29th Batch • CSEDU 
+              </h2>
+              <p className="text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                A community of passionate engineers building tomorrow's technology through innovation and collaboration.
+              </p>
+            </div>
+
           </div>
         </div>
-        
-         
       </section>
-      
-      {/* Discover Section */}
-      <section id="discover" className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {/* Animated News Rolling Section */}
+      <section id="discover" className="relative py-32 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-72 h-72 bg-violet-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-teal-400/5 rounded-full blur-3xl"></div>
+          
+          {/* Flowing accent lines */}
+          <div className="absolute top-0 left-1/4 w-px h-40 bg-gradient-to-b from-emerald-400/30 to-transparent"></div>
+          <div className="absolute bottom-0 right-1/4 w-px h-32 bg-gradient-to-t from-violet-400/30 to-transparent"></div>
+          
+          {/* Scattered dots */}
+          <div className="absolute top-32 right-1/3 w-2 h-2 bg-emerald-400/40 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-40 left-1/3 w-1.5 h-1.5 bg-violet-400/40 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <div className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-4 mb-6">
-              <div className="w-12 h-px bg-blue-600"></div>
-              <span className="text-blue-600 font-medium tracking-wide text-sm uppercase">Our Journey</span>
-              <div className="w-12 h-px bg-blue-600"></div>
+            <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-sm border border-emerald-400/30 text-emerald-300 rounded-full text-sm font-semibold mb-6">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Latest Updates</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Building Tomorrow Together
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-emerald-100 to-teal-100 bg-clip-text text-transparent mb-6">
+              Community Highlights
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Crafting the future through collaboration, innovation, and shared knowledge
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Stay updated with our latest projects, events, and study materials.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Mission Card */}
-            <div className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+
+          {/* Rolling Animation Container */}
+          <div className="relative h-96 overflow-hidden rounded-2xl bg-gradient-to-r from-slate-800/50 via-slate-700/50 to-slate-800/50 backdrop-blur-sm border border-slate-600/30 shadow-2xl">
+            {/* Animated rolling cards */}
+            <div className="absolute inset-0 flex items-center">
+              <div className="flex space-x-6 animate-scroll-infinite">
+                {/* First set of items */}
+                {rollingItems.map((item, index) => (
+                  <div key={`first-${item.id}-${index}`} className="flex-shrink-0 w-80 h-72">
+                    {item.type === 'semester' && (
+                      <div className="group relative bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-violet-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                              {item.data.name}
+                            </h3>
+                            <div className="bg-gradient-to-r from-violet-500 to-purple-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                              {item.data.subjects.filter(s => !s.code.startsWith('QB-')).length} subjects
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="grid grid-cols-2 gap-3 mb-4">
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 border border-violet-200/30">
+                              <div className="flex items-center text-violet-600 mb-1">
+                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                                <span className="font-semibold text-xs">Materials</span>
+                              </div>
+                              <p className="text-lg font-bold text-gray-800">
+                                {item.data.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)}
+                              </p>
+                            </div>
+                            
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 border border-violet-200/30">
+                              <div className="flex items-center text-purple-600 mb-1">
+                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                <span className="font-semibold text-xs">Credits</span>
+                              </div>
+                              <p className="text-lg font-bold text-gray-800">
+                                {item.data.subjects.reduce((acc, subject) => acc + subject.credits, 0)}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={`/semester/${item.data.id}`}
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Materials</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.type === 'project' && (
+                      <div className="group relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 rounded-xl shadow-lg border border-emerald-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent line-clamp-1">
+                              {item.data.title}
+                            </h3>
+                            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                              {item.data.teamSize} members
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="mb-4">
+                            <div className="flex flex-wrap gap-1.5">
+                              {item.data.technologies.slice(0, 3).map((tech, techIndex) => (
+                                <span 
+                                  key={techIndex}
+                                  className="text-xs px-2.5 py-1 rounded-md font-medium bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 border border-emerald-200/50"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                              {item.data.technologies.length > 3 && (
+                                <span className="text-xs px-2.5 py-1 rounded-md font-medium bg-gray-100 text-gray-600">
+                                  +{item.data.technologies.length - 3} more
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={item.data.sourceCodeUrl || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white text-sm font-semibold rounded-lg hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Project</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.type === 'event' && (
+                      <div className="group relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 rounded-xl shadow-lg border border-orange-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent line-clamp-1">
+                              {item.data.title}
+                            </h3>
+                            <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg capitalize">
+                              {item.data.category}
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="grid grid-cols-1 gap-2 mb-4">
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-2 border border-orange-200/30">
+                              <div className="flex items-center text-orange-600 mb-1">
+                                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a4 4 0 118 0v4m-4 6l-2 2h4l-2-2zm-4-6h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                                </svg>
+                                <span className="font-semibold text-xs">Date</span>
+                              </div>
+                              <p className="text-xs font-bold text-gray-800 line-clamp-1">
+                                {item.data.date}
+                              </p>
+                            </div>
+                            
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-2 border border-orange-200/30">
+                              <div className="flex items-center text-amber-600 mb-1">
+                                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span className="font-semibold text-xs">Location</span>
+                              </div>
+                              <p className="text-xs font-bold text-gray-800 line-clamp-1">
+                                {item.data.location}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={`/events/${item.data.id}`}
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 text-white text-sm font-semibold rounded-lg hover:from-orange-700 hover:via-amber-700 hover:to-yellow-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Event</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                
+                {/* Second set of items for seamless loop */}
+                {rollingItems.map((item, index) => (
+                  <div key={`second-${item.id}-${index}`} className="flex-shrink-0 w-80 h-72">
+                    {item.type === 'semester' && (
+                      <div className="group relative bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 rounded-xl shadow-lg border border-violet-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                              {item.data.name}
+                            </h3>
+                            <div className="bg-gradient-to-r from-violet-500 to-purple-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                              {item.data.subjects.filter(s => !s.code.startsWith('QB-')).length} subjects
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="grid grid-cols-2 gap-3 mb-4">
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 border border-violet-200/30">
+                              <div className="flex items-center text-violet-600 mb-1">
+                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                                <span className="font-semibold text-xs">Materials</span>
+                              </div>
+                              <p className="text-lg font-bold text-gray-800">
+                                {item.data.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)}
+                              </p>
+                            </div>
+                            
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-3 border border-violet-200/30">
+                              <div className="flex items-center text-purple-600 mb-1">
+                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                <span className="font-semibold text-xs">Credits</span>
+                              </div>
+                              <p className="text-lg font-bold text-gray-800">
+                                {item.data.subjects.reduce((acc, subject) => acc + subject.credits, 0)}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={`/semester/${item.data.id}`}
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Materials</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.type === 'project' && (
+                      <div className="group relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 rounded-xl shadow-lg border border-emerald-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent line-clamp-1">
+                              {item.data.title}
+                            </h3>
+                            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                              {item.data.teamSize} members
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="mb-4">
+                            <div className="flex flex-wrap gap-1.5">
+                              {item.data.technologies.slice(0, 3).map((tech, techIndex) => (
+                                <span 
+                                  key={techIndex}
+                                  className="text-xs px-2.5 py-1 rounded-md font-medium bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 border border-emerald-200/50"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                              {item.data.technologies.length > 3 && (
+                                <span className="text-xs px-2.5 py-1 rounded-md font-medium bg-gray-100 text-gray-600">
+                                  +{item.data.technologies.length - 3} more
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={item.data.sourceCodeUrl || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white text-sm font-semibold rounded-lg hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Project</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {item.type === 'event' && (
+                      <div className="group relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 rounded-xl shadow-lg border border-orange-200/50 hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <div className="relative p-6 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 bg-clip-text text-transparent line-clamp-1">
+                              {item.data.title}
+                            </h3>
+                            <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg capitalize">
+                              {item.data.category}
+                            </div>
+                          </div>
+                          
+                          <p className="text-gray-700 mb-4 text-sm leading-relaxed line-clamp-3">
+                            {item.data.description}
+                          </p>
+
+                          <div className="grid grid-cols-1 gap-2 mb-4">
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-2 border border-orange-200/30">
+                              <div className="flex items-center text-orange-600 mb-1">
+                                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a4 4 0 118 0v4m-4 6l-2 2h4l-2-2zm-4-6h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                                </svg>
+                                <span className="font-semibold text-xs">Date</span>
+                              </div>
+                              <p className="text-xs font-bold text-gray-800 line-clamp-1">
+                                {item.data.date}
+                              </p>
+                            </div>
+                            
+                            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-2 border border-orange-200/30">
+                              <div className="flex items-center text-amber-600 mb-1">
+                                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span className="font-semibold text-xs">Location</span>
+                              </div>
+                              <p className="text-xs font-bold text-gray-800 line-clamp-1">
+                                {item.data.location}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-auto pt-4">
+                            <Link
+                              href={`/events/${item.data.id}`}
+                              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2 bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 text-white text-sm font-semibold rounded-lg hover:from-orange-700 hover:via-amber-700 hover:to-yellow-700 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden"
+                            >
+                              <span className="relative">View Event</span>
+                              <svg className="relative ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Innovation</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Pushing boundaries and exploring new technologies to create meaningful solutions for tomorrow&apos;s challenges.
-              </p>
             </div>
-            
-            {/* Vision Card */}
-            <div className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Collaboration</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Building strong connections and fostering teamwork to achieve collective success and growth.
-              </p>
-            </div>
-            
-            {/* Values Card */}
-            <div className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-              <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Excellence</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Striving for the highest standards in everything we do, from academics to personal development.
-              </p>
-            </div>
+
+            {/* Gradient masks for smooth edges */}
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-800/50 to-transparent pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-800/50 to-transparent pointer-events-none"></div>
+          </div>
+
+          {/* Quick Action Buttons */}
+          <div className="flex justify-center space-x-4 mt-12">
+            <Link href="/semesters" className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+               Study Materials
+            </Link>
+            <Link href="/events" className="px-6 py-3 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg font-semibold hover:from-teal-700 hover:to-teal-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+              View Events
+            </Link>
+            <Link href="/projects" className="px-6 py-3 bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-lg font-semibold hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl">
+              Explore Projects
+            </Link>
           </div>
         </div>
       </section>
-      
-      {/* Quick Links Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center space-x-4 mb-6">
-              <div className="w-12 h-px bg-blue-600"></div>
-              <span className="text-blue-600 font-medium tracking-wide text-sm uppercase">Community Hub</span>
-              <div className="w-12 h-px bg-blue-600"></div>
-            </div>
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">
-              Explore Our Community
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover different aspects of our batch life and connect with fellow engineers
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Link href="/events" className="group">
-              <div className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow duration-200 text-center">
-                <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Events & Activities</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Stay updated with all batch events, activities, and memorable moments
-                </p>
-                <div className="inline-flex items-center text-green-600 font-medium">
-                  Explore Events
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-            
-            <Link href="/projects" className="group">
-              <div className="bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow duration-200 text-center">
-                <div className="w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Projects</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Showcase of amazing projects created by our talented batch members
-                </p>
-                <div className="inline-flex items-center text-purple-600 font-medium">
-                  View Projects
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-      
-       
     </div>
-  )
+  );
 }
+

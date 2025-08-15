@@ -38,7 +38,7 @@ export const semesters: Semester[] = [
 	{
 		id: "semester-1",
 		name: "Semester I",
-		description: "First Semester - Foundation courses (18.50 Credits)",
+		description: "First Semester - (18.50 Credits)",
 		subjects: [
 			// Theory Courses
 			{
@@ -310,7 +310,7 @@ export const semesters: Semester[] = [
 	{
 		id: "semester-2",
 		name: "Semester II",
-		description: "Second Semester - Foundation courses (19.50 Credits)",
+		description: "Second Semester - (19.50 Credits)",
 		subjects: [
 			// Theory Courses
 			{
@@ -560,7 +560,7 @@ export const semesters: Semester[] = [
 	{
 		id: "semester-3",
 		name: "Semester III",
-		description: "Third Semester - Core subjects (17.75 Credits)",
+		description: "Third Semester - (17.75 Credits)",
 		subjects: [
 			// Theory Courses
 			{
@@ -804,7 +804,7 @@ export const semesters: Semester[] = [
 	{
 		id: "semester-4",
 		name: "Semester IV",
-		description: "Fourth Semester - Advanced subjects (19.25 Credits)",
+		description: "Fourth Semester - (19.25 Credits)",
 		subjects: [
 			// Theory Courses
 			{

@@ -127,7 +127,61 @@ export const projectSemesters: ProjectSemester[] = [
             coverImage: "/projects/sem4/Volun.jpg",
             sourceCodeUrl: "https://github.com/Mehedi26696/VolunSphere"
 
+          },
+          {
+            id: "cse2201-project2",
+            title: "TheraSeba - AI-Powered Mental Health Companion",
+            description: "An AI-powered mental health companion app that provides personalized support and resources for mental well-being.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "FastAPI", "Firebase", "Supabase", "REST APIs", "PostgreSQL", "LLMs", "FCM"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Md. Shahria Hasan Jony", githubUsername: "SHJony121" },
+              { name: "Md.Rushan Jamil", githubUsername: "Rushu41" },
+              { name: "Sharfraz Khan Hridue", githubUsername: "blueblood897"},
+              { name: "Md. Sadman Sakib", githubUsername: "Mdsadmansakib" }
+            ],
+            coverImage: "/projects/sem4/sheba.jpg",
+            sourceCodeUrl: "https://github.com/Rushu41/2nd-Year-2nd-Semester-Android-Flutter-App-Project"
+
+          },
+
+          {
+            id: "cse2201-project3",
+            title: "LangMastero – Language Learning App",
+            description: "An innovative language learning app that leverages AI to provide personalized learning experiences.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "FastAPI", "MongoDB", "REST APIs"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Mehedi Hasan", githubUsername: "hasanmehediii" },
+              { name: "Ibna Afra Roza", githubUsername: "Roza-fail" },
+              { name: "Abdullah Evne Masood", githubUsername: "AbdullahIbneMasoodRegan" },
+              { name: "Nafisha Akhter", githubUsername: "nafisha3588" }
+            ],
+            coverImage: "/projects/sem4/lang.png",
+            sourceCodeUrl: "https://github.com/hasanmehediii/CSE-2216-Project"
+          },
+          {
+            id: "cse2201-project4",
+            title: "Murir Tin",
+            description: "Murir Tin is a smart local bus app designed to improve public transportation in Dhaka.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "FastAPI","Supabase","Mapbox","Rest APIs"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Sumaiya Rahman Soma", githubUsername: "srs4929" },
+              { name: "Chowdhury Shafahid Rahman", githubUsername: "Shafahid" },
+              { name: "Ishrak Faisal", githubUsername: "ishrak100" },
+              { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7" }
+            ],
+            coverImage: "/projects/sem4/murir.png",
+            sourceCodeUrl: "https://github.com/srs4929/Murir_Tin_Frontend"
           }
+
         ]
       }
     ]

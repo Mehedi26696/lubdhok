@@ -27,59 +27,31 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Have questions or want to connect with the Lubdhok-29 batch? 
-            We&apos;d love to hear from you!
-          </p>
-        </div>
-
-        {/* Contact Methods */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {contactMethods.map((method, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-xl p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-200"
-            >
-              <div className="text-4xl mb-6">{method.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">{method.title}</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">{method.description}</p>
-              <div className="mb-6">
-                <p className="text-blue-600 font-medium text-sm break-all">{method.contact}</p>
-              </div>
-              <a 
-                href={`mailto:${method.contact}`}
-                className="w-full bg-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 inline-block"
-              >
-                Send Email
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {/* Contact Form */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">
+    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-slate-800/30 to-slate-700/30 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-25">
+        <div className="mb-32">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Send us a Message
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Have a specific question? Fill out the form below and we&apos;ll get back to you.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200">
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 shadow-xl border border-slate-700/50">
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -87,13 +59,13 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                      className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                       placeholder="Enter your full name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -101,33 +73,33 @@ export default function ContactPage() {
                       id="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                      className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
                     Subject *
                   </label>
                   <select
                     id="subject"
                     name="subject"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200"
                   >
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="academic">Academic Support</option>
-                    <option value="events">Events & Activities</option>
-                    <option value="projects">Project Collaboration</option>
-                    <option value="other">Other</option>
+                    <option value="" className="bg-slate-700">Select a subject</option>
+                    <option value="general" className="bg-slate-700">General Inquiry</option>
+                    <option value="academic" className="bg-slate-700">Academic Support</option>
+                    <option value="events" className="bg-slate-700">Events & Activities</option>
+                    <option value="projects" className="bg-slate-700">Project Collaboration</option>
+                    <option value="other" className="bg-slate-700">Other</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -135,14 +107,14 @@ export default function ContactPage() {
                     name="message"
                     rows={6}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200 resize-none"
                     placeholder="Tell us more about your inquiry..."
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                  className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:from-cyan-500 hover:to-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   Send Message
                 </button>
@@ -151,7 +123,27 @@ export default function ContactPage() {
           </div>
         </div>
 
- 
+        {/* Additional Contact Info */}
+        <div className="text-center">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-slate-700/50 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4">Find Us</h3>
+            <div className="space-y-3 text-slate-300">
+              <p className="flex items-center justify-center">
+                <span className="text-cyan-400 mr-2">🏫</span>
+                Computer Science & Engineering Department
+              </p>
+              <p className="flex items-center justify-center">
+                <span className="text-cyan-400 mr-2">📍</span>
+                University of Dhaka, Dhaka-1000, Bangladesh
+              </p>
+              <p className="flex items-center justify-center">
+                <span className="text-cyan-400 mr-2">👥</span>
+                Batch: Lubdhok-29 (3rd Year)
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   )
