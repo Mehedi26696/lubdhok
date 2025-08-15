@@ -28,7 +28,7 @@ export default function Footer() {
 								</p>
 							</div>
 							<p className="text-gray-400 text-sm leading-relaxed">
-								Building tomorrow's technology through collaboration and shared knowledge.
+								Building tomorrow&apos;s technology through collaboration and shared knowledge.
 							</p>
 						</div>
 

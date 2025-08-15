@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { semesters } from '@/data/studyMaterials'
 import { events } from '@/data/events'
 import { getAllProjects } from '@/data/projects'
@@ -100,7 +99,7 @@ export default function HomePage() {
                 29th Batch • CSEDU 
               </h2>
               <p className="text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-                A community of passionate engineers building tomorrow's technology through innovation and collaboration.
+                A community of passionate engineers building tomorrow&apos;s technology through innovation and collaboration.
               </p>
             </div>
 

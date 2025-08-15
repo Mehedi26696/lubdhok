@@ -17,16 +17,6 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
     notFound()
   }
 
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      academic: 'bg-blue-500',
-      social: 'bg-green-500',
-      technical: 'bg-purple-500',
-      cultural: 'bg-pink-500'
-    }
-    return colors[category as keyof typeof colors] || 'bg-gray-500'
-  }
-
   const getCategoryColorDark = (category: string) => {
     const colors = {
       academic: 'bg-blue-500/20 text-blue-300 border border-blue-400/30',
@@ -35,16 +25,6 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
       cultural: 'bg-pink-500/20 text-pink-300 border border-pink-400/30'
     }
     return colors[category as keyof typeof colors] || 'bg-slate-500/20 text-slate-300 border border-slate-400/30'
-  }
-
-  const getCategoryBorderColor = (category: string) => {
-    const colors = {
-      academic: 'border-blue-200',
-      social: 'border-green-200',
-      technical: 'border-purple-200',
-      cultural: 'border-pink-200'
-    }
-    return colors[category as keyof typeof colors] || 'border-gray-200'
   }
 
   return (
