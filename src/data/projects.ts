@@ -137,6 +137,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/snake.png",
             sourceCodeUrl: "https://github.com/hasanmehediii/CSE-1211-Project"
+          },
+          {
+            id: "cse1211-project7",
+            title: "Flappy Bird",
+            description: "Flappy Bird is a side-scrolling mobile game featuring 2D graphics.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","Cmake","Ninja"],
+            teamSize: 3 ,
+            teamMembers: [
+                
+              { name: "Ishrak Faisal", githubUsername: "ishrak100" },
+              { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7"},
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" }
+            ],
+            coverImage: "/projects/sem2/flappy.png",
+            sourceCodeUrl: "https://github.com/JobaerTamim7/Flappy_Bird_SDL2"
           }
           
         ]
@@ -258,11 +275,12 @@ export const projectSemesters: ProjectSemester[] = [
             course: "Object Oriented Programming",
             courseCode: "CSE-2112",
             technologies: ["Java", "Java Swing", "MySQL"],
-            teamSize: 3,
+            teamSize: 4,
             teamMembers: [
               { name: "Ishrak Faisal", githubUsername: "ishrak100" },
               { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7"},
-              { name: "Farhana Alam", githubUsername: "mastermind-fa" }
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" },
+              { name: "Sara Faria Sandra", githubUsername: "Sandra-Sara" }
             ],
             coverImage: "/projects/sem3/restuarant.png",
             sourceCodeUrl: "https://github.com/JobaerTamim7/Fixated-Restaurant"
