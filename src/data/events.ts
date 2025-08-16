@@ -229,7 +229,7 @@ export const events: Event[] = [
             '/events/cultural0.jpg',
             '/events/cultural2.jpg',
             '/events/cultural3.jpg',
-            '/events/cultural1.jpg',
+            '/events/cul.jpg',
             '/events/cultural4.jpg',
             '/events/cultural5.jpg'
         ],
