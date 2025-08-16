@@ -95,6 +95,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/brain.jpg",
             sourceCodeUrl: "https://github.com/aditto007/Brain-Code-Renovo-CSE-1211-Project"
+          },
+          {
+            id: "cse1201-project4",
+            title: "Tetris-Raylib",
+            description: "Memory Matrix is an engaging game that challenges players to remember and replicate increasingly complex patterns.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","Raylib"],
+            teamSize: 1 ,
+            teamMembers: [
+              { name: "Dibbajothy Sarker", githubUsername: "Dibbajothy" }
+            ],
+            coverImage: "/projects/sem2/tetris.png",
+            sourceCodeUrl: "https://github.com/Dibbajothy/Tetris-Raylib"
           }
         ]
       }
@@ -176,6 +190,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/shuttle.png",
             sourceCodeUrl: "https://github.com/aditto007/DU-Shuttle-Service-CSE-2112-OOP",
+          },
+          {
+            id: "cse2201-project9",
+            title: "Cafeteria Management, DU",
+            description: "The Cafeteria Management, DU, is a Java-based application designed to streamline cafeteria operations at the Science Complex, University of Dhaka.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Suraya Jannat Mim", githubUsername: "Mim1726" },
+              { name: "Jubayer Ahmed Sojib", githubUsername: "Clear20-22" },
+              { name: "Tamal Kanti Sarker", githubUsername: "tamalkantisarker" }
+            ],
+            coverImage: "/projects/sem4/cafeteria.png",
+            sourceCodeUrl: "https://github.com/Clear20-22/Java-Project"
+
           }
         ]
       }
@@ -313,6 +344,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/awaj.png",
             sourceCodeUrl: "https://github.com/ashr77/Awaj-CSE-2216-"
+          },
+          {
+            id: "cse2201-project8",
+            title: "DrugScript",
+            description: "DrugScript is a mobile application that helps users manage their medications and provides information about drug interactions.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase","Firebase Storage"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Dibbajothy Sarker", githubUsername: "Dibbajothy" },
+              { name: "Istiak Ahammed Rhyme", githubUsername: "IstiakAR" },
+              { name: "Md. Akram Khan", githubUsername: "Md-Akram-Khan" },
+              { name: "Jubayer Ahmed Sojib", githubUsername: "Clear20-22" }
+            ],
+            coverImage: "/projects/sem4/drugscript.png",
+            sourceCodeUrl: "https://github.com/IstiakAR/DrugScript"
           }
 
         ]
