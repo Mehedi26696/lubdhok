@@ -64,6 +64,22 @@ export const projectSemesters: ProjectSemester[] = [
             coverImage: "/projects/sem2/puzzle.PNG",
             sourceCodeUrl: "https://github.com/Mehedi26696/Puzzle-Paradigm-CSE-1211-Project"
           },
+          {
+            id: "cse1201-project2",
+            title: "Starship Assault",
+            description: "Starship Assault is an action-packed space shooter game where players pilot their starship through intense battles against enemy fleets.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","SDL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Ahnaf Mahbub Khan", githubUsername: "TheManush" },
+              { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31"},
+              { name: "Farhan Bin Rabbani", githubUsername: "RobBunny" },
+            ],
+            coverImage: "/projects/sem2/starship.jpg",
+            sourceCodeUrl: "https://github.com/TheManush/starship-assault/tree/main"
+          }
         ]
       }
     ]
@@ -94,6 +110,40 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/school.PNG",
             sourceCodeUrl: "https://github.com/Mehedi26696/2nd-Year-1st-Semester-Java-OOP-Projects",
+          },
+          {
+            id: "cse2103-project2",
+            title: "CSEDU Airline Management System",
+            description: "A comprehensive airline management system built using Java with features for flight booking, passenger management, and ticketing.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "Swing GUI", "File I/O", "OOP Principles","MySQL"],
+            teamSize: 4,
+            teamMembers: [
+               { name: "Ahnaf Mahbub Khan", githubUsername: "TheManush" },
+               { name: "Abdullah-Ash-Sakafy", githubUsername: "Sakafy-34" },
+               { name: "Md. Mahmudul Hassan", githubUsername:  "mahmudss" },
+               { name: "Saad Bin Ashad", githubUsername: "saadcsedu-29" }
+            ],
+            coverImage: "/projects/sem3/flight.jpg",
+            sourceCodeUrl: "https://github.com/TheManush/OOP-Project",
+          },
+          {
+            id: "cse2103-project3",
+            title: "Hospital-Management-System",
+            description: "A hospital management system built using Java that allows for patient registration, appointment scheduling, and medical record management.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "Swing GUI", "File I/O", "OOP Principles","MySQL"],
+            teamSize: 4,
+            teamMembers: [
+               { name: "Hasanat Ashrafy", githubUsername: "ashr77" },
+               { name: "Labonya Pal", githubUsername: "labonyapal" },
+               { name: "Jubair Ahammad Akter", githubUsername: "Jubair-Adib" },
+               { name: "Farhan Bin Rabbani", githubUsername: "RobBunny" },
+            ],
+            coverImage: "/projects/sem3/hospital.png",
+            sourceCodeUrl: "https://github.com/ashr77/Hospital-Management-System/tree/main",
           }
         ]
       }
