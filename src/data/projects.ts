@@ -235,11 +235,11 @@ export const projectSemesters: ProjectSemester[] = [
       {
         id: "cse2201",
         name: "Application Development Lab",
-        code: "CSE-2201",
+        code: "CSE-2216",
         credits: 1.5,
         projects: [
           {
-            id: "cse2201-project1",
+            id: "cse2216-project1",
             title: "VolunSphere",
             description: "A comprehensive volunteer management platform that connects volunteers with meaningful opportunities and helps organizations manage their volunteer programs effectively.",
             course: "Application Development Lab",
@@ -257,7 +257,7 @@ export const projectSemesters: ProjectSemester[] = [
 
           },
           {
-            id: "cse2201-project2",
+            id: "cse2216-project2",
             title: "TheraSeba - AI-Powered Mental Health Companion",
             description: "An AI-powered mental health companion app that provides personalized support and resources for mental well-being.",
             course: "Application Development Lab",
@@ -276,7 +276,7 @@ export const projectSemesters: ProjectSemester[] = [
           },
 
           {
-            id: "cse2201-project3",
+            id: "cse2216-project3",
             title: "LangMastero – Language Learning App",
             description: "An innovative language learning app that leverages AI to provide personalized learning experiences.",
             course: "Application Development Lab",
@@ -293,7 +293,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/hasanmehediii/CSE-2216-Project"
           },
           {
-            id: "cse2201-project4",
+            id: "cse2216-project4",
             title: "Murir Tin",
             description: "Murir Tin is a smart local bus app designed to improve public transportation in Dhaka.",
             course: "Application Development Lab",
@@ -310,7 +310,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/srs4929/Murir_Tin_Frontend"
           },
           {
-            id: "cse2201-project5",
+            id: "cse2216-project5",
             title: "Platr – Your Personal Recipe Companion",
             description: "Platr is a beautifully designed Flutter-based recipe application that helps users explore, create, and manage a wide variety of recipes.",
             course: "Application Development Lab",
@@ -327,7 +327,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/Mim1726/Android-Project-DU-CodeBots"
           },
           {
-            id: "cse2201-project6",
+            id: "cse2216-project6",
             title: "TaxMate - Financial & Tax Services Platform",
             description: "A comprehensive mobile application connecting clients with financial service providers including Chartered Accountants, Bank Loan Officers, and Financial Planners.",
             course: "Application Development Lab",
@@ -344,7 +344,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/RobBunny/Taxmate_Project"
           },
           {
-            id: "cse2201-project7",
+            id: "cse2216-project7",
             title: "Awaj-Corruption Controlling App",
             description: "Awaj is a mobile application that helps users report and track corruption-related issues.",
             course: "Application Development Lab",
@@ -361,7 +361,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/ashr77/Awaj-CSE-2216-"
           },
           {
-            id: "cse2201-project8",
+            id: "cse2216-project8",
             title: "DrugScript",
             description: "DrugScript is a mobile application that helps users manage their medications and provides information about drug interactions.",
             course: "Application Development Lab",
@@ -378,7 +378,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/IstiakAR/DrugScript"
           },
           {
-            id: "cse2201-project4",
+            id: "cse2216-project9",
             title: "Hall Management System",
             description: "An app for managing multiple hall's student, teachers and shopkeepers and their different functionalities.",
             course: "Application Development Lab",
@@ -393,6 +393,39 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/hall.png",
             sourceCodeUrl: "https://github.com/Jotish-Biswas/Hall-Management-"
+          },
+          {
+            id: "cse2216-project10",
+            title: "ForkTune-Homemade Recipe App",
+            description: "A recipe app for discovering and sharing homemade recipes.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase" ],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Srabon Aich", githubUsername: "srabonAich" },
+              { name: "Rafiul Islam Sagor", githubUsername: "rafiulsagor55" },
+              { name: "Saad Bin Ashad", githubUsername: "saadcsedu-29" } 
+            ],
+            coverImage: "/projects/sem4/forktune.png",
+            sourceCodeUrl: "https://github.com/srabonAich/ForkTune"
+          },
+          {
+            id: "cse2216-project11",
+            title: "HelpMate",
+            description: "A comprehensive home service provider platform that connects customers with skilled workers for various home services, featuring real-time booking, secure payments, and seamless communication.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase", "Firestore","FastAPI","RestAPI","WebSocket","PostgreSQL"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Jubair Ahammad Akter", githubUsername: "Jubair-Adib" },
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" },
+              { name: "Md Shakin Reza Kabbo", githubUsername: "shakinalamkabbo" },
+              { name: "Nmr Masum", githubUsername: "nmrmasum" }
+            ],
+            coverImage: "/projects/sem4/helpmate.png",
+            sourceCodeUrl: "https://github.com/mastermind-fa/TeamMechaBytes"
           }
 
         ]
