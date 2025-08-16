@@ -249,7 +249,7 @@ export const projectSemesters: ProjectSemester[] = [
               { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7"},
               { name: "Farhana Alam", githubUsername: "mastermind-fa" }
             ],
-            coverImage: "/projects/sem3/restaurant.png",
+            coverImage: "/projects/sem3/restuarant.png",
             sourceCodeUrl: "https://github.com/JobaerTamim7/Fixated-Restaurant"
           }
           

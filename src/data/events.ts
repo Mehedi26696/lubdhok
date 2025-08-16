@@ -227,9 +227,9 @@ export const events: Event[] = [
         category: 'cultural',
         images: [
             '/events/cultural0.jpg',
-            '/events/cultural1.jpg',
             '/events/cultural2.jpg',
             '/events/cultural3.jpg',
+            '/events/cultural1.jpg',
             '/events/cultural4.jpg',
             '/events/cultural5.jpg'
         ],
