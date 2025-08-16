@@ -347,6 +347,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/resque.png",
             sourceCodeUrl: "https://github.com/srs4929/RESQURE-OOP-PROJECT-2-1-"
+          },
+          {
+            id: "cse2112-project12",
+            title: "Park Management System",
+            description: "This project is a Java-based Park Management System built in JetBrains IntelliJ using JavaFX as the framework and MySQL as the database. It provides functionality for managing employees, rides, and other features in the future.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL", "JDBC"],
+            teamSize: 1,
+            teamMembers: [
+              { name: "Dibbajothy Sarkar", githubUsername: "Dibbajothy" }
+            ],
+            coverImage: "/projects/sem3/park.png",
+            sourceCodeUrl: "https://github.com/Dibbajothy/ParkManagementSystem"
           }
           
         ]
