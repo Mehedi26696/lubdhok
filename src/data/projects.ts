@@ -388,7 +388,7 @@ export const projectSemesters: ProjectSemester[] = [
             teamMembers: [
               { name: "Md. Ashif Mahmud Kayes", githubUsername: "Ashif-Kayes" }
             ],
-            coverImage: "/projects/sem3/bank.png",
+            coverImage: "/projects/sem3/bank.jpg",
             sourceCodeUrl: "https://github.com/Ashif-Kayes/CSE-2112-OOP-PROJECT"
           }
           

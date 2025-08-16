@@ -34,19 +34,28 @@ export default function AboutPage() {
   const timeline = [
     {
       year: '2023',
-      title: 'First Year Journey',
-      description: 'Started our Computer Science journey at Dhaka University, getting to know each other and adapting to university life.'
+      title: 'Semester 1: New Beginnings',
+      description:
+        'Embarked on our Computer Science journey at Dhaka University, forming new friendships and adapting to campus life while laying the foundation in core CS subjects.',
     },
     {
       year: '2024',
-      title: 'Growing as Lubdhok',
-      description: 'Now in our second year, we have formed a strong batch identity with better understanding of our field and stronger friendships.'
+      title: 'Semester 2: Collaborative Growth',
+      description:
+        'Worked together on group projects, strengthened our grasp of key topics, and fostered a supportive community spirit within the batch.',
     },
     {
-      year: 'Future',
-      title: 'Looking Ahead',
-      description: 'Continuing our studies, supporting each other, and preparing for our future careers in Computer Science.'
-    }
+      year: '2024',
+      title: 'Semester 3: Advancing Forward',
+      description:
+        'Tackled more advanced coursework, shared knowledge, and encouraged one another through academic challenges, further solidifying our teamwork.',
+    },
+    {
+      year: '2025',
+      title: 'Semester 4: Reaching New Heights',
+      description:
+        'Completed our fourth semester, celebrated achievements, and prepared for the next steps in our academic and personal growth as a united batch.',
+    },
   ]
 
   return (
