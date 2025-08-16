@@ -79,6 +79,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/starship.jpg",
             sourceCodeUrl: "https://github.com/TheManush/starship-assault/tree/main"
+          },
+          {
+            id: "cse1201-project3",
+            title: "Brain-Code-Renovo-CSE-1211-Project",
+            description: "Brain Code Renovo is a platform where each level consists of unique challenges and puzzles designed to enhance intelligence and problem-solving skills.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","SDL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Aditto Raihan", githubUsername: "aditto007" },
+              { name: "Sumaiya Rahman Soma", githubUsername: "srs4929" },
+              { name: "Chowdhury Shafahid Rahman", githubUsername: "Shafahid" },
+            ],
+            coverImage: "/projects/sem2/brain.jpg",
+            sourceCodeUrl: "https://github.com/aditto007/Brain-Code-Renovo-CSE-1211-Project"
           }
         ]
       }
@@ -144,6 +160,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/hospital.png",
             sourceCodeUrl: "https://github.com/ashr77/Hospital-Management-System/tree/main",
+          },
+          {
+            id: "cse2103-project4",
+            title: "DU-Shuttle-Service-CSE-2112-OOP",
+            description: "The DU Shuttle Service is an Object-Oriented Programming (OOP) based project designed to enhance campus transportation with smart ticketing, route details, and a seamless, cashless shuttle experience for Dhaka University students.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "Swing GUI", "File I/O", "OOP Principles","MySQL"],
+            teamSize: 3,
+            teamMembers: [
+               { name: "Aditto Raihan", githubUsername: "aditto007" },
+               { name: "Abul Hasan Anik", githubUsername: "abulhasananik2" },
+               { name: "Jotish Biswas", githubUsername: "Jotish-Biswas" }
+            ],
+            coverImage: "/projects/sem3/shuttle.png",
+            sourceCodeUrl: "https://github.com/aditto007/DU-Shuttle-Service-CSE-2112-OOP",
           }
         ]
       }
@@ -264,6 +296,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/taxmate.png",
             sourceCodeUrl: "https://github.com/RobBunny/Taxmate_Project"
+          },
+          {
+            id: "cse2201-project7",
+            title: "Awaj-Corruption Controlling App",
+            description: "Awaj is a mobile application that helps users report and track corruption-related issues.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase","Firebase Storage"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Hasnat Ashrafy", githubUsername: "ashr77" },
+              { name: "Labonya Pal", githubUsername: "labonyapal" },
+              { name: "Abul Hasan Anik", githubUsername: "abulhasananik2" },
+              { name: "Aditto Raihan", githubUsername: "aditto007" }
+            ],
+            coverImage: "/projects/sem4/awaj.png",
+            sourceCodeUrl: "https://github.com/ashr77/Awaj-CSE-2216-"
           }
 
         ]
