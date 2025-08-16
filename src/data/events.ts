@@ -28,8 +28,13 @@ export const events: Event[] = [
              '/events/indoor20231.jpg',
         ],
         organizer: 'CSEDU Students Club',
+        highlights: [
+            'Exciting matches and friendly competition',
+            'Prizes for winners and participants'
+        ]
+
     },
-    {
+    {   
         id: '2',
         title: 'CSEDU Freshers Week 2023',
         description:
@@ -45,6 +50,11 @@ export const events: Event[] = [
             '/events/freshers20233.jpg'
         ],
         organizer: '28th Batch',
+        highlights: [
+            'Ice-breaking activities',
+            'Fun games and team-building exercises',
+            'Treasure hunt'
+        ]
     },
    
     {
@@ -65,6 +75,12 @@ export const events: Event[] = [
             '/events/reception20235.jpg'
         ],
         organizer: '28th Batch',
+        highlights: [
+            'Cultural performances',
+            'Speeches from faculty and alumni',
+            'Awards for outstanding students',
+            'Band performances'
+        ]
     },
     {
         id: '4',
@@ -80,7 +96,11 @@ export const events: Event[] = [
             '/events/food20241.jpg',
             '/events/food20242.jpg'
         ],
-        organizer: 'CSEDU Students Club,Genetic Engineering and Biotechnology Department'
+        organizer: 'CSEDU Students Club,Genetic Engineering and Biotechnology Department',
+        highlights: [
+            'Diverse food stalls from different departments',
+            'Best food stall gets prize money'
+        ]
     },
     {
         id: '5',
@@ -97,6 +117,13 @@ export const events: Event[] = [
             '/events/tour20242.jpg'
         ],
         organizer: '27th Batch',
+        highlights: [
+            'Team-building activities',
+            'Sightseeing and exploration',
+            'Bonding sessions and fun games',
+            'Fun games and team-building exercises',
+            'Tug of war'
+        ]
     },
     {
         id: '6',
@@ -113,6 +140,10 @@ export const events: Event[] = [
             '/events/Iftar20242.jpg'
         ],
         organizer: 'CSEDU Students Club',
+        highlights: [ 
+            'Prayer and reflection time',
+            'Community bonding activities'
+        ]
     },
     {
         id: '7',
@@ -159,6 +190,11 @@ export const events: Event[] = [
             '/events/freshers8.jpg',
         ],
         organizer: '29th Batch',
+        highlights: [
+            'Ice-breaking activities',
+            'Fun games and team-building exercises',
+            'Treasure hunt'
+        ]
     },
     {
         id: '9',
@@ -177,6 +213,10 @@ export const events: Event[] = [
             '/events/ttfest4.jpg',
         ],
         organizer: '29th Batch',
+        highlights: [
+            'Exciting matches and friendly competition',
+            'Prizes for winners and participants'
+        ]
     },
 
     {
@@ -197,6 +237,13 @@ export const events: Event[] = [
             '/events/tour5.jpg',
         ],
         organizer: '28th Batch',
+        highlights: [
+            'Team-building activities',
+            'Sightseeing and exploration',
+            'Bonding sessions and fun games',
+            'Cultural performances',
+            'Raffle draw and prizes'
+        ]
     },
      {
         id: '11',
@@ -213,6 +260,10 @@ export const events: Event[] = [
             '/events/Iftar20252.jpg'
         ],
         organizer: 'CSEDU Students Club',
+        highlights: [
+            'Prayer and reflection time',
+            'Community bonding activities'
+        ]
     },
 
     {
@@ -234,6 +285,12 @@ export const events: Event[] = [
             '/events/cultural5.jpg'
         ],
         organizer: '29th Batch',
+        highlights: [
+            'Cultural performances from all batches',
+            'Prize distribution for outstanding achievements',
+            'Special guests and alumni participation',
+            'Band performances'
+        ]
     },
   
     {
@@ -254,6 +311,10 @@ export const events: Event[] = [
             '/events/food5.jpg'
         ],
         organizer: 'CSEDU Students Club, RMEDU Students Club, Genetic Engineering and Biotechnology Department',
+        highlights: [
+            'Diverse food stalls from different departments',
+            'Best food stall gets prize money'  
+            ]
     },
     
    
