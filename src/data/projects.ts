@@ -221,24 +221,8 @@ export const projectSemesters: ProjectSemester[] = [
             coverImage: "/projects/sem3/cafeteria.png",
             sourceCodeUrl: "https://github.com/Clear20-22/Java-Project"
 
-          },
-          {
-            id: "cse2201-project4",
-            title: "Hall Management System",
-            description: "An app for managing multiple hall's student, teachers and shopkeepers and their different functionalities.",
-            course: "Application Development Lab",
-            courseCode: "CSE-2216",
-            technologies: ["Flutter", "Dart", 'Firebase',"Firestore"],
-            teamSize: 4,
-            teamMembers: [
-              { name: "Nadim Mahmud",githubUsername: "Nadim-2003"},
-              { name: "Jotish Biswas", githubUsername: "Jotish-Biswas"},
-              { name: "Dipta Bhattacharjee", githubUsername: "dipta11"},
-              { name: "Tamal Kanti Sarker", githubUsername: "tamalkanti223"},
-            ],
-            coverImage: "/projects/sem3/hall.png",
-            sourceCodeUrl: "https://github.com/Jotish-Biswas/Hall-Management-"
           }
+          
         ]
       }
     ]
@@ -392,6 +376,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/drugscript.png",
             sourceCodeUrl: "https://github.com/IstiakAR/DrugScript"
+          },
+          {
+            id: "cse2201-project4",
+            title: "Hall Management System",
+            description: "An app for managing multiple hall's student, teachers and shopkeepers and their different functionalities.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", 'Firebase',"Firestore"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Nadim Mahmud",githubUsername: "Nadim-2003"},
+              { name: "Jotish Biswas", githubUsername: "Jotish-Biswas"},
+              { name: "Dipta Bhattacharjee", githubUsername: "dipta11"},
+              { name: "Tamal Kanti Sarker", githubUsername: "tamalkanti223"},
+            ],
+            coverImage: "/projects/sem4/hall.png",
+            sourceCodeUrl: "https://github.com/Jotish-Biswas/Hall-Management-"
           }
 
         ]
