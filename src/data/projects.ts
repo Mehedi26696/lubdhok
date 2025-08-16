@@ -154,6 +154,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/flappy.png",
             sourceCodeUrl: "https://github.com/JobaerTamim7/Flappy_Bird_SDL2"
+          },
+          {
+            id: "cse1211-project8",
+            title: "Green Anaconda",
+            description: "Green Anaconda is a classic snake game implemented in C using SDL.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures", "SDL"],
+            teamSize: 1 ,
+            teamMembers: [
+              { name: "Md. Ashif Mahmud Kayes", githubUsername: "Ashif-Kayes" }
+            ],
+            coverImage: "/projects/sem2/anaconda.png",
+            sourceCodeUrl: "https://github.com/Ashif-Kayes/Green_Anaconda"
           }
           
         ]
@@ -296,7 +310,8 @@ export const projectSemesters: ProjectSemester[] = [
             teamMembers: [
               { name: "Ahil Islam Aurnob", githubUsername: "aheel03" },
               { name: "S M Shamiun Ferdous", githubUsername: "shamiunferdous" },
-              { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31" }
+              { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31" },
+              { name: "Mst. Tabassum Kabir", githubUsername: "Tabassum-kabir" }
             ],
             coverImage: "/projects/sem3/supermarket.png",
             sourceCodeUrl: "https://github.com/Moin529/CSE-2112-OOP-Project"
@@ -361,6 +376,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/park.png",
             sourceCodeUrl: "https://github.com/Dibbajothy/ParkManagementSystem"
+          },
+          {
+            id: "cse2112-project13",
+            title: "Bank Management System",
+            description: "A Java-based Bank Management System that allows users to manage accounts, transactions, and customer information.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 1,
+            teamMembers: [
+              { name: "Md. Ashif Mahmud Kayes", githubUsername: "Ashif-Kayes" }
+            ],
+            coverImage: "/projects/sem3/bank.png",
+            sourceCodeUrl: "https://github.com/Ashif-Kayes/CSE-2112-OOP-PROJECT"
           }
           
         ]
@@ -566,6 +595,21 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/helpmate.png",
             sourceCodeUrl: "https://github.com/mastermind-fa/TeamMechaBytes"
+          },
+          {
+            id: "cse2216-project12",
+            title:  "Tutor Finder App",
+            description: "A platform that connects students with tutors for personalized learning experiences.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase", "Firestore"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Md. Ashif Mahmud Kayes", githubUsername: "Ashif-Kayes" },
+              { name: "Mst. Tabassum Kabir", githubUsername: "Tabassum-kabir" }
+            ],
+            coverImage: "/projects/sem4/tutor.png",
+            sourceCodeUrl: "https://github.com/Ashif-Kayes/App-project"
           }
 
         ]
