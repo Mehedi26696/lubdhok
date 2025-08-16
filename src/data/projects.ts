@@ -45,11 +45,11 @@ export const projectSemesters: ProjectSemester[] = [
       {
         id: "cse1201",
         name: "Fundamentals of Programming Lab",
-        code: "CSE-1201",
+        code: "CSE-1211",
         credits: 3.0,
         projects: [
           {
-            id: "cse1201-project1",
+            id: "cse1211-project1",
             title: "Puzzle-Paradigm-CSE-1211-Project",
             description: "Puzzle Paradigm is a thrilling game where players reconstruct a scrambled image within a set time limit by strategically rearranging its fragmented frames.",
             course: "Fundamentals of Programming Lab",
@@ -65,7 +65,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/Mehedi26696/Puzzle-Paradigm-CSE-1211-Project"
           },
           {
-            id: "cse1201-project2",
+            id: "cse1211-project2",
             title: "Starship Assault",
             description: "Starship Assault is an action-packed space shooter game where players pilot their starship through intense battles against enemy fleets.",
             course: "Fundamentals of Programming Lab",
@@ -81,7 +81,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/TheManush/starship-assault/tree/main"
           },
           {
-            id: "cse1201-project3",
+            id: "cse1211-project3",
             title: "Brain-Code-Renovo-CSE-1211-Project",
             description: "Brain Code Renovo is a platform where each level consists of unique challenges and puzzles designed to enhance intelligence and problem-solving skills.",
             course: "Fundamentals of Programming Lab",
@@ -97,7 +97,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/aditto007/Brain-Code-Renovo-CSE-1211-Project"
           },
           {
-            id: "cse1201-project4",
+            id: "cse1211-project4",
             title: "Tetris-Raylib",
             description: "Memory Matrix is an engaging game that challenges players to remember and replicate increasingly complex patterns.",
             course: "Fundamentals of Programming Lab",
@@ -111,7 +111,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/Dibbajothy/Tetris-Raylib"
           },
           {
-            id: "cse1201-project5",
+            id: "cse1211-project5",
             title: "Snake-Game-in-C-and-SDL",
             description: "Snake Game is a classic arcade game where players control a snake to eat food and grow while avoiding collisions.",
             course: "Fundamentals of Programming Lab",
@@ -134,13 +134,13 @@ export const projectSemesters: ProjectSemester[] = [
     description: "Object Oriented Programming Projects",
     courses: [
       {
-        id: "cse2103",
+        id: "cse2112",
         name: "Object Oriented Programming",
-        code: "CSE-2103",
+        code: "CSE-2112",
         credits: 1.5,
         projects: [
           {
-            id: "cse2103-project1",
+            id: "cse2112-project1",
             title: "School Management System",
             description: "A comprehensive school management system built using Java with features for student enrollment, attendance tracking, and grade management.",
             course: "Object Oriented Programming",
@@ -156,7 +156,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/Mehedi26696/2nd-Year-1st-Semester-Java-OOP-Projects",
           },
           {
-            id: "cse2103-project2",
+            id: "cse2112-project2",
             title: "CSEDU Airline Management System",
             description: "A comprehensive airline management system built using Java with features for flight booking, passenger management, and ticketing.",
             course: "Object Oriented Programming",
@@ -173,7 +173,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/TheManush/OOP-Project",
           },
           {
-            id: "cse2103-project3",
+            id: "cse2112-project3",
             title: "Hospital-Management-System",
             description: "A hospital management system built using Java that allows for patient registration, appointment scheduling, and medical record management.",
             course: "Object Oriented Programming",
@@ -190,7 +190,7 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/ashr77/Hospital-Management-System/tree/main",
           },
           {
-            id: "cse2103-project4",
+            id: "cse2112-project4",
             title: "DU-Shuttle-Service-CSE-2112-OOP",
             description: "The DU Shuttle Service is an Object-Oriented Programming (OOP) based project designed to enhance campus transportation with smart ticketing, route details, and a seamless, cashless shuttle experience for Dhaka University students.",
             course: "Object Oriented Programming",
@@ -206,11 +206,11 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/aditto007/DU-Shuttle-Service-CSE-2112-OOP",
           },
           {
-            id: "cse2201-project9",
+            id: "cse2112-project5",
             title: "Cafeteria Management, DU",
             description: "The Cafeteria Management, DU, is a Java-based application designed to streamline cafeteria operations at the Science Complex, University of Dhaka.",
-            course: "Application Development Lab",
-            courseCode: "CSE-2216",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
             technologies: ["Java", "JavaFX", "MySQL"],
             teamSize: 3,
             teamMembers: [
@@ -221,6 +221,36 @@ export const projectSemesters: ProjectSemester[] = [
             coverImage: "/projects/sem3/cafeteria.png",
             sourceCodeUrl: "https://github.com/Clear20-22/Java-Project"
 
+          },
+          {
+            id: "cse2112-project6",
+            title: "Travel Management System",
+            description: "A comprehensive travel management system that streamlines the booking and management of travel itineraries.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "Java Swing", "MySQL"],
+            teamSize: 1,
+            teamMembers: [
+              { name: "Mahmudur Rahman Moin", githubUsername: "Moin529" }
+            ],
+            coverImage: "/projects/sem3/travel.jpg",
+            sourceCodeUrl: "https://github.com/Moin529/CSE-2112-OOP-Project"
+          },
+          {
+            id: "cse2112-project7",
+            title: "Restaurant Management System",
+            description: "A restaurant management system that allows users to manage orders, menu items, and customer information.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "Java Swing", "MySQL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Ishrak Faisal", githubUsername: "ishrak100" },
+              { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7"},
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" }
+            ],
+            coverImage: "/projects/sem3/restaurant.png",
+            sourceCodeUrl: "https://github.com/JobaerTamim7/Fixated-Restaurant"
           }
           
         ]
@@ -233,7 +263,7 @@ export const projectSemesters: ProjectSemester[] = [
     description: "Database and  App Development Projects",
     courses: [
       {
-        id: "cse2201",
+        id: "cse2216",
         name: "Application Development Lab",
         code: "CSE-2216",
         credits: 1.5,
