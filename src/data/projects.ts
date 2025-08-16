@@ -75,7 +75,7 @@ export const projectSemesters: ProjectSemester[] = [
             teamMembers: [
               { name: "Ahnaf Mahbub Khan", githubUsername: "TheManush" },
               { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31"},
-              { name: "Farhan Bin Rabbani", githubUsername: "RobBunny" },
+              { name: "Abdullah-Ash-Sakafy", githubUsername: "Sakafy-34" },
             ],
             coverImage: "/projects/sem2/starship.jpg",
             sourceCodeUrl: "https://github.com/TheManush/starship-assault/tree/main"
@@ -123,7 +123,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/snake.jpg",
             sourceCodeUrl: "https://github.com/dipta11/Snake-Game-in-C-and-SDL"
+          },
+          {
+            id: "cse1211-project6",
+            title: "Snake Game Project",
+            description: "A classic snake game implemented in C using SDL.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","SDL"],
+            teamSize: 1 ,
+            teamMembers: [
+               { name: "Mehedi Hasan", githubUsername: "hasanmehediii" }
+            ],
+            coverImage: "/projects/sem2/snake.png",
+            sourceCodeUrl: "https://github.com/hasanmehediii/CSE-1211-Project"
           }
+          
         ]
       }
     ]
@@ -251,6 +266,69 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/restuarant.png",
             sourceCodeUrl: "https://github.com/JobaerTamim7/Fixated-Restaurant"
+          },
+          {
+            id: "cse2112-project8",
+            title: "CSEDU Supermarket",
+            description: "An online supermarket system that allows users to browse products, add them to their cart, and make purchases.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Ahil Islam Aurnob", githubUsername: "aheel03" },
+              { name: "S M Shamiun Ferdous", githubUsername: "shamiunferdous" },
+              { name: "Anika Sanzida Upoma", githubUsername: "bluerabbit31" }
+            ],
+            coverImage: "/projects/sem3/supermarket.png",
+            sourceCodeUrl: "https://github.com/Moin529/CSE-2112-OOP-Project"
+          },
+          {
+            id: "cse2112-project9",
+            title: "Movie Ticket Booker",
+            description: "An online movie ticket booking system that allows users to browse movies, select showtimes, and purchase tickets.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFx", "MySQL"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Mehedi Hasan", githubUsername: "hasanmehediii" },
+              { name: "Ibna Afra Roza", githubUsername: "Roza-fail" }
+            ],
+            coverImage: "/projects/sem3/movie.png",
+            sourceCodeUrl: "https://github.com/hasanmehediii/CSE-2112-Project"
+          },
+          {
+            id: "cse2112-project10",
+            title: "Car Rental System",
+            description: "An online car rental system that allows users to browse available cars, book rentals, and manage reservations.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Md. Shahria Hasan Jony", githubUsername: "SHJony121" },
+              { name: "Md.Rushan Jamil", githubUsername: "Rushu41" },
+              { name: "Sharfraz Khan Hridue", githubUsername: "blueblood897"},
+              { name: "Md. Sadman Sakib", githubUsername: "Mdsadmansakib" }
+            ],
+            coverImage: "/projects/sem3/car.jpg",
+            sourceCodeUrl: "https://github.com/Rushu41/2nd-Year-1st-Semester-Java-OOP-Project"
+          },
+          {
+            id: "cse2112-project11",
+            title: "Disaster Management System",
+            description: "The Disaster Management System is an emergency response platform designed to assist citizens, administrators, and responders during critical situations.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 2,
+            teamMembers: [
+               { name: "Sumaiya Rahman Soma", githubUsername: "srs4929" },
+              { name: "Chowdhury Shafahid Rahman", githubUsername: "Shafahid" }
+            ],
+            coverImage: "/projects/sem3/resque.png",
+            sourceCodeUrl: "https://github.com/srs4929/RESQURE-OOP-PROJECT-2-1-"
           }
           
         ]
