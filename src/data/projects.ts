@@ -109,6 +109,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/tetris.png",
             sourceCodeUrl: "https://github.com/Dibbajothy/Tetris-Raylib"
+          },
+          {
+            id: "cse1201-project5",
+            title: "Snake-Game-in-C-and-SDL",
+            description: "Snake Game is a classic arcade game where players control a snake to eat food and grow while avoiding collisions.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures","SDL"],
+            teamSize: 1 ,
+            teamMembers: [
+               { name: "Dipta Bhattacharjee", githubUsername: "dipta11"}
+            ],
+            coverImage: "/projects/sem2/snake.jpg",
+            sourceCodeUrl: "https://github.com/dipta11/Snake-Game-in-C-and-SDL"
           }
         ]
       }
@@ -204,9 +218,26 @@ export const projectSemesters: ProjectSemester[] = [
               { name: "Jubayer Ahmed Sojib", githubUsername: "Clear20-22" },
               { name: "Tamal Kanti Sarker", githubUsername: "tamalkantisarker" }
             ],
-            coverImage: "/projects/sem4/cafeteria.png",
+            coverImage: "/projects/sem3/cafeteria.png",
             sourceCodeUrl: "https://github.com/Clear20-22/Java-Project"
 
+          },
+          {
+            id: "cse2201-project4",
+            title: "Hall Management System",
+            description: "An app for managing multiple hall's student, teachers and shopkeepers and their different functionalities.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", 'Firebase',"Firestore"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Nadim Mahmud",githubUsername: "Nadim-2003"},
+              { name: "Jotish Biswas", githubUsername: "Jotish-Biswas"},
+              { name: "Dipta Bhattacharjee", githubUsername: "dipta11"},
+              { name: "Tamal Kanti Sarker", githubUsername: "tamalkanti223"},
+            ],
+            coverImage: "/projects/sem3/hall.png",
+            sourceCodeUrl: "https://github.com/Jotish-Biswas/Hall-Management-"
           }
         ]
       }
