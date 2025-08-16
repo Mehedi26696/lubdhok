@@ -197,6 +197,23 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/platr.png",
             sourceCodeUrl: "https://github.com/Mim1726/Android-Project-DU-CodeBots"
+          },
+          {
+            id: "cse2201-project6",
+            title: "TaxMate - Financial & Tax Services Platform",
+            description: "A comprehensive mobile application connecting clients with financial service providers including Chartered Accountants, Bank Loan Officers, and Financial Planners.",
+            course: "Application Development Lab",
+            courseCode: "CSE-2216",
+            technologies: ["Flutter", "Dart", "Firebase", "Supabase","FastAPI","REST APIs","FCM","NLP"],
+            teamSize: 4,
+            teamMembers: [
+              { name: "Ahnaf Mahbub Khan", githubUsername: "TheManush" },
+              { name: "Farhan Bin Rabbani", githubUsername: "RobBunny" },
+              { name: "Abdullah-Ash-Sakafy", githubUsername: "Sakafy-34" },
+              { name: "Md. Mahmudul Hassan", githubUsername: "mahmudss" }
+            ],
+            coverImage: "/projects/sem4/taxmate.png",
+            sourceCodeUrl: "https://github.com/RobBunny/Taxmate_Project"
           }
 
         ]

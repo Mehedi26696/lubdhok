@@ -153,7 +153,40 @@ body {
 }
 
 .animate-scroll-infinite {
-  animation: scroll-infinite 60s linear infinite;
+  animation: scroll-infinite 120s linear infinite;
+}
+
+.animate-scroll-infinite:hover {
+  animation-play-state: paused;
+}
+
+/* Enhanced card hover effects for rolling animation */
+.rolling-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.rolling-card:hover {
+  transform: scale(1.05) translateY(-8px) translateZ(0);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Animation progress indicator */
+@keyframes progress-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 120s linear infinite;
+}
+
+.group:hover .animate-progress-bar {
+  animation-play-state: paused;
 }
 
 .animate-fade-in-up {
