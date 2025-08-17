@@ -225,6 +225,36 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
           </div>
         )}
 
+        {/* Event Videos (if available) */}
+        {event.videos && event.videos.length > 0 && (
+          <div className="bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-600/50 p-8 shadow-2xl mb-12 opacity-0 animate-fade-in-up" style={{animationDelay: '0.45s', animationFillMode: 'forwards'}}>
+            <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
+              <svg className="w-6 h-6 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l-5.553 3.276A1 1 0 018 12.382V7.618a1 1 0 011.447-.894L15 10z" />
+              </svg>
+              Event Videos
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {event.videos.map((url, idx) => {
+                // Extract YouTube video ID
+                const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+                const videoId = match ? match[1] : null;
+                return videoId ? (
+                  <div key={idx} className="aspect-video w-full rounded-lg overflow-hidden shadow">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={`YouTube video ${idx + 1}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                ) : null;
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style={{animationDelay: '0.5s', animationFillMode: 'forwards'}}>
           {event.type === 'upcoming' && (

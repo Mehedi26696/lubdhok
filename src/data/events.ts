@@ -11,6 +11,7 @@ export interface Event {
   organizer: string
   attendees?: number
   highlights?: string[]
+  videos?: string[]
 }
 
 export const events: Event[] = [
@@ -32,7 +33,6 @@ export const events: Event[] = [
             'Exciting matches and friendly competition',
             'Prizes for winners and participants'
         ]
-
     },
     {   
         id: '2',
@@ -80,6 +80,12 @@ export const events: Event[] = [
             'Speeches from faculty and alumni',
             'Awards for outstanding students',
             'Band performances'
+        ],
+        videos: [
+            'https://youtube.com/shorts/lpeLw342SGA?si=kOjIqf71uoNGM0DY',
+            'https://youtu.be/2q0_KJ199PI?si=4wq7TVO5Uszw2h3J',
+            'https://youtu.be/fcHJ3OnYA4w?si=uGofmzvpayrPx0IX'
+
         ]
     },
     {
@@ -290,7 +296,16 @@ export const events: Event[] = [
             'Prize distribution for outstanding achievements',
             'Special guests and alumni participation',
             'Band performances'
+        ],
+        videos: [
+             'https://youtu.be/ux6jposL5no?si=7oOKskmhMUJdbzql',
+             'https://youtu.be/0w1fkCWPvAA?si=R5_9tw7GfbFqMOP1',
+             'https://youtu.be/zUNnP5gWJ-I?si=RkhS7OCs8OFt1H6T',
+             'https://youtu.be/pcJmPPiZEOQ?si=k2FI6I6G-0v1Hyh_',
+             'https://youtu.be/OzH2HnG7ILU?si=_7ZjXV3lS8nnzwL3',
+             'https://youtu.be/seg-meWqk-M?si=FlxhO4ACmSu21eoA'
         ]
+
     },
   
     {
