@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function AchievementsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-900/60 via-slate-900/80 to-indigo-900/60 py-10 sm:py-16 md:py-20">
+  <div className="min-h-screen bg-gradient-to-br from-violet-900/60 via-slate-900/80 to-indigo-900/60 pt-16 sm:pt-28 md:pt-36 pb-10 sm:pb-16 md:pb-20">
       <div className="max-w-5xl mx-auto px-2 sm:px-4 lg:px-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-10 bg-gradient-to-r from-emerald-400 via-violet-300 to-indigo-400 bg-clip-text text-transparent">
           Achievements

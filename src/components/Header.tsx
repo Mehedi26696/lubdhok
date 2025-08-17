@@ -125,7 +125,7 @@ export default function Header() {
                 className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Projects
+                Academic Projects
               </Link>
               <Link
                 href="/achievements"
