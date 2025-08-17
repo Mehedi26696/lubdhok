@@ -420,6 +420,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/black.jpg",
             sourceCodeUrl: "https://github.com/IstiakAR/Social-Media"
+          },
+          {
+            id: "cse2112-project15",
+            title: "Message-web",
+            description: "A Java-based web application for sending and receiving messages.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java",  "JavaScript","HTML", "CSS"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Rafiul Islam Sagor", githubUsername: "rafiulsagor55" },
+              { name: "Srabon Aich", githubUsername: "srabonAich" }
+            ],
+            coverImage: "/projects/sem3/black.jpg",
+            sourceCodeUrl: "https://github.com/rafiulsagor55/Message-web"
+
           }
           
         ]
