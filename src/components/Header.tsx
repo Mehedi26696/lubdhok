@@ -46,9 +46,20 @@ export default function Header() {
               href="/projects" 
               className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
             >
-              Projects
+              Academic Projects
             </Link>
-             
+            <Link 
+              href="/achievements" 
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
+            >
+              Achievements
+            </Link>
+            <Link 
+              href="/announcements" 
+              className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
+            >
+              Announcements
+            </Link>
             <Link 
               href="/about" 
               className="text-white hover:text-white/80 hover:font-bold px-3 py-2 text-sm font-medium transition-all duration-300"
@@ -116,7 +127,20 @@ export default function Header() {
               >
                 Projects
               </Link>
-               
+              <Link
+                href="/achievements"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Achievements
+              </Link>
+              <Link
+                href="/announcements"
+                className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Announcements
+              </Link>
               <Link
                 href="/about"
                 className="block px-3 py-2 text-base font-medium text-white hover:text-white/80 hover:bg-slate-800/50 rounded-md transition-all duration-300"
