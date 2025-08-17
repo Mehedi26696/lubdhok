@@ -168,6 +168,20 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem2/anaconda.png",
             sourceCodeUrl: "https://github.com/Ashif-Kayes/Green_Anaconda"
+          },
+          {
+            id: "cse1211-project9",
+            title: "Packman",
+            description: "Packman is a classic arcade game implemented in C using SDL.",
+            course: "Fundamentals of Programming Lab",
+            courseCode: "CSE-1211",
+            technologies: ["C Programming", "File I/O", "Data Structures", "SDL"],
+            teamSize: 1 ,
+            teamMembers: [
+               { name: "Istiak Ahammed Rhyme", githubUsername: "IstiakAR" }
+            ],
+            coverImage: "/projects/sem2/black.jpg",
+            sourceCodeUrl: "https://github.com/IstiakAR/pacman_sdl2"
           }
           
         ]
@@ -390,6 +404,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem3/bank.jpg",
             sourceCodeUrl: "https://github.com/Ashif-Kayes/CSE-2112-OOP-PROJECT"
+          },
+          {
+            id: "cse2112-project14",
+            title: "Social-Media",
+            description: "A Java-based Social Media application that allows users to manage posts, comments, and user interactions.",
+            course: "Object Oriented Programming",
+            courseCode: "CSE-2112",
+            technologies: ["Java", "JavaFX", "MySQL"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Istiak Ahammed Rhyme", githubUsername: "IstiakAR" },
+              { name: "Nadim Mahmud", githubUsername: "Nadim-2003" },
+              { name: "Dipta Bhattacharjee", githubUsername: "dipta11" }
+            ],
+            coverImage: "/projects/sem3/black.jpg",
+            sourceCodeUrl: "https://github.com/IstiakAR/Social-Media"
           }
           
         ]
