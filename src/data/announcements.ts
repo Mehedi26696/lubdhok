@@ -18,7 +18,7 @@ export const announcements: Announcement[] = [
   {
     id: '2',
     title: 'Class Start Date',
-    message: 'The class will start on Sunday,24th August.',
+    message: '4th Semester classes start on Sunday, 24th August.',
     date: '2025-08-15'
   }
 ];
