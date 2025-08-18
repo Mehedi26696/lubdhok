@@ -20,5 +20,19 @@ export const announcements: Announcement[] = [
     title: 'Class Start Date',
     message: '4th Semester classes start on Sunday, 24th August.',
     date: '2025-08-15'
+  },
+  {
+    id: '3',
+    title: 'Battles of Brains 2025',
+    message: 'The battles of brains competition will be held on 30th August.',
+    date: '2025-08-19',
+    link: 'https://www.facebook.com/share/1D9SQFaq1C/',
+  },
+  {
+    id: '4',
+    title: 'Class Routine',
+    message: 'This is the class routine for the upcoming semester.',
+    date: '2025-08-19',
+    link: 'https://drive.google.com/file/d/1gN4DMHexEYp4zVEYXB0_0gUNK_4UPwwF/view?usp=sharing',
   }
 ];

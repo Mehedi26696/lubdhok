@@ -331,8 +331,7 @@ export const events: Event[] = [
             'Best food stall gets prize money'  
             ]
     },
-    
-   
+
 ]
 
 // Helper functions for categorizing events

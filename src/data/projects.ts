@@ -431,7 +431,8 @@ export const projectSemesters: ProjectSemester[] = [
             teamSize: 2,
             teamMembers: [
               { name: "Rafiul Islam Sagor", githubUsername: "rafiulsagor55" },
-              { name: "Srabon Aich", githubUsername: "srabonAich" }
+              { name: "Srabon Aich", githubUsername: "srabonAich" },
+              { name: "Ariful Islam", githubUsername: "arif-5223" }
             ],
             coverImage: "/projects/sem3/black.jpg",
             sourceCodeUrl: "https://github.com/rafiulsagor55/Message-web"
@@ -620,7 +621,8 @@ export const projectSemesters: ProjectSemester[] = [
             teamMembers: [
               { name: "Srabon Aich", githubUsername: "srabonAich" },
               { name: "Rafiul Islam Sagor", githubUsername: "rafiulsagor55" },
-              { name: "Saad Bin Ashad", githubUsername: "saadcsedu-29" } 
+              { name: "Saad Bin Ashad", githubUsername: "saadcsedu-29" },
+              { name: "Ariful Islam", githubUsername: "arif-5223" }
             ],
             coverImage: "/projects/sem4/forktune.png",
             sourceCodeUrl: "https://github.com/srabonAich/ForkTune"
