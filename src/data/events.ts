@@ -12,6 +12,7 @@ export interface Event {
   attendees?: number
   highlights?: string[]
   videos?: string[]
+  registrationLink?: string
 }
 
 export const events: Event[] = [
@@ -345,6 +346,7 @@ export const events: Event[] = [
             '/events/brains2025.jpg'
         ],
         organizer: 'CSEDUIC Club',
+        registrationLink: 'https://forms.gle/ZanjSwVVCDaa4NN2A',
     },
     {
         id: '15',
