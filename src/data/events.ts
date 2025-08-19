@@ -352,7 +352,7 @@ export const events: Event[] = [
         description:
             'A week-long series of events and activities to welcome new students to the CSE Department.',
         date: '2025-09-13',
-        time: '3:00 PM - 5:00 PM',
+        time: '10:00 AM - 5:00 PM',
         location: 'CSE Department',
         type: 'upcoming',
         category: 'social',
