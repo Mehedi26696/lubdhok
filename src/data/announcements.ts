@@ -34,5 +34,12 @@ export const announcements: Announcement[] = [
     message: 'This is the class routine for the upcoming semester.',
     date: '2025-08-19',
     link: 'https://drive.google.com/file/d/1gN4DMHexEYp4zVEYXB0_0gUNK_4UPwwF/view?usp=sharing',
+  },
+  {
+    id: '5',
+    title: 'CSEDU Freshers Week 2025',
+    message:  'CSEDU Freshers Week 2025 is here!',
+    date: '2025-08-20',
+    link: 'https://www.facebook.com/share/1Aq6ihsqce/',
   }
 ];
