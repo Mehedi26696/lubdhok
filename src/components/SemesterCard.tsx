@@ -100,7 +100,7 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
                 <span className="text-xs font-medium text-emerald-300 bg-emerald-600/20 px-2 py-0.5 rounded mr-2">
                   Lab
                 </span>
-                <span className="text-xs text-slate-400">({labSubjects} sessions)</span>
+                <span className="text-xs text-slate-400">({labSubjects} courses)</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {regularSubjects
