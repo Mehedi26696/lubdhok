@@ -929,7 +929,7 @@ export const semesters: Semester[] = [
 				id: "cse2204",
 				name: "Computer Architecture and Organization",
 				code: "CSE-2204",
-				credits: 2.0,
+				credits: 3.0,
 				type: "theory",
 				materials: [
 					{
@@ -979,7 +979,7 @@ export const semesters: Semester[] = [
 				id: "cse2205",
 				name: "Introduction to Mechatronics",
 				code: "CSE-2205",
-				credits: 3.0,
+				credits: 2.0,
 				type: "theory",
 				materials: [
 					{
@@ -1121,6 +1121,103 @@ export const semesters: Semester[] = [
 						viewUrl:
 							"https://drive.google.com/drive/folders/1gD3jyuk8xs3_BxlGgBV0Rk4N2RQd8FZT?usp=sharing",
 					},
+				],
+			},
+		],
+	},
+
+	{
+		id: "semester-5",
+		name: "Semester V",
+		description: "Fifth Semester - (19.5 Credits)",
+		subjects: [
+			// Theory Courses
+			{
+				id: "cse3101",
+				name: "Computer Networking",
+				code: "CSE-3101",
+				credits: 3.0,
+				type: "theory",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3102",
+				name: "Software Engineering",
+				code: "CSE-3102",
+				credits: 3.0,
+				type: "theory",
+				materials: [
+				],
+			},
+			{
+				id: "cse3103",
+				name: "Microprocessors and Microcontrollers",
+				code: "CSE-3103",
+				credits: 3.0,
+				type: "theory",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3104",
+				name: "Database Management Systems - II",
+				code: "CSE-3104",
+				credits: 3.0,
+				type: "theory",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3105",
+				name: "Multivariable Calculus and Geometry",
+				code: "CSE-3105",
+				credits: 3.0,
+				type: "theory",
+				materials: [
+				],
+			},
+			// Lab Courses
+			{
+				id: "cse3111",
+				name: "Computer Networking Lab",
+				code: "CSE-3111",
+				credits: 1.5,
+				type: "lab",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3112",
+				name: "Software Engineering Lab",
+				code: "CSE-3112",
+				credits: 0.75,
+				type: "lab",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3113",
+				name: "Microprocessors and Assembly Language Lab",
+				code: "CSE-3113",
+				credits: 1.5,
+				type: "lab",
+				materials: [
+					 
+				],
+			},
+			{
+				id: "cse3116",
+				name: "Microcontroller Lab",
+				code: "CSE-3116",
+				credits: 0.75,
+				type: "lab",
+				materials: [
 				],
 			},
 		],
