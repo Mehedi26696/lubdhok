@@ -8,7 +8,13 @@ export interface Announcement {
 }
 
 export const announcements: Announcement[] = [
-   
+  {
+    id: '0',
+    title: 'About Lubdhok',
+    message: 'Lubdhok is the official batch name for Dhaka University, CSE Department 29th Batch. Here we share study materials, organize events, and collaborate on projects throughout our academic journey.',
+    date: '2025-01-01',
+    author: 'Batch Admin'
+  },
   {
     id: '1',
     title: 'DBMS Project Submission',
