@@ -15,7 +15,7 @@ const allStudyMaterials = studyMaterialSemesters.flatMap(sem =>
 )
 
 // Recursively collect all string values from an object (including arrays and nested fields)
-function collectStrings(obj: any): string[] {
+function collectStrings(obj: unknown): string[] {
   if (typeof obj === 'string') return [obj]
   if (Array.isArray(obj)) return obj.flatMap(collectStrings)
   if (typeof obj === 'object' && obj !== null) return Object.values(obj).flatMap(collectStrings)
@@ -34,22 +34,22 @@ function addSource<T>(arr: T[], category: string, source: string) {
   return arr.map(item => ({ ...item, category, source }))
 }
 
-function addSummaryToEvents(events: any[]) {
-  return events.map(event => ({
+function addSummaryToEvents(events: unknown[]) {
+  return events.map((event: any) => ({
     ...event,
     summary: `${event.title} on ${event.date} at ${event.location}. ${event.description}`.trim()
   }))
 }
 
-function addSummaryToProjects(projects: any[]) {
-  return projects.map(project => ({
+function addSummaryToProjects(projects: unknown[]) {
+  return projects.map((project: any) => ({
     ...project,
     summary: `${project.title} (${project.courseCode}): ${project.description}`.trim()
   }))
 }
 
-function addSummaryToStudyMaterials(materials: any[]) {
-  return materials.map(mat => ({
+function addSummaryToStudyMaterials(materials: unknown[]) {
+  return materials.map((mat: any) => ({
     ...mat,
     summary: `${mat.title} (${mat.type}) for ${mat.subject}: ${mat.description}`.trim()
   }))
