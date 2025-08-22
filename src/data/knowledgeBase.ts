@@ -35,24 +35,42 @@ function addSource<T>(arr: T[], category: string, source: string) {
 }
 
 function addSummaryToEvents(events: unknown[]) {
-  return events.map((event: any) => ({
-    ...event,
-    summary: `${event.title} on ${event.date} at ${event.location}. ${event.description}`.trim()
-  }))
+  return events.map((event) => {
+    if (typeof event === 'object' && event !== null && 'title' in event && 'date' in event && 'location' in event && 'description' in event) {
+      const e = event as { title: string; date: string; location: string; description: string };
+      return {
+        ...event,
+        summary: `${e.title} on ${e.date} at ${e.location}. ${e.description}`.trim()
+      };
+    }
+    return event;
+  });
 }
 
 function addSummaryToProjects(projects: unknown[]) {
-  return projects.map((project: any) => ({
-    ...project,
-    summary: `${project.title} (${project.courseCode}): ${project.description}`.trim()
-  }))
+  return projects.map((project) => {
+    if (typeof project === 'object' && project !== null && 'title' in project && 'courseCode' in project && 'description' in project) {
+      const p = project as { title: string; courseCode: string; description: string };
+      return {
+        ...project,
+        summary: `${p.title} (${p.courseCode}): ${p.description}`.trim()
+      };
+    }
+    return project;
+  });
 }
 
 function addSummaryToStudyMaterials(materials: unknown[]) {
-  return materials.map((mat: any) => ({
-    ...mat,
-    summary: `${mat.title} (${mat.type}) for ${mat.subject}: ${mat.description}`.trim()
-  }))
+  return materials.map((mat) => {
+    if (typeof mat === 'object' && mat !== null && 'title' in mat && 'type' in mat && 'subject' in mat && 'description' in mat) {
+      const m = mat as { title: string; type: string; subject: string; description: string };
+      return {
+        ...mat,
+        summary: `${m.title} (${m.type}) for ${m.subject}: ${m.description}`.trim()
+      };
+    }
+    return mat;
+  });
 }
 
 export const knowledgeBase = [
