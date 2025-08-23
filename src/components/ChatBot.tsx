@@ -10,7 +10,7 @@ interface Message {
 const renderTextWithLinks = (text: string) => {
   // First handle markdown-style links [text](url)
   const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
-  let processedText = text.replace(markdownLinkRegex, (match, linkText, url) => {
+  const processedText = text.replace(markdownLinkRegex, (match, linkText, url) => {
     return `__MARKDOWN_LINK__${linkText}__SEPARATOR__${url}__END__`
   })
   

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { searchKnowledgeBase, knowledgeBase } from '@/data/knowledgeBase'
 
 export async function POST(req: NextRequest) {
-  const { query, context, apiKey } = await req.json()
+  const { query, apiKey } = await req.json()
 
   // Validate API key
   if (!apiKey || typeof apiKey !== 'string' || !apiKey.trim()) {

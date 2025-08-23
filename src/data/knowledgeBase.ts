@@ -4,11 +4,6 @@ import { events } from './events'
 import { getAllProjects } from './projects'
 import { semesters as studyMaterialSemesters } from './studyMaterials'
 
-function addCategory<T>(arr: T[], category: string) {
-  return arr.map(item => ({ ...item, category }))
-}
-
-
 // Flatten all study materials from all semesters and subjects
 const allStudyMaterials = studyMaterialSemesters.flatMap(sem =>
   sem.subjects.flatMap(sub => sub.materials)
