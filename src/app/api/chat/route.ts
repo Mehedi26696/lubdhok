@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { searchKnowledgeBase, knowledgeBase } from '@/data/knowledgeBase'
 
 export async function POST(req: NextRequest) {
-  const { query, context } = await req.json()
+  const { query, context, apiKey } = await req.json()
+
+  // Validate API key
+  if (!apiKey || typeof apiKey !== 'string' || !apiKey.trim()) {
+    return NextResponse.json({ 
+      answer: 'Please provide a valid Gemini API key.' 
+    }, { status: 400 })
+  }
 
   let relevantItems = searchKnowledgeBase(query)
 
@@ -40,16 +47,51 @@ ${contextString}
 User question: ${query}
 `
 
-  const apiKey = process.env.GEMINI_API_KEY
-  const geminiRes = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }]
+  try {
+    const geminiRes = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
     })
-  })
-  const geminiData = await geminiRes.json()
-  const answer = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not find an answer.'
+    
+    if (!geminiRes.ok) {
+      let errorMessage = 'Sorry, there was an error with the API request.'
+      
+      switch (geminiRes.status) {
+        case 400:
+          errorMessage = 'Invalid API request. Please check your API key and try again.'
+          break
+        case 401:
+          errorMessage = 'Invalid API key. Please check your Gemini API key.'
+          break
+        case 403:
+          errorMessage = 'API access forbidden. Please check your API key permissions.'
+          break
+        case 429:
+          errorMessage = 'Rate limit exceeded. Please wait a moment and try again.'
+          break
+        case 500:
+          errorMessage = 'Gemini API server error. Please try again later.'
+          break
+        default:
+          errorMessage = `API error (${geminiRes.status}). Please try again.`
+      }
+      
+      return NextResponse.json({ 
+        answer: errorMessage 
+      }, { status: geminiRes.status })
+    }
+    
+    const geminiData = await geminiRes.json()
+    const answer = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not find an answer.'
 
-  return NextResponse.json({ answer, relevantItems })
+    return NextResponse.json({ answer, relevantItems })
+  } catch (error) {
+    console.error('Gemini API error:', error)
+    return NextResponse.json({ 
+      answer: 'Sorry, there was an error connecting to the API. Please check your internet connection and try again.' 
+    }, { status: 500 })
+  }
 }
