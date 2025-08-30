@@ -67,10 +67,12 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
             </span>
             <span className={`px-4 py-2 rounded-full text-sm font-bold uppercase ${
               event.type === 'upcoming' 
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' 
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30'
+                : event.type === 'ongoing'
+                ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
                 : 'bg-slate-600/40 text-slate-300 border border-slate-500/30'
             }`}>
-              {event.type === 'upcoming' ? 'Upcoming' : 'Completed'}
+              {event.type === 'upcoming' ? 'Upcoming' : event.type === 'ongoing' ? 'Ongoing' : 'Completed'}
             </span>
           </div>
           
@@ -257,21 +259,25 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style={{animationDelay: '0.5s', animationFillMode: 'forwards'}}>
-          {event.type === 'upcoming' && event.registrationLink && (
+          {(event.type === 'upcoming' || event.type === 'ongoing') && event.registrationLink && (
             <a 
               href={event.registrationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center inline-flex items-center justify-center"
+              className={`font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center inline-flex items-center justify-center ${
+                event.type === 'upcoming' 
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white'
+                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+              }`}
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
               </svg>
-              Register for Event
+              {event.type === 'upcoming' ? 'Register for Event' : 'Join Event'}
             </a>
           )}
           
-          {event.type === 'upcoming' && !event.registrationLink && (
+          {(event.type === 'upcoming' || event.type === 'ongoing') && !event.registrationLink && (
             <button 
               disabled
               className="bg-slate-600 text-slate-400 font-bold py-4 px-8 rounded-xl cursor-not-allowed text-center inline-flex items-center justify-center"
@@ -279,7 +285,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
-              Registration Closed
+              {event.type === 'upcoming' ? 'Registration Closed' : 'No Registration Required'}
             </button>
           )}
           

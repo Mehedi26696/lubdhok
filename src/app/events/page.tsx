@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { events } from '@/data/events'
 
+type EventFilter = 'all' | 'upcoming' | 'ongoing' | 'past'
+
 // Image Carousel Component
 function ImageCarousel({ images, eventTitle }: { images: string[], eventTitle: string }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -71,6 +73,15 @@ function ImageCarousel({ images, eventTitle }: { images: string[], eventTitle: s
 }
 
 export default function EventsPage() {
+  const [filter, setFilter] = useState<EventFilter>('all')
+  
+  const filteredEvents = filter === 'all' 
+    ? events 
+    : events.filter(event => event.type === filter)
+
+  const upcomingCount = events.filter(e => e.type === 'upcoming').length
+  const ongoingCount = events.filter(e => e.type === 'ongoing').length
+  const pastCount = events.filter(e => e.type === 'past').length
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden">
       {/* Enhanced Visual Background Elements */}
@@ -125,24 +136,47 @@ export default function EventsPage() {
             </div>
             <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-xl sm:text-2xl font-bold text-white">
-                {events.filter(e => e.type === 'upcoming').length}
-              </div>
+              <div className="text-xl sm:text-2xl font-bold text-emerald-400">{upcomingCount}</div>
               <div className="text-xs sm:text-sm text-slate-400">Upcoming</div>
             </div>
             <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
             <div className="text-center">
-              <div className="text-xl sm:text-2xl font-bold text-white">
-                {new Set(events.map(e => e.category)).size}
-              </div>
-              <div className="text-xs sm:text-sm text-slate-400">Categories</div>
+              <div className="text-xl sm:text-2xl font-bold text-blue-400">{ongoingCount}</div>
+              <div className="text-xs sm:text-sm text-slate-400">Ongoing</div>
+            </div>
+            <div className="w-px h-6 sm:h-8 bg-slate-600"></div>
+            <div className="text-center">
+              <div className="text-xl sm:text-2xl font-bold text-orange-400">{pastCount}</div>
+              <div className="text-xs sm:text-sm text-slate-400">Past</div>
             </div>
           </div>
         </div>
 
+        {/* Event Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+          {[
+            { key: 'all' as EventFilter, label: 'All Events', count: events.length },
+            { key: 'upcoming' as EventFilter, label: 'Upcoming', count: upcomingCount },
+            { key: 'ongoing' as EventFilter, label: 'Ongoing', count: ongoingCount },
+            { key: 'past' as EventFilter, label: 'Past', count: pastCount }
+          ].map(({ key, label, count }) => (
+            <button
+              key={key}
+              onClick={() => setFilter(key)}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-200 border ${
+                filter === key
+                  ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white border-orange-400 shadow-lg'
+                  : 'bg-slate-800/60 text-slate-300 border-slate-600/50 hover:border-orange-400/50 hover:text-orange-300'
+              }`}
+            >
+              {label} ({count})
+            </button>
+          ))}
+        </div>
+
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
-          {[...events].reverse().map((event, index) => (
+          {[...filteredEvents].reverse().map((event, index) => (
             <div 
               key={event.id} 
               className="group bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-600/50 hover:border-orange-400/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden opacity-0 animate-fade-in-up"
@@ -159,9 +193,11 @@ export default function EventsPage() {
                   <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
                     event.type === 'upcoming' 
                       ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' 
+                      : event.type === 'ongoing'
+                      ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
                       : 'bg-slate-600/40 text-slate-300 border border-slate-500/30'
                   }`}>
-                    {event.type === 'upcoming' ? 'Upcoming' : 'Completed'}
+                    {event.type === 'upcoming' ? 'Upcoming' : event.type === 'ongoing' ? 'Ongoing' : 'Completed'}
                   </span>
                   <span className="px-2 sm:px-3 py-1 bg-orange-500/20 text-orange-300 border border-orange-400/30 rounded-full text-xs font-medium capitalize">
                     {event.category}
@@ -196,6 +232,8 @@ export default function EventsPage() {
                   className={`inline-flex items-center justify-center w-full px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                     event.type === 'upcoming'
                       ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl'
+                      : event.type === 'ongoing'
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
                       : 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-lg hover:shadow-xl'
                   }`}
                 >
@@ -210,7 +248,7 @@ export default function EventsPage() {
         </div>
 
         {/* Empty State */}
-        {events.length === 0 && (
+        {filteredEvents.length === 0 && (
           <div className="text-center py-20">
             <div className="relative mb-8">
               <div className="w-24 h-24 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm border border-orange-400/30">

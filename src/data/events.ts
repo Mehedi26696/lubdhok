@@ -5,7 +5,7 @@ export interface Event {
   date: string
   time: string
   location: string
-  type: 'upcoming' | 'past'
+  type: 'upcoming' | 'past' | 'ongoing'
   category: 'academic' | 'social' | 'technical' | 'cultural'
   images: string[]
   organizer: string
@@ -284,6 +284,7 @@ export const events: Event[] = [
         type: 'past',
         category: 'cultural',
         images: [
+            '/events/cultural.jpg',
             '/events/cultural0.jpg',
             '/events/cultural2.jpg',
             '/events/cultural3.jpg',
@@ -340,7 +341,7 @@ export const events: Event[] = [
         date: '2025-08-30 to 2025-09-04',
         time: '10:00 AM - 5:00 PM',
         location: 'CSE Department',
-        type: 'upcoming',
+        type: 'ongoing',
         category: 'social',
         images: [
             '/events/fresh2025.jpg'
@@ -369,5 +370,6 @@ export const events: Event[] = [
 // Helper functions for categorizing events
 export const getUpcomingEvents = () => events.filter(event => event.type === 'upcoming')
 export const getPastEvents = () => events.filter(event => event.type === 'past')
+export const getOngoingEvents = () => events.filter(event => event.type === 'ongoing')
 export const getEventsByCategory = (category: Event['category']) => events.filter(event => event.category === category)
 export const getEventById = (id: string) => events.find(event => event.id === id)
