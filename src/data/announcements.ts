@@ -44,8 +44,14 @@ export const announcements: Announcement[] = [
   {
     id: '5',
     title: 'CSEDU Freshers Week 2025',
-    message:  'CSEDU Freshers Week 2025 is here!',
-    date: '2025-08-20',
-    link: 'https://www.facebook.com/share/1Aq6ihsqce/',
+    message: 'CSEDU Freshers Week 2025 is here!',
+    date: '2025-08-30',
+    link: 'https://www.facebook.com/share/1711nGHoLX/',
+  },
+  {
+    id: '6',
+    title: 'DUCSU Election 2025',
+    message: 'DUCSU Election 2025 voting will take place on September 9th. All students are encouraged to participate.',
+    date: '2025-09-09',
   }
 ];

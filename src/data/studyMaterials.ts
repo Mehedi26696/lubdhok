@@ -1158,6 +1158,16 @@ export const semesters: Semester[] = [
 						uploadDate: "2025-08-24",
 						viewUrl:
 							"https://github.com/Mehedi26696/Computer-Networking/tree/main/Books",
+					},
+					{
+						id: "cse3101-notes",
+						title: "Computer Networking Notes",
+						description: "Comprehensive notes on Computer Networking",
+						type: "note",
+						subject: "Computer Networking",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Computer-Networking/tree/main/Notes/Chapter%201",
 					}
 				],
 			},
@@ -1177,7 +1187,36 @@ export const semesters: Semester[] = [
 				credits: 3.0,
 				type: "theory",
 				materials: [
-					 
+					{
+						id: "cse3103-notes",
+						title: "Microprocessors and Microcontrollers Books",
+						description: "Microprocessors and Microcontrollers Books",
+						type: "books",
+						subject: "Microprocessors and Microcontrollers",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Microprocessor-and-Microcontroller/tree/main/Books",
+					},
+					{
+						id: "cse3103-slide1",
+						title: "Microprocessors and Microcontrollers - Slides",
+						description: "Slides covering key concepts in Microprocessors and Microcontrollers",
+						type: "slide",
+						subject: "Microprocessors and Microcontrollers",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Microprocessor-and-Microcontroller/tree/main/Lecture%20Slides",
+					},
+					{
+						id: "cse3103-notes1",
+						title: "Microprocessors and Microcontrollers - Notes",
+						description: "Comprehensive notes on Microprocessors and Microcontrollers",
+						type: "note",
+						subject: "Microprocessors and Microcontrollers",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Microprocessor-and-Microcontroller/tree/main/Notes",
+					}
 				],
 			},
 			{
@@ -1197,6 +1236,16 @@ export const semesters: Semester[] = [
 				credits: 3.0,
 				type: "theory",
 				materials: [
+					{
+						id: "cse3105-books",
+						title: "Multivariable Calculus and Geometry Books",
+						description: "Textbook on Multivariable Calculus and Geometry",
+						type: "books",
+						subject: "Multivariable Calculus and Geometry",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://drive.google.com/drive/folders/1vW0-manGuWpuWkWUUFGWa-ctchjequRI?usp=sharing",
+					}
 				],
 			},
 			// Lab Courses
@@ -1207,7 +1256,16 @@ export const semesters: Semester[] = [
 				credits: 1.5,
 				type: "lab",
 				materials: [
-					 
+					{
+						id: "cse3111-lab-manual",
+						title: "Computer Networking Lab",
+						description: "Lab for Computer Networking",
+						type: "code",
+						subject: "Computer Networking",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Computer-Networking/tree/main/Lab",
+					}
 				],
 			},
 			{
@@ -1227,7 +1285,16 @@ export const semesters: Semester[] = [
 				credits: 1.5,
 				type: "lab",
 				materials: [
-					 
+					{
+						id: "cse3113-lab-manual",
+						title: "Microprocessors and Assembly Language Lab",
+						description: "Lab for Microprocessors and Assembly Language",
+						type: "code",
+						subject: "Microprocessors and Assembly Language",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://github.com/Mehedi26696/Microprocessor-and-Assembly-Language-Lab",
+					}
 				],
 			},
 			{

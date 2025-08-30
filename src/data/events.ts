@@ -334,10 +334,25 @@ export const events: Event[] = [
     },
     {
         id: '14',
+        title: 'CSEDU Freshers Week 2025',
+        description:
+            'A week-long series of events and activities to welcome new students to the CSE Department.',
+        date: '2025-08-30 to 2025-09-04',
+        time: '10:00 AM - 5:00 PM',
+        location: 'CSE Department',
+        type: 'upcoming',
+        category: 'social',
+        images: [
+            '/events/fresh2025.jpg'
+        ],
+        organizer: '30th Batch',
+    },
+    {
+        id: '15',
         title: 'CSEDUIC Presents Battle of Brains 2025',
         description:
             'Annual coding competition  between 29th Batch and 30th Batch.',
-        date: '2025-08-30',
+        date: '2025-09-20',
         time: '9:00 AM - 5:00 PM',
         location: 'CSE Department',
         type: 'upcoming',
@@ -347,21 +362,6 @@ export const events: Event[] = [
         ],
         organizer: 'CSEDUIC Club',
         registrationLink: 'https://forms.gle/ZanjSwVVCDaa4NN2A',
-    },
-    {
-        id: '15',
-        title: 'CSEDU Freshers Week 2025',
-        description:
-            'A week-long series of events and activities to welcome new students to the CSE Department.',
-        date: '2025-09-13',
-        time: '10:00 AM - 5:00 PM',
-        location: 'CSE Department',
-        type: 'upcoming',
-        category: 'social',
-        images: [
-            '/events/fresh2025.jpg'
-        ],
-        organizer: '30th Batch',
     }
 
 ]
