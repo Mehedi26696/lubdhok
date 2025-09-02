@@ -131,9 +131,12 @@ export const projectSemesters: ProjectSemester[] = [
             course: "Fundamentals of Programming Lab",
             courseCode: "CSE-1211",
             technologies: ["C Programming", "File I/O", "Data Structures","SDL"],
-            teamSize: 1 ,
+            teamSize: 3 ,
             teamMembers: [
-               { name: "Mehedi Hasan", githubUsername: "hasanmehediii" }
+               { name: "Mehedi Hasan", githubUsername: "hasanmehediii" },
+               { name: "Labonya Pal", githubUsername: "labonyapal" },
+               { name: "Jubair Ahammad Akter", githubUsername: "Jubair-Adib" }
+
             ],
             coverImage: "/projects/sem2/snake.png",
             sourceCodeUrl: "https://github.com/hasanmehediii/CSE-1211-Project"
@@ -660,6 +663,59 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/Ashif-Kayes/App-project"
           }
 
+        ]
+      },
+      {
+        id: "cse2221",
+        name: "Database Management Systems - I Lab",
+        code: "CSE-2221",
+        credits: 1.5,
+        projects: [
+          {
+            id: "cse2221-project1",
+            title: "VistaVoyage — Modern Travel Booking Platform",
+            description: "A web-based platform for booking and managing travel itineraries.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["Nextjs","FastAPI","Supabase","PostgreSQL","Docker","Redis","Rest API","Gemini API","Alembic","Tailwind CSS","SMTP"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "H.M. Mehedi Hasan", githubUsername:  "Mehedi26696" },
+              { name: "Md. Abu Bakar Siddique", githubUsername: "Abs-Futy7" }
+            ],
+            coverImage: "/projects/sem4/vistavoyage.png",
+            sourceCodeUrl: "https://github.com/Abs-Futy7/VistaVoyage"
+          },
+          {
+            id: "cse2221-project2",
+            title: "Goriber Gari",
+            description: "Goriber Gari is a full-stack e-commerce platform designed for a seamless car purchasing experience.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["React", "Node.js", "PostgreSQL", "FastAPI", "Axios"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Mehedi Hasan", githubUsername: "hasanmehediii" },
+              { name: "Ibna Afra Roza", githubUsername: "Roza-fail" }
+            ],
+            coverImage: "/projects/sem4/goribergari.png",
+            sourceCodeUrl: "https://github.com/hasanmehediii/CSE-2211-Project"
+          },
+          {
+            id: "cse2221-project3",
+            title: "Artspire Platform",
+            description: "A full-stack art commission platform that combines features of platforms like Fiverr and Pinterest to facilitate commission-based artwork sharing, selling, and collaboration.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["React", "FastAPI", "PostgreSQL", "Tailwind CSS","Alembic"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Ahil Islam Aurnob", githubUsername: "aheel03" },
+              { name: "S M Shamiun Ferdous", githubUsername: "ShamiunFerdous" }
+            ],
+            coverImage: "/projects/sem4/artspire.png",
+            sourceCodeUrl: "https://github.com/aheel03/Artspire"
+          }
         ]
       }
     ]
