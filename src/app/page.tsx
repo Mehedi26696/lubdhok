@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import { semesters } from '@/data/studyMaterials'
 import { events } from '@/data/events'
@@ -123,9 +124,7 @@ export default function HomePage() {
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white drop-shadow-lg">
                 29th Batch • CSEDU 
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow-lg px-4">
-                A community of passionate engineers building tomorrow&apos;s technology through innovation and collaboration.
-              </p>
+             
             </div>
 
           </div>
@@ -162,7 +161,7 @@ export default function HomePage() {
               Latest Updates
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-4 mb-4">
-              Discover our most recent projects, events, and study materials - always fresh content.
+              Discover our most recent projects, events, and study materials.
             </p>
             <p className="text-sm text-slate-400 max-w-2xl mx-auto px-4">
               Hover over the carousel to pause and explore in detail

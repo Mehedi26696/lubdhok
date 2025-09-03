@@ -726,7 +726,7 @@ export const projectSemesters: ProjectSemester[] = [
             teamSize: 2,
             teamMembers: [
               { name: "Ishrak Faisal", githubUsername: "ishrak100" },
-              { name: "Abudullah Ash-Sakafy", githubUsername: "Sakafy-34" }
+              { name: "Abdullah Ash-Sakafy", githubUsername: "Sakafy-34" }
             ],
             coverImage: "/projects/sem4/aidx.jpeg",
             sourceCodeUrl: "https://github.com/johndoe/AidX"

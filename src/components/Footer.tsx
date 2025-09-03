@@ -27,9 +27,6 @@ export default function Footer() {
 									<span className="text-blue-300 font-medium">University of Dhaka</span>
 								</p>
 							</div>
-							<p className="text-gray-400 text-sm leading-relaxed">
-								Building tomorrow&apos;s technology through collaboration and shared knowledge.
-							</p>
 						</div>
 
 						{/* Navigation Links */}
