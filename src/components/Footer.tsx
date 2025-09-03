@@ -26,6 +26,20 @@ export default function Footer() {
 									Computer Science & Engineering<br />
 									<span className="text-blue-300 font-medium">University of Dhaka</span>
 								</p>
+								{/* YouTube Channel Link */}
+								<div className="mt-4">
+									<a
+										href="https://www.youtube.com/@CSEDU-29"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center gap-2 text-orange-300 hover:text-white font-medium text-sm transition-colors duration-200"
+									>
+										<svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+											<path d="M23.498 6.186a2.994 2.994 0 0 0-2.112-2.112C19.413 3.5 12 3.5 12 3.5s-7.413 0-9.386.574A2.994 2.994 0 0 0 .502 6.186C0 8.16 0 12 0 12s0 3.84.502 5.814a2.994 2.994 0 0 0 2.112 2.112C4.587 20.5 12 20.5 12 20.5s7.413 0 9.386-.574a2.994 2.994 0 0 0 2.112-2.112C24 15.84 24 12 24 12s0-3.84-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+										</svg>
+										<span>Visit our YouTube Channel</span>
+									</a>
+								</div>
 							</div>
 						</div>
 
@@ -69,6 +83,7 @@ export default function Footer() {
 										key={resource.label}
 										className={`bg-gradient-to-br ${resource.color} border border-white/10 rounded-lg p-3 text-center hover:scale-105 transition-all duration-200 cursor-pointer group`}
 									>
+
 										<span className="text-lg mb-1 block group-hover:scale-110 transition-transform">{resource.icon}</span>
 										<span className="text-gray-300 text-xs font-medium">{resource.label}</span>
 									</div>
