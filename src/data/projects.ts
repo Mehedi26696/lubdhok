@@ -715,6 +715,21 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/artspire.png",
             sourceCodeUrl: "https://github.com/aheel03/Artspire"
+          },
+          {
+            id: "cse2221-project4",
+            title: "AidX - Disaster Management System",
+            description: "A comprehensive disaster management system built with Node.js, Express.js, and MySQL to help coordinate disaster response efforts.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["Node.js", "Express.js", "MySQL"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Ishrak Faisal", githubUsername: "ishrak100" },
+              { name: "Abudullah Ash-Sakafy", githubUsername: "Sakafy-34" }
+            ],
+            coverImage: "/projects/sem4/aidx.jpeg",
+            sourceCodeUrl: "https://github.com/johndoe/AidX"
           }
         ]
       }
