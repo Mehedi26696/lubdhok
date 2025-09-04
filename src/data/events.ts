@@ -345,8 +345,8 @@ export const events: Event[] = [
         category: 'social',
         images: [
             '/events/fresh2025.jpg',
-            '/events/fresh20251.jpg',
-            '/events/fresh20252.jpg'
+            '/events/freshers20251.jpg',
+            '/events/freshers20252.jpg'
         ],
         organizer: '30th Batch',
         highlights: [
