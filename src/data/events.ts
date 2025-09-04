@@ -341,12 +341,19 @@ export const events: Event[] = [
         date: '2025-08-30 to 2025-09-04',
         time: '10:00 AM - 5:00 PM',
         location: 'CSE Department',
-        type: 'ongoing',
+        type: 'past',
         category: 'social',
         images: [
-            '/events/fresh2025.jpg'
+            '/events/fresh2025.jpg',
+            '/events/fresh20251.jpg',
+            '/events/fresh20252.jpg'
         ],
         organizer: '30th Batch',
+        highlights: [
+            'Ice-breaking activities',
+            'Fun games and team-building exercises',
+            'Treasure hunt'
+        ]
     },
     {
         id: '15',
