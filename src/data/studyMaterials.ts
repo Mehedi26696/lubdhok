@@ -1265,6 +1265,16 @@ export const semesters: Semester[] = [
 						uploadDate: "2025-09-03",
 						viewUrl:
 							"https://github.com/Mehedi26696/Database-Management-System-II/tree/main/Books",
+					},
+					{
+						id: "cse3104-notes",
+						title: "Database Management Systems - II Notes",
+						description: "Comprehensive notes on Database Management Systems - II",
+						type: "note",
+						subject: "Database Management Systems - II",
+						uploadDate: "2025-09-03",
+						viewUrl:
+							"https://github.com/Mehedi26696/Database-Management-System-II/tree/main/Notes",
 					}
 				],
 			},
@@ -1314,7 +1324,16 @@ export const semesters: Semester[] = [
 				credits: 0.75,
 				type: "lab",
 				materials: [
-					 
+					 {
+						id: "cse3112-lab-manual",
+						title: "Software Engineering Lab",
+						description: "Lab for Software Engineering",
+						type: "code",
+						subject: "Software Engineering",
+						uploadDate: "2025-09-07",
+						viewUrl:
+							"https://github.com/Mehedi26696/Software-Engineering/tree/main/Lab",
+					}
 				],
 			},
 			{
@@ -1343,6 +1362,16 @@ export const semesters: Semester[] = [
 				credits: 0.75,
 				type: "lab",
 				materials: [
+					{
+						id: "cse3116-lab-manual",
+						title: "Microcontroller Lab",
+						description: "Lab for Microcontroller",
+						type: "code",
+						subject: "Microcontroller Lab",
+						uploadDate: "2025-09-07",
+						viewUrl:
+							"https://github.com/Mehedi26696/Microcontroller-Lab",
+					}
 				],
 			},
 		],
