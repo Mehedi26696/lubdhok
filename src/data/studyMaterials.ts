@@ -1167,7 +1167,7 @@ export const semesters: Semester[] = [
 						subject: "Computer Networking",
 						uploadDate: "2025-08-31",
 						viewUrl:
-							"https://github.com/Mehedi26696/Computer-Networking/tree/main/Notes/Chapter%201",
+							"https://github.com/Mehedi26696/Computer-Networking/tree/main/Notes",
 					}
 				],
 			},
