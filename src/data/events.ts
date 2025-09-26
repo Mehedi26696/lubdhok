@@ -371,7 +371,7 @@ export const events: Event[] = [
             '/events/brains2.jpg',
             '/events/brains3.jpg'
         ],
-        organizer: 'CSEDUIC Club',
+        organizer: 'CSEDUIC Club and 28th Batch',
         registrationLink: 'https://forms.gle/ZanjSwVVCDaa4NN2A',
     }
 
