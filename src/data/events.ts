@@ -363,10 +363,13 @@ export const events: Event[] = [
         date: '2025-09-20',
         time: '9:00 AM - 5:00 PM',
         location: 'CSE Department',
-        type: 'upcoming',
+        type: 'past',
         category: 'technical',
         images: [
-            '/events/brains2025.jpg'
+            '/events/brains2025.jpg',
+            '/events/brains.jpg',
+            '/events/brains2.jpg',
+            '/events/brains3.jpg'
         ],
         organizer: 'CSEDUIC Club',
         registrationLink: 'https://forms.gle/ZanjSwVVCDaa4NN2A',
