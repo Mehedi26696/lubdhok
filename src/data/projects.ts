@@ -759,9 +759,52 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/movie.png",
             sourceCodeUrl: "https://github.com/Moin529/CSE-2211-DBMS-Lab-Project" 
+          },
+          {
+            id: "cse2221-project7",
+            title: "Online Voting System",
+            description: "A modern, secure online voting management system built with Supabase (PostgreSQL) and vanilla JavaScript.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["JavaScript","HTML","CSS","Supabase","PostgreSQL"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Suraya Jannat Mim", githubUsername: "Mim1726" },
+              { name: "Tamal Kanti sarker", githubUsername: "tamalkantisarker" }
+            ],
+            coverImage: "/projects/sem4/voting.png",
+            sourceCodeUrl: "https://github.com/Mim1726/dbms-project"
+          },
+          {
+            id: "cse2221-project8",
+            title: "Project-Management-System",
+            description: "A web-based project management system that allows users to create, manage, and track projects and tasks.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["Next.js","Tailwind CSS","Node.js","Express.js","PostgreSQL","Supabase"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Labonya Pal", githubUsername: "labonyapal" },
+              { name: "Hasnat Ashrafy", githubUsername: "ashr77" }
+            ],
+            coverImage: "/projects/sem4/black.jpg",
+            sourceCodeUrl: "https://github.com/labonyapal/DBMS-Project-Management-"
+          },
+          {
+            id: "cse2221-project9",
+            title: "TicketKini - Advanced Travel Booking System",
+            description: "TicketKini is a comprehensive, full-stack travel booking system that demonstrates advanced database management concepts in a real-world application.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["Next.js","FastAPI","PostgreSQL","Supabase","Tailwind CSS"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Rushan Jamil", githubUsername: "Rushu41" },
+              { name: "Shahria Hasan Jony", githubUsername: "SHJony121" }
+            ],
+            coverImage: "/projects/sem4/ticket.png",
+            sourceCodeUrl: "https://github.com/Rushu41/TicketKini"
           }
-
-
         ]
       }
     ]
