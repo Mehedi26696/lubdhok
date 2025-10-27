@@ -730,7 +730,38 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem4/aidx.jpeg",
             sourceCodeUrl: "https://github.com/johndoe/AidX"
+          },
+          {
+            id: "cse2221-project5",
+            title: "NOVEL NEST",
+            description: "A comprehensive library management system connecting users, authors, and administrators. Features modern book management, lending, buying, attendance, news, messaging, and analytics.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["PHP","SQLlite","CSS"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Jubair Ahammad Akter", githubUsername: "Jubair-Adib" },
+              { name: "Ariful Islam", githubUsername: "arif-5223" }
+            ],
+            coverImage: "/projects/sem4/novel.jpeg",
+            sourceCodeUrl: "https://github.com/Jubair-Adib/Novel-NEST-DBMS-Project"
+          },
+          {
+            id: "cse2221-project6",
+            title: "CineVerse - Modern Movie Booking Platform",
+            description: "A web-based platform for booking and managing movie tickets.",
+            course: "Database Management Systems - I Lab",
+            courseCode: "CSE-2221",
+            technologies: ["React","Tailwind CSS","Supbase","Node.js"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Mahmudur Rahman Moin", githubUsername: "Moin529" } 
+            ],
+            coverImage: "/projects/sem4/movie.png",
+            sourceCodeUrl: "https://github.com/Moin529/CSE-2211-DBMS-Lab-Project" 
           }
+
+
         ]
       }
     ]
