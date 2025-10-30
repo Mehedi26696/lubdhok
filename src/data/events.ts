@@ -373,6 +373,23 @@ export const events: Event[] = [
         ],
         organizer: 'CSEDUIC Club and 28th Batch',
         registrationLink: 'https://forms.gle/ZanjSwVVCDaa4NN2A',
+    },
+    {
+        id: '16',
+        title: "VisionX 2025: AI-powered National Innovation Challenge",
+        description:
+            "A nationwide innovation challenge inviting students and professionals to develop AI-powered solutions addressing real-world problems. Participants will form teams to ideate, prototype, and present their innovations, with winners receiving funding and mentorship to bring their ideas to life.",
+        date: '2025-11-15',
+        time: 'All Day',
+        location: "Nabab Nawab Ali Chowdhury Senate Bhaban, University of Dhaka",
+        type: 'ongoing',
+        category: 'technical',
+        images: [
+            '/events/visionx1.jpg'
+        ],
+        organizer: 'Department of Computer Science and Engineering, University of Dhaka',
+        registrationLink: 'https://visionx.cse.du.ac.bd/',
+
     }
 
 ]
