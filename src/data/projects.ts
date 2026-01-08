@@ -808,6 +808,36 @@ export const projectSemesters: ProjectSemester[] = [
         ]
       }
     ]
+  },
+  {
+    id: "semester-5",
+    name: "Semester V",
+    description: "Software Engineering and Networking Projects",
+    courses: [
+      {
+        id: "cse3111",
+        name: "Computer Networking Lab",
+        code: "CSE-3111",
+        credits: 1.5,
+        projects: [
+          {
+            id: "cse3111-project1",
+            title: "SyncroX",
+            description: "A Unified Real-time Collaboration and Communication Platform",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "Docker", "Streamlit", "TCP Protocols", "UDP Protocols"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "H.M. Mehedi Hasan", githubUsername:  "Mehedi26696" },
+              { name: "Md. Abu Bakar Siddique", githubUsername: "Abs-Futy7" }
+            ],
+            coverImage: "/projects/sem5/syncrox.png",
+            sourceCodeUrl: "https://github.com/Abs-Futy7/SyncroX"
+          }
+        ]
+      }
+    ]
   }
 ];
 
