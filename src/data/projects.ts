@@ -826,7 +826,7 @@ export const projectSemesters: ProjectSemester[] = [
             description: "A Unified Real-time Collaboration and Communication Platform",
             course: "Computer Networking Lab",
             courseCode: "CSE-3111",
-            technologies: ["Python", "Socket Programming", "Docker", "Streamlit", "TCP Protocols", "UDP Protocols"],
+            technologies: ["Python", "Socket Programming", "Docker", "Streamlit", "TCP Protocols", "UDP Protocols","Pandas","Matplotlib"],
             teamSize: 2,
             teamMembers: [
               { name: "H.M. Mehedi Hasan", githubUsername:  "Mehedi26696" },
@@ -834,6 +834,141 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem5/syncrox.png",
             sourceCodeUrl: "https://github.com/Abs-Futy7/SyncroX"
+          },
+          {
+            id: "cse3111-project2",
+            title: "PeerFlix",
+            description: "P2P Streaming Platform",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "TCP Protocols","Streamlit"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Chowdhury Shafahid Rahman", githubUsername: "Shafahid" },
+              { name: "Abul Hasan Anik", githubUsername: "abulhasananik2" }
+            ],
+            coverImage: "/projects/sem5/peerflix.PNG",
+            sourceCodeUrl: "https://github.com/Shafahid/PeerFlix"
+          },
+          {
+            id: "cse3111-project3",
+            title: "Whiteboard",
+            description: "Collaborative Whiteboard and File Sharing Application",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Java","Gradle","JavaFX","Socket Programming","TCP Protocols"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" },
+              { name: "Ibna Afra Roza", githubUsername: "Roza-fail" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/mastermind-fa/Whiteboard"
+          },
+          {
+            id: "cse3111-project4",
+            title: "VPN",
+            description: "A custom VPN (Virtual Private Network)",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "TCP Protocols","Cryptography","Flask"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Ahnaf Mahbub Khan", githubUsername: "TheManush" },
+              { name: "Abdullah Ash-Sakafy", githubUsername: "Sakafy-34" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/TheManush/Networking-Proj"
+          },
+          {
+            id: "cse3111-project5",
+            title: "Multi-Client Real-Time Communication System",
+            description: "A video conferencing tool built with Python sockets to demonstrate real-time challenges like latency, packet loss, and congestion control.",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "TCP Protocols","OpenCV","PyAudio","PyQt5","Matplotlib"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Shahriar Hasan Jony", githubUsername: "SHJony121" },
+              { name: "Md. Sadman Sakib", githubUsername: "Mdsadmansakib" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/SHJony121/Networking"
+          },
+          {
+            id: "cse3111-project6",
+            title: "Live",
+            description: "Live Audio Calling Application",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "HTTP","PyAudio","Tkinter"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Jobaer Hossain Tamim", githubUsername: "JobaerTamim7" },
+              { name: "Akash Bishwas", githubUsername: "akash-bishwas"  }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/JobaerTamim7/Live"
+          },
+          {
+            id: "cse3111-project7",
+            title: "NetVision",
+            description: "Interactive Networking Visualizer",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming","Streamlit" ],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Sumaiya Rahman Soma", githubUsername: "srs4929" },
+              { name: "Tasnova Shahrin", githubUsername: "tasnovashahrin"}
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/srs4929/NetVision-Networking-Project-3-1-"
+          },
+          {
+            id: "cse3111-project8",
+            title: "P2P File Sharing Application",
+            description: "A modern, BitTorrent-like peer-to-peer file sharing application with a clean uTorrent-style GUI interface.",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "TCP Protocols","Tkinter"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "S M Shamiun Ferdous", githubUsername: "ShamiunFerdous" },
+              { name: "Nadim Mahmud", githubUsername: "Nadim-2003"  }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/Nadim-2003/P2P-File-Sharing"
+          },
+          {
+            id: "cse3111-project9",
+            title: "NetClassroom",
+            description: "A client-server based online classroom application",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Java","JavaFX","Socket Programming","TCP Protocols"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Jubair Ahammad Akter" , githubUsername: "Jubair-Adib" },
+              { name: "Aditto Raihan", githubUsername: "aditto007" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/Jubair-Adib/NetClassroom_Networking_Project"
+          },
+          {
+            id: "cse3111-project10",
+            title: "ChatChat",
+            description: "A real-time chat application demonstrating client-server architecture and socket programming.",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "FastAPI", "Socket Programming", "ReactJS"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Srabon Aich", githubUsername: "srabonAich" },
+              { name: "Abantika Paul", githubUsername: "abantika-186" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/srabonAich/ChatChat2.0"
           }
         ]
       }
