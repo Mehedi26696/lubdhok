@@ -36,7 +36,7 @@ export default function AboutPage() {
       year: '2023',
       title: 'Semester 1: New Beginnings',
       description:
-        'Embarked on our Computer Science journey at Dhaka University, forming new friendships and adapting to campus life while laying the foundation in core CS subjects.',
+        'Embarked on our Computer Science journey at University of Dhaka, forming new friendships and adapting to campus life while laying the foundation in core CS subjects.',
     },
     {
       year: '2024',
@@ -93,7 +93,7 @@ export default function AboutPage() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full mx-auto mb-8"></div>
           
           <p className="text-lg sm:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12 px-4">
-            We are 60 Computer Science students at Dhaka University, currently in our 3rd year. 
+            We are 60 Computer Science students at University of Dhaka, currently in our 3rd year. 
             Together we learn, grow, and support each other through our academic journey.
           </p>
           
@@ -101,13 +101,13 @@ export default function AboutPage() {
           <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-2xl mx-auto max-w-5xl border border-slate-600/50">
             <Image
               src="/batch.jpg"
-              alt="Lubdhok Batch - Dhaka University CS Students"
+              alt="Lubdhok Batch - University of Dhaka CS Students"
               fill
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent flex items-end">
               <div className="p-4 sm:p-6 md:p-8 text-white">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4">Computer Science, Dhaka University</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-4">Computer Science, University of Dhaka</h2>
                 <p className="text-base sm:text-lg md:text-xl text-blue-200">3rd Year Students - Lubdhok-29</p>
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function AboutPage() {
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full mx-auto mb-6"></div>
             
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto px-4">
-              The simple principles that guide us as Computer Science students at Dhaka University
+              The simple principles that guide us as Computer Science students at University of Dhaka
             </p>
           </div>
 

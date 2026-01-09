@@ -53,5 +53,11 @@ export const announcements: Announcement[] = [
     title: 'DUCSU Election 2025',
     message: 'DUCSU Election 2025 voting will take place on September 9th. All students are encouraged to participate.',
     date: '2025-09-09',
+  },
+  {
+    id: '7',
+    title: 'Semester Final Exam',
+    message: 'The semester final examinations are scheduled to begin on January 19th, 2026.',
+    date: '2026-01-19',
   }
 ];

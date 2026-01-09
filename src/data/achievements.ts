@@ -35,5 +35,41 @@ export const achievements: Achievement[] = [
         awardedBy: 'CCA-Controller of Certifying Authorities',
         link: 'https://www.linkedin.com/feed/update/urn:li:activity:7332061841239470080/',
         coverImage: 'achievements/pki.jpeg'
+    },
+    {
+        id: '4',
+        title: "𝟐𝐧𝐝 𝐑𝐮𝐧𝐧𝐞𝐫-𝐮𝐩 𝐚𝐭 𝐁𝐔𝐏 𝐂𝐚𝐩𝐭𝐮𝐫𝐞 𝐓𝐡𝐞 𝐅𝐥𝐚𝐠 𝟐𝟎𝟐𝟓",
+        description: "𝐃𝐔_𝐁𝐥𝐚𝐜𝐤_𝐍𝐨𝐨𝐝𝐥𝐞𝐬, earned 2660 points and secured 𝟑𝐫𝐝 𝐩𝐥𝐚𝐜𝐞 at the 𝐁𝐔𝐏 𝐂𝐓𝐅 𝟐𝟎𝟐𝟓 powered by Knight Squad.",
+        date: '2025-10-10',
+        awardedBy: 'Bangladesh University of Professionals',
+        link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_bupctf-knightsquad-capturetheflag-activity-7377368273832673280-dqQ5?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
+        coverImage: 'achievements/BUP.jfif'
+    },
+    {
+        id: '5',
+        title: "𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 | 𝐃𝐈𝐔 𝐂𝐲𝐛𝐞𝐫𝐂𝐨𝐧 – 𝐍𝐚𝐭𝐢𝐨𝐧𝐚𝐥 𝐂𝐚𝐩𝐭𝐮𝐫𝐞 𝐓𝐡𝐞 𝐅𝐥𝐚𝐠 𝐂𝐨𝐦𝐩𝐞𝐭𝐢𝐭𝐢𝐨𝐧 𝟐𝟎𝟐𝟓",
+        description: "𝐃𝐔_𝐁𝐥𝐚𝐜𝐤_𝐍𝐨𝐨𝐝𝐥𝐞𝐬 achieved the 🥈𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 position at the National Capture The Flag Competition 2025, organized by the Cyber Security Club, Daffodil International University under DIU_CYBERCON.",
+        date: '2025-11-10',
+        awardedBy: 'Daffodil International University',
+        link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_ctf-cybersecurity-ethicalhacking-activity-7390052587158360069-QUjx?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
+        coverImage: 'achievements/DIU.jfif'
+    },
+    {
+        id: '6',
+        title: "𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 | 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭 CTF - 𝐂𝐈𝐑𝐂𝐔𝐈𝐓 𝐂𝐋𝐀𝐒𝐇 𝟏.𝟎",
+        description: "𝐃𝐔_𝐁𝐥𝐚𝐜𝐤_𝐍𝐨𝐨𝐝𝐥𝐞𝐬 secured the 🥈𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 position in the CipherSprint CTF 2025, powered by Knight Squad and organized by the BUP Robotics Club",
+        date: '2025-11-20',
+        awardedBy: 'Bangladesh University of Professionals',
+        link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_ciphersprint-capturetheflag-ctf-activity-7396587491169837056-kGNz?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
+        coverImage: 'achievements/BUP2.jfif'
+    },
+    {
+        id: '7',
+        title: "Champion | 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭 CTF - 𝐂𝐈𝐑𝐂𝐔𝐈𝐓 𝐂𝐋𝐀𝐒𝐇 𝟏.𝟎",
+        description: "𝐒𝐥𝐞𝐞𝐩𝐲 𝐏𝐚𝐧𝐝𝐚𝐬, secured 1𝐬𝐭 𝐩𝐥𝐚𝐜𝐞 𝐚𝐭 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭– powered by Knight Squad and organized by the BUP Robotics Club",
+        date: '2025-11-20',
+        awardedBy: 'Bangladesh University of Professionals',
+        link: 'https://www.linkedin.com/posts/rushan-jamil-453a20330_ciphersprint-buproboticsclub-knightsquad-activity-7396555137864945664-43ve?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
+        coverImage: 'achievements/BUP3.jfif'
     }
 ];
