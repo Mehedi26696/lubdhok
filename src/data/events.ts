@@ -382,7 +382,7 @@ export const events: Event[] = [
         date: '2025-11-15',
         time: 'All Day',
         location: "Nabab Nawab Ali Chowdhury Senate Bhaban, University of Dhaka",
-        type: 'ongoing',
+        type: 'past',
         category: 'technical',
         images: [
             '/events/visionx1.jpg'
