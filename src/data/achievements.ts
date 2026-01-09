@@ -43,7 +43,7 @@ export const achievements: Achievement[] = [
         date: '2025-10-10',
         awardedBy: 'Bangladesh University of Professionals',
         link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_bupctf-knightsquad-capturetheflag-activity-7377368273832673280-dqQ5?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
-        coverImage: 'achievements/BUP.jfif'
+        coverImage: 'achievements/BUP.png'
     },
     {
         id: '5',
@@ -52,7 +52,7 @@ export const achievements: Achievement[] = [
         date: '2025-11-10',
         awardedBy: 'Daffodil International University',
         link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_ctf-cybersecurity-ethicalhacking-activity-7390052587158360069-QUjx?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
-        coverImage: 'achievements/DIU.jfif'
+        coverImage: 'achievements/DIU.png'
     },
     {
         id: '6',
@@ -61,7 +61,7 @@ export const achievements: Achievement[] = [
         date: '2025-11-20',
         awardedBy: 'Bangladesh University of Professionals',
         link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_ciphersprint-capturetheflag-ctf-activity-7396587491169837056-kGNz?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
-        coverImage: 'achievements/BUP2.jfif'
+        coverImage: 'achievements/BUP2.png'
     },
     {
         id: '7',
@@ -70,6 +70,6 @@ export const achievements: Achievement[] = [
         date: '2025-11-20',
         awardedBy: 'Bangladesh University of Professionals',
         link: 'https://www.linkedin.com/posts/rushan-jamil-453a20330_ciphersprint-buproboticsclub-knightsquad-activity-7396555137864945664-43ve?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
-        coverImage: 'achievements/BUP3.jfif'
+        coverImage: 'achievements/BUP3.png'
     }
 ];
