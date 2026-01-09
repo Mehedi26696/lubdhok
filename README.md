@@ -32,7 +32,6 @@
   <img src="https://img.shields.io/badge/status-active-success?style=flat-square" alt="Status"/>
   <img src="https://img.shields.io/badge/maintained-yes-brightgreen?style=flat-square" alt="Maintained"/>
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs Welcome"/>
-  <img src="https://img.shields.io/github/last-commit/Mehedi26696/lubdhok?style=flat-square" alt="Last Commit"/>
 </p>
 
 <br/>
