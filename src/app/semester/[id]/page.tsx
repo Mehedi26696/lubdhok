@@ -73,7 +73,7 @@ export default function SemesterPage() {
       {/* Background Orbs */}
       <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-violet-600/10 to-transparent pointer-events-none" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         {/* Breadcrumb */}
         <nav className="flex mb-12" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-2 text-sm">

@@ -35,6 +35,10 @@ export default function EventCard({ event }: EventCardProps) {
     y.set(0)
   }
 
+  const startDate = new Date(event.date.split(' to ')[0]);
+  const day = !isNaN(startDate.getDate()) ? startDate.getDate() : '??';
+  const month = !isNaN(startDate.getDate()) ? startDate.toLocaleString('default', { month: 'short' }) : '???';
+
   return (
     <motion.div
       style={{
@@ -64,10 +68,10 @@ export default function EventCard({ event }: EventCardProps) {
         {/* Date Badge */}
         <div className="absolute top-4 left-4 px-4 py-2 bg-slate-950/80 backdrop-blur-md rounded-2xl border border-slate-800">
           <span className="block text-xl font-bold text-white text-center leading-none">
-            {new Date(event.date).getDate()}
+            {day}
           </span>
           <span className="block text-[10px] uppercase font-bold text-orange-500 tracking-widest text-center mt-1">
-            {new Date(event.date).toLocaleString('default', { month: 'short' })}
+            {month}
           </span>
         </div>
 

@@ -17,6 +17,25 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
     notFound()
   }
 
+  const formatDate = (dateString: string) => {
+    if (dateString.includes(' to ')) {
+      const [startDateStr, endDateStr] = dateString.split(' to ');
+      const startDate = new Date(startDateStr);
+      const endDate = new Date(endDateStr);
+
+      if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+        const start = startDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const end = endDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        return `${start} to ${end}`;
+      }
+    }
+    const singleDate = new Date(dateString);
+    if (!isNaN(singleDate.getTime())) {
+      return singleDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    return dateString; // fallback to original string if all else fails
+  };
+
   const getCategoryColorDark = (category: string) => {
     const colors = {
       academic: 'bg-blue-500/20 text-blue-300 border border-blue-400/30',
@@ -45,7 +64,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(245,158,11,0.06),transparent_50%)]"></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         {/* Back Button */}
         <div className="mb-12 opacity-0 animate-fade-in-up">
           <Link 
@@ -134,7 +153,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
               </div>
               <div>
                 <h3 className="font-semibold text-white">Date</h3>
-                <p className="text-slate-300">{event.date}</p>
+                <p className="text-slate-300">{formatDate(event.date)}</p>
               </div>
             </div>
 

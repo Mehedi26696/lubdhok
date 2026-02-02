@@ -39,7 +39,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
         <div className="absolute bottom-20 -left-40 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl opacity-50" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         {/* Breadcrumb */}
         <nav className="flex mb-16" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">

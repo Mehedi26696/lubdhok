@@ -37,7 +37,7 @@ export default function ProjectsPage() {
         <div className="absolute bottom-20 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         {/* Breadcrumb */}
         <nav className="flex mb-12" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -105,7 +105,7 @@ export default function ProjectsPage() {
                   📚
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-tight">{semester.name}</h2>
+                  <h2 className="text-2xl font-bold text-white tracking-tight">{semester.name}</h2>
                   <p className="text-slate-500 text-xs mt-0.5 font-medium">{semester.description}</p>
                 </div>
               </div>
