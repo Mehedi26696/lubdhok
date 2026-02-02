@@ -156,23 +156,41 @@ export default function CommandPalette() {
               <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
             </div>
 
-            <div className="relative flex items-center p-6 border-b border-white/5">
-              <Search className="w-6 h-6 text-violet-400 mr-4" />
-              <input
-                autoFocus
-                placeholder="Search materials, projects, subjects... (Ctrl+K)"
-                className="flex-1 bg-transparent text-white border-none focus:ring-0 placeholder-slate-500 text-xl font-medium tracking-tight"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={onKeyDown}
-              />
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                  <kbd className="font-sans">ESC</kbd>
+            <div className="relative flex items-center p-8 border-b border-white/5 group/input">
+              {/* Specialized Input Glow */}
+              <div className="absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-violet-600/5 to-transparent opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+              <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-focus-within/input:border-violet-500/50 group-focus-within/input:bg-violet-500/10 transition-all duration-500 mr-5">
+                <Search className="w-6 h-6 text-slate-400 group-focus-within/input:text-violet-400 group-focus-within/input:scale-110 transition-all duration-500" />
+              </div>
+
+              <div className="relative flex-1">
+                <input
+                  autoFocus
+                  placeholder="What are you looking for?"
+                  className="w-full bg-transparent text-white border-none focus:ring-0 placeholder-slate-600 text-2xl font-bold tracking-tight py-2"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={onKeyDown}
+                />
+                {query && (
+                  <button 
+                    onClick={() => setQuery('')}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2 hover:bg-white/10 rounded-lg text-slate-500 hover:text-white transition-all"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+
+              <div className="relative z-10 flex items-center gap-3 ml-6">
+                <div className="hidden sm:flex items-center gap-2 px-3 py-2 bg-black/40 border border-white/10 rounded-xl">
+                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">ESC</span>
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="p-2 hover:bg-white/5 rounded-xl text-slate-500 hover:text-white transition-all"
+                  className="p-2 hover:bg-white/10 rounded-xl text-slate-500 hover:text-white transition-all"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -258,23 +276,27 @@ export default function CommandPalette() {
                   <h3 className="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6 px-2 opacity-50">Quick Discovery</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
-                      { label: 'Semesters', icon: Clock, color: 'text-violet-400', desc: 'Browse temporal records' },
-                      { label: 'Subjects', icon: BookOpen, color: 'text-blue-400', desc: 'Direct academic lookup' },
-                      { label: 'Course Projects', icon: Code, color: 'text-orange-400', desc: 'Review implementation logic' },
-                      { label: 'Study Materials', icon: FileText, color: 'text-emerald-400', desc: 'Access distributed nodes' },
+                      { label: 'Semesters', icon: Clock, color: 'text-violet-400', desc: 'Browse temporal records', url: '/semesters' },
+                      { label: 'Subjects', icon: BookOpen, color: 'text-blue-400', desc: 'Direct academic lookup', url: '/semesters' },
+                      { label: 'Course Projects', icon: Code, color: 'text-orange-400', desc: 'Review implementation logic', url: '/projects' },
+                      { label: 'Study Materials', icon: FileText, color: 'text-emerald-400', desc: 'Access distributed nodes', url: '/semesters' },
                     ].map((item) => (
-                      <div 
+                      <button 
                         key={item.label}
-                        className="flex items-start p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-all group"
+                        onClick={() => {
+                          router.push(item.url)
+                          setIsOpen(false)
+                        }}
+                        className="flex items-start text-left p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-violet-500/30 hover:bg-white/10 transition-all group"
                       >
-                        <div className="p-2 rounded-lg bg-black/40 mr-4 group-hover:scale-110 transition-transform">
+                        <div className="p-2 rounded-lg bg-black/40 mr-4 group-hover:scale-110 group-hover:bg-violet-600/10 transition-all">
                           <item.icon className={`w-4 h-4 ${item.color}`} />
                         </div>
                         <div>
                           <div className="text-white text-sm font-bold tracking-tight mb-0.5">{item.label}</div>
                           <div className="text-[10px] text-slate-500 font-medium">{item.desc}</div>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                   
@@ -291,9 +313,6 @@ export default function CommandPalette() {
                     ))}
                   </div>
                 </div>
-              )}
-            </div>
-          </motion.div>
               )}
             </div>
           </motion.div>

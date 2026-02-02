@@ -54,7 +54,7 @@ Our YouTube Channel
 								{ href: "/projects", label: "Projects", icon: "💻" },
 								{ href: "/achievements", label: "Achievements", icon: "🏆" },
 								{ href: "/announcements", label: "Announcements", icon: "📢" },
-								{ href: "/about", label: "About Us", icon: "👥" },
+								{ href: "/about", label: "About", icon: "👥" },
 								{ href: "/contact", label: "Contact", icon: "📧" }
 							].map((link) => (
 								<Link 

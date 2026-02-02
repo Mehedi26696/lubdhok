@@ -54,6 +54,7 @@ export default function Header() {
               { href: "/events", label: "Events" },
               { href: "/projects", label: "Projects" },
               { href: "/achievements", label: "Achievements" },
+              { href: "/announcements", label: "Announcements" },
               { href: "/about", label: "About" },
               { href: "/contact", label: "Contact" }
             ].map((link) => (
@@ -75,12 +76,22 @@ export default function Header() {
                 const e = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, metaKey: true });
                 window.dispatchEvent(e);
               }}
-              className="hidden sm:flex items-center space-x-3 px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-400 hover:text-white hover:border-violet-500/50 transition-all group"
+              className="hidden sm:flex items-center group relative overflow-hidden px-4 py-2 rounded-xl bg-slate-900/40 backdrop-blur-md border border-white/10 hover:border-violet-500/50 hover:bg-slate-900/70 transition-all duration-500"
               title="Search (Ctrl+K)"
             >
-              <Search className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Search</span>
-              <kbd className="hidden lg:inline-flex px-1.5 py-0.5 rounded bg-slate-800 border border-white/10 text-[9px] font-bold">⌘K</kbd>
+              <div className="relative z-10 flex items-center gap-3">
+                <Search className="w-4 h-4 text-violet-400/80 group-hover:text-violet-400 group-hover:scale-110 transition-all duration-500" />
+                <div className="h-4 w-px bg-white/10 group-hover:bg-violet-500/30 transition-colors" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-white transition-colors whitespace-nowrap">
+                  Search
+                </span>
+              </div>
+              <div className="relative z-10 hidden lg:flex items-center gap-1.5 ml-8 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">
+                <kbd className="px-1.5 py-0.5 rounded bg-black/50 border border-white/10 text-[8px] font-bold font-sans text-slate-500">CTRL</kbd>
+                <kbd className="px-1.5 py-0.5 rounded bg-black/50 border border-white/10 text-[8px] font-bold font-sans text-slate-500">K</kbd>
+              </div>
+              {/* Subtle Animated Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-600/0 via-violet-600/5 to-violet-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             </button>
 
             <ThemeToggle />
@@ -119,6 +130,7 @@ export default function Header() {
                 { href: "/events", label: "Events", icon: "🎉" },
                 { href: "/projects", label: "Academic Projects", icon: "💻" },
                 { href: "/achievements", label: "Achievements", icon: "🏆" },
+                { href: "/announcements", label: "Announcements", icon: "📢" },
                 { href: "/about", label: "About", icon: "👥" },
                 { href: "/contact", label: "Contact", icon: "📧" }
               ].map((link) => (

@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen, Calendar, Rocket, Sparkles, Terminal, ChevronRight, Play, MapPin } from 'lucide-react'
+import { Calendar, Rocket, Sparkles, ChevronRight, Play, MapPin, Clock, Code } from 'lucide-react'
 import { semesters } from '@/data/studyMaterials'
 import { events } from '@/data/events'
 import { getAllProjects } from '@/data/projects'
@@ -13,53 +13,36 @@ import StatsSection from '@/components/StatsSection'
 function DiscoveryCard({ item }: { item: any }) {
   if (item.type === 'semester') {
     return (
-      <div className="group/card relative bg-white/5 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/5 hover:border-violet-500/30 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
+      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-violet-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-black text-white group-hover/card:text-violet-400 transition-colors uppercase tracking-widest">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-black text-white group-hover/card:text-violet-400 transition-colors uppercase tracking-[0.05em] leading-tight">
               {item.data.name}
             </h3>
-            <div className="bg-white/10 text-violet-400 text-[10px] font-black px-3 py-1.5 rounded-full border border-white/10 flex items-center space-x-1 uppercase tracking-widest">
-              <Sparkles className="w-3 h-3 text-violet-500" />
-              <span>Academic</span>
+            <div className="p-3 bg-violet-500/10 rounded-2xl border border-violet-500/20 group-hover/card:scale-110 transition-transform">
+              <Clock className="w-5 h-5 text-violet-400" />
             </div>
           </div>
           
-          <p className="text-slate-400 mb-8 text-sm leading-relaxed line-clamp-2 font-medium">
-            {item.data.description}
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-4 border border-white/5">
-              <div className="flex items-center text-slate-500 mb-2">
-                <BookOpen className="w-3.5 h-3.5 mr-2 opacity-50" />
-                <span className="font-black text-[9px] uppercase tracking-[0.2em]">Materials</span>
-              </div>
-              <p className="text-2xl font-black text-white tracking-tighter">
-                {item.data.subjects.reduce((acc: number, subject: any) => acc + subject.materials.length, 0)}
-              </p>
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">
+              <div className="w-1.5 h-1.5 rounded-full bg-violet-500 mr-3 animate-pulse"></div>
+              {item.data.subjects.length} Subjects Registry
             </div>
-            
-            <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-4 border border-white/5">
-              <div className="flex items-center text-slate-500 mb-2">
-                <Terminal className="w-3.5 h-3.5 mr-2 opacity-50" />
-                <span className="font-black text-[9px] uppercase tracking-[0.2em]">Credits</span>
-              </div>
-              <p className="text-2xl font-black text-white tracking-tighter">
-                {item.data.subjects.reduce((acc: number, subject: any) => acc + subject.credits, 0)}
-              </p>
-            </div>
+            <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
+              Explore the curated digital archives and collective knowledge for this temporal node.
+            </p>
           </div>
 
-          <div className="mt-auto">
+          <div className="mt-auto pt-4">
             <Link
               href={`/semester/${item.data.id}`}
-              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-3 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-xl hover:bg-violet-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden"
+              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-violet-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
-              <span className="relative z-10">Explore Materials</span>
+              <span className="relative z-10">Access Node</span>
               <ChevronRight className="relative z-10 ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -70,50 +53,46 @@ function DiscoveryCard({ item }: { item: any }) {
 
   if (item.type === 'project') {
     return (
-      <div className="group relative bg-white/5 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/5 hover:border-emerald-500/30 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-0 group:hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-black text-white group-hover:text-emerald-400 transition-colors line-clamp-1 uppercase tracking-widest">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-black text-white group-hover/card:text-emerald-400 transition-colors line-clamp-2 uppercase tracking-[0.05em] leading-tight">
               {item.data.title}
             </h3>
-            <div className="bg-white/10 text-emerald-400 text-[10px] font-black px-3 py-1.5 rounded-full border border-white/10 uppercase tracking-widest">
-              Build
+            <div className="p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 group-hover/card:scale-110 transition-transform">
+              <Code className="w-5 h-5 text-emerald-400" />
             </div>
           </div>
           
-          <p className="text-slate-400 mb-8 text-sm leading-relaxed line-clamp-2 font-medium">
-            {item.data.description}
-          </p>
-
-          <div className="mb-8">
+          <div className="space-y-4 mb-8">
             <div className="flex flex-wrap gap-2">
-              {item.data.technologies.slice(0, 3).map((tech: string, techIndex: number) => (
-                <span 
-                  key={techIndex}
-                  className="text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-lg font-black bg-white/5 text-slate-400 border border-white/10"
-                >
+              {item.data.technologies.slice(0, 3).map((tech: string, i: number) => (
+                <span key={i} className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 text-[9px] font-black text-slate-500 uppercase tracking-widest">
                   {tech}
                 </span>
               ))}
               {item.data.technologies.length > 3 && (
-                <span className="text-[9px] font-black px-3 py-1.5 rounded-lg bg-black text-slate-500 border border-white/5">
+                <span className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 text-[9px] font-black text-slate-600">
                   +{item.data.technologies.length - 3}
                 </span>
               )}
             </div>
+            <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 font-medium">
+              Technical implementation and architecture documentation for distributed projects.
+            </p>
           </div>
 
-          <div className="mt-auto">
+          <div className="mt-auto pt-4">
             <Link
               href={item.data.sourceCodeUrl || '/projects'}
               target={item.data.sourceCodeUrl ? "_blank" : "_self"}
-              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-3 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-xl hover:bg-emerald-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden"
+              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-emerald-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
-              <span className="relative z-10">View Source</span>
-              <Rocket className="relative z-10 ml-2 w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+              <span className="relative z-10">Sync Source</span>
+              <Rocket className="relative z-10 ml-2 w-4 h-4 group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -123,48 +102,43 @@ function DiscoveryCard({ item }: { item: any }) {
 
   if (item.type === 'event') {
     return (
-      <div className="group relative bg-white/5 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/5 hover:border-orange-500/30 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-black text-white group-hover:text-orange-400 transition-colors line-clamp-1 uppercase tracking-widest">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-black text-white group-hover/card:text-orange-400 transition-colors uppercase tracking-[0.05em] leading-tight line-clamp-1">
               {item.data.title}
             </h3>
-            <div className="bg-white/10 text-orange-400 text-[10px] font-black px-3 py-1.5 rounded-full border border-white/10 uppercase tracking-widest">
-              Timeline
+            <div className="p-3 bg-orange-500/10 rounded-2xl border border-orange-500/20 group-hover/card:scale-110 transition-transform">
+              <Calendar className="w-5 h-5 text-orange-400" />
             </div>
           </div>
           
-          <p className="text-slate-400 mb-8 text-sm leading-relaxed line-clamp-2 font-medium">
-            {item.data.description}
-          </p>
-
-          <div className="grid grid-cols-1 gap-3 mb-8">
-            <div className="flex items-center text-slate-500 text-[10px] font-black uppercase tracking-widest">
-              <Calendar className="w-4 h-4 mr-3 text-orange-500 opacity-60" />
-              <span className="truncate">{item.data.date}</span>
-            </div>
-            <div className="flex items-center text-slate-500 text-[10px] font-black uppercase tracking-widest">
-              <MapPin className="w-4 h-4 mr-3 text-white opacity-40" />
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
+              <MapPin className="w-4 h-4 mr-3 text-orange-500/60" />
               <span className="truncate">{item.data.location}</span>
             </div>
+            <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
+              Scheduled synchronization event for the Lubdhok collective ecosystem.
+            </p>
           </div>
 
-          <div className="mt-auto">
+          <div className="mt-auto pt-4">
             <Link
               href={`/events/${item.data.id}`}
-              className="group/btn relative inline-flex items-center w-full justify-center px-4 py-2.5 bg-slate-700/50 text-white text-sm font-bold rounded-xl hover:bg-gradient-to-r hover:from-orange-600 hover:to-amber-600 transition-all duration-300 border border-slate-600 hover:border-transparent"
+              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-orange-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
             >
-              <span>Event Details</span>
-              <Play className="ml-2 w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
+              <span className="relative z-10">Event Protocol</span>
+              <Play className="relative z-10 ml-2 w-4 h-4 group-hover/btn:scale-110 transition-transform" />
             </Link>
           </div>
         </div>
       </div>
     )
   }
-
   return null
 }
 
@@ -270,62 +244,9 @@ export default function HomePage() {
             {/* Clean Subtitle */}
             <div className="space-y-4">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-widest opacity-90">
-                29th Batch • CSEDU 
+                29th Batch • CSEDU
               </h2>
             </div>
-
-            {/* High-impact Search Bar */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="max-w-2xl mx-auto pt-4"
-            >
-              <div 
-                onClick={() => {
-                  const kEvent = new KeyboardEvent('keydown', {
-                    key: 'k',
-                    ctrlKey: true,
-                    bubbles: true,
-                    metaKey: true
-                  });
-                  window.dispatchEvent(kEvent);
-                }}
-                className="group relative cursor-pointer"
-              >
-                {/* Outer Glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                
-                <div className="relative flex items-center bg-black/40 backdrop-blur-2xl border border-white/10 rounded-2xl px-6 py-5 shadow-2xl group-hover:border-white/20 transition-all duration-300">
-                  <Search className="w-6 h-6 text-violet-400 mr-4" />
-                  <div className="flex-1 text-left text-slate-400 font-medium text-lg tracking-tight">
-                    Search materials, projects, or events...
-                  </div>
-                  <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                    <kbd className="font-sans">Ctrl</kbd>
-                    <span>+</span>
-                    <kbd className="font-sans">K</kbd>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Quick Tags */}
-              <div className="flex flex-wrap justify-center gap-3 mt-6">
-                {['Calculus', 'Algorithms', 'Microprocessors', 'DBMS'].map((tag) => (
-                  <button 
-                    key={tag}
-                    onClick={() => {
-                      // Custom search logic can be added here
-                      const kEvent = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true });
-                      window.dispatchEvent(kEvent);
-                    }}
-                    className="px-4 py-1.5 bg-white/5 hover:bg-white/10 border border-white/5 rounded-full text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-all"
-                  >
-                    #{tag}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
