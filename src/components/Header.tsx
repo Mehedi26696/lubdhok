@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import ThemeToggle from './ThemeToggle'
 import { Search } from 'lucide-react'
 
 export default function Header() {
@@ -93,8 +92,6 @@ export default function Header() {
               {/* Subtle Animated Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-violet-600/0 via-violet-600/5 to-violet-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             </button>
-
-            <ThemeToggle />
 
             {/* Mobile menu button */}
             <div className="md:hidden">
