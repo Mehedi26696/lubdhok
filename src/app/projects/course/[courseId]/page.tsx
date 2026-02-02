@@ -32,7 +32,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
       {/* Visual Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl opacity-50" />

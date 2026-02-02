@@ -19,8 +19,8 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
-          : 'bg-gradient-to-b from-slate-950 via-slate-950/80 to-transparent'
+          ? 'bg-slate-900/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
+          : 'bg-gradient-to-b from-slate-900 via-slate-900/80 to-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -116,7 +116,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-slate-950/95 backdrop-blur-2xl rounded-[2rem] border border-white/10 mx-6 mb-6 p-8 shadow-2xl relative overflow-hidden">
+          <div className="md:hidden bg-slate-900/95 backdrop-blur-2xl rounded-[2rem] border border-white/10 mx-6 mb-6 p-8 shadow-2xl relative overflow-hidden">
             {/* Background Accent */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/10 rounded-full blur-3xl" />
             

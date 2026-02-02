@@ -18,7 +18,7 @@ type DiscoveryItem =
 function DiscoveryCard({ item }: { item: DiscoveryItem }) {
   if (item.type === 'semester') {
     return (
-      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-violet-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-violet-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
@@ -58,7 +58,7 @@ function DiscoveryCard({ item }: { item: DiscoveryItem }) {
 
   if (item.type === 'project') {
     return (
-      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
@@ -107,7 +107,7 @@ function DiscoveryCard({ item }: { item: DiscoveryItem }) {
 
   if (item.type === 'event') {
     return (
-      <div className="group/card relative bg-[#020617]/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
+      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
         
         <div className="relative p-8 flex flex-col h-full">
@@ -192,7 +192,7 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#020617] relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-20 bg-transparent z-40"></div>
       
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -209,7 +209,7 @@ export default function HomePage() {
             filter: 'brightness(0.5) contrast(1.1) saturate(1.1)'
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/50 to-[#020617]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/50 to-[#0f172a]"></div>
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div 
@@ -243,7 +243,7 @@ export default function HomePage() {
 
       <StatsSection />
 
-      <section id="discover" className="relative py-48 bg-[#020617] overflow-hidden border-t border-white/5">
+      <section id="discover" className="relative py-48 bg-slate-900 overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-indigo-600/5 rounded-full blur-[120px]"></div>
         </div>

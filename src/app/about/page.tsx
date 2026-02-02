@@ -56,6 +56,12 @@ export default function AboutPage() {
       description:
         'Completed our fourth semester, celebrated achievements, and prepared for the next steps in our academic and personal growth as a united batch.',
     },
+    {
+      year: '2026',
+      title: 'Semester 5: Looking Ahead',
+      description:
+        'As we enter our fifth semester, we reflect on our journey so far and look forward to new challenges and opportunities in our Computer Science education together.',
+    }
   ]
 
   return (

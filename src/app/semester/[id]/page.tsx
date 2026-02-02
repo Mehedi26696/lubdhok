@@ -69,7 +69,7 @@ export default function SemesterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
       {/* Background Orbs */}
       <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-violet-600/10 to-transparent pointer-events-none" />
       
@@ -99,7 +99,7 @@ export default function SemesterPage() {
           </p>
 
           {/* Search & Filter Bar */}
-          <div className="sticky top-20 z-40 bg-slate-950/80 backdrop-blur-xl border border-slate-800 p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
+          <div className="sticky top-20 z-40 bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
             <div className="relative w-full md:w-96">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input 

@@ -57,7 +57,7 @@ export default function StatsSection() {
   ]
 
   return (
-    <section id="statistics" className="relative py-32 overflow-hidden bg-[#020617] border-t border-white/5">
+    <section id="statistics" className="relative py-32 overflow-hidden bg-slate-900 border-t border-white/5">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none select-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/5 rounded-full blur-[120px]" />
