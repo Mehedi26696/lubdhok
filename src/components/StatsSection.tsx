@@ -1,8 +1,11 @@
+'use client'
+
 import { semesters } from '@/data/studyMaterials'
+import { projectSemesters } from '@/data/projects'
+import { motion } from 'framer-motion'
+import { BookOpen, Code, FileText, Layout, Award } from 'lucide-react'
 
 export default function StatsSection() {
-  const totalSemesters = semesters.length
-  // const totalSubjects = semesters.reduce((acc, semester) => acc + semester.subjects.length, 0)
   const totalMaterials = semesters.reduce((acc, semester) => 
     acc + semester.subjects.reduce((subAcc, subject) => subAcc + subject.materials.length, 0), 0
   )
@@ -14,123 +17,114 @@ export default function StatsSection() {
     acc + semester.subjects.filter(subject => subject.type === 'lab').length, 0
   )
 
-  const materialsByType = semesters.reduce((acc, semester) => {
-    semester.subjects.forEach(subject => {
-      subject.materials.forEach(material => {
-        acc[material.type] = (acc[material.type] || 0) + 1
-      })
-    })
-    return acc
-  }, {} as Record<string, number>)
+  const totalProjects = projectSemesters.reduce((acc, semester) => 
+    acc + semester.courses.reduce((courseAcc, course) => courseAcc + course.projects.length, 0), 0
+  )
 
   const stats = [
     {
-      label: 'Semesters',
-      value: totalSemesters,
-      icon: '📅',
-      gradient: 'from-violet-500 to-purple-600',
-      bgGradient: 'from-violet-50 to-purple-50'
-    },
-    {
-      label: 'Theory Courses',
-      value: theorySubjects,
-      icon: '📚',
-      gradient: 'from-blue-500 to-indigo-600',
-      bgGradient: 'from-blue-50 to-indigo-50'
-    },
-    {
-      label: 'Lab Courses',
-      value: labSubjects,
-      icon: '�',
-      gradient: 'from-teal-500 to-cyan-600',
-      bgGradient: 'from-teal-50 to-cyan-50'
+      label: 'Credits Completed',
+      value: '75.5',
+      icon: Award,
+      color: 'text-amber-400',
+      bgColor: 'bg-amber-400/10',
+      borderColor: 'border-amber-400/20'
     },
     {
       label: 'Study Materials',
       value: totalMaterials,
-      icon: '�',
-      gradient: 'from-emerald-500 to-green-600',
-      bgGradient: 'from-emerald-50 to-green-50'
+      icon: FileText,
+      color: 'text-emerald-400',
+      bgColor: 'bg-emerald-400/10',
+      borderColor: 'border-emerald-400/20'
+    },
+    {
+      label: 'Course Projects',
+      value: totalProjects,
+      icon: Code,
+      color: 'text-violet-400',
+      bgColor: 'bg-violet-400/10',
+      borderColor: 'border-violet-400/20'
+    },
+    {
+      label: 'Courses Covered',
+      value: theorySubjects + labSubjects,
+      icon: BookOpen,
+      color: 'text-blue-400',
+      bgColor: 'bg-blue-400/10',
+      borderColor: 'border-blue-400/20'
     }
   ]
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 via-violet-50/30 to-purple-50/30 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-violet-200/20 to-purple-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-indigo-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+    <section id="statistics" className="relative py-32 overflow-hidden bg-[#020617] border-t border-white/5">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-600/5 rounded-full blur-[100px] translate-x-1/4 translate-y-1/4" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            Platform Statistics
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Comprehensive academic resources collected and organized for the Lubdhok batch community
-          </p>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center space-x-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-violet-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8"
+          >
+            <Layout className="w-3.5 h-3.5" />
+            <span>Academic Impact</span>
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase"
+          >
+            Platform <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-500">Statistics</span>
+          </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
+          >
+            A quantitative overview of our digital resilience. Empowering the batch through structured resources and open collaboration.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className={`group relative bg-gradient-to-br ${stat.bgGradient} rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50 hover:scale-105 overflow-hidden`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="relative group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl hover:bg-white/10 hover:border-white/20 transition-all duration-500"
             >
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/30 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
+              <div className={`inline-flex p-5 rounded-2xl ${stat.bgColor} ${stat.color} mb-10 group-hover:scale-110 transition-transform duration-500 shadow-2xl`}>
+                <stat.icon className="w-8 h-8" />
+              </div>
               
-              {/* Icon with gradient background */}
-              <div className={`relative w-20 h-20 bg-gradient-to-br ${stat.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                <span className="text-3xl filter drop-shadow-sm">{stat.icon}</span>
+              <div className="space-y-3">
+                <div className="text-5xl font-black text-white tracking-tighter">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] group-hover:text-slate-300 transition-colors">
+                  {stat.label}
+                </div>
               </div>
 
-              {/* Value */}
-              <div className="text-4xl font-extrabold text-gray-800 mb-2 group-hover:scale-110 transition-transform duration-300">
-                {stat.value}
-              </div>
-
-              {/* Label */}
-              <div className="text-lg font-semibold text-gray-700">
-                {stat.label}
-              </div>
-
-              {/* Hover effect overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            </div>
+              {/* High-end decorative accent */}
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-tr-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`} />
+            </motion.div>
           ))}
-        </div>
-
-        {/* Additional stats breakdown */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-violet-200/50">
-            <div className="text-2xl font-bold text-violet-600 mb-1">{materialsByType.slide || 0}</div>
-            <div className="text-sm text-gray-600">Slides</div>
-          </div>
-          <div className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-purple-200/50">
-            <div className="text-2xl font-bold text-purple-600 mb-1">{materialsByType.note || 0}</div>
-            <div className="text-sm text-gray-600">Notes</div>
-          </div>
-          <div className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-orange-200/50">
-            <div className="text-2xl font-bold text-orange-600 mb-1">{materialsByType.assignment || 0}</div>
-            <div className="text-sm text-gray-600">Assignments</div>
-          </div>
-          <div className="text-center bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-teal-200/50">
-            <div className="text-2xl font-bold text-teal-600 mb-1">{materialsByType.books || 0}</div>
-            <div className="text-sm text-gray-600">Books</div>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500 bg-white/50 backdrop-blur-sm rounded-full px-6 py-2 inline-block">
-            Last updated: {new Date().toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          </p>
         </div>
       </div>
     </section>

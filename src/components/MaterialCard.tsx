@@ -119,7 +119,7 @@ export default function MaterialCard({ material }: MaterialCardProps) {
         {material.viewUrl && (
           <button
             onClick={() => handleAction(material.viewUrl)}
-            className={`group inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white ${config.buttonColor} rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5`}
+            className="btn-primary group"
           >
             <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

@@ -291,7 +291,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
           
           <Link 
             href="/events"
-            className="border-2 border-orange-500/50 text-orange-300 hover:text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-orange-500/20 hover:border-orange-400 transition-all duration-300 shadow-lg transform hover:-translate-y-1 backdrop-blur-sm"
+            className="btn-outline px-8 py-4 font-bold text-center shadow-lg transform hover:-translate-y-1"
           >
             View All Events
           </Link>

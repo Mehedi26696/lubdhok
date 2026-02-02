@@ -3,74 +3,12 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Calendar, Search, Filter, Users, MapPin, ChevronRight, LayoutGrid, Clock } from 'lucide-react'
 import { events } from '@/data/events'
+import EventCard from '@/components/EventCard'
 
 type EventFilter = 'all' | 'upcoming' | 'ongoing' | 'past'
-
-// Image Carousel Component
-function ImageCarousel({ images, eventTitle }: { images: string[], eventTitle: string }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length)
-  }
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
-
-  if (images.length === 0) return null
-
-  return (
-    <div className="relative h-48 sm:h-56 w-full overflow-hidden group">
-      <Image
-        src={images[currentImageIndex]}
-        alt={`${eventTitle} - Image ${currentImageIndex + 1}`}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-      
-      {/* Subtle dark overlay for better contrast */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-slate-900/10"></div>
-      
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={prevImage}
-            className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-1.5 sm:p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-80 sm:opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            onClick={nextImage}
-            className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 bg-slate-900/70 backdrop-blur-sm border border-slate-700/50 text-white p-1.5 sm:p-2 rounded-full hover:bg-slate-800/80 hover:border-orange-400/50 transition-all duration-200 opacity-80 sm:opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-          
-          <div className="absolute bottom-2 sm:bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-200 ${
-                  index === currentImageIndex 
-                    ? 'bg-orange-400 scale-110 shadow-lg shadow-orange-400/50' 
-                    : 'bg-white/60 hover:bg-white/80 hover:scale-105'
-                }`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
-}
 
 export default function EventsPage() {
   const [filter, setFilter] = useState<EventFilter>('all')
@@ -175,77 +113,25 @@ export default function EventsPage() {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
-          {[...filteredEvents].reverse().map((event, index) => (
-            <div 
-              key={event.id} 
-              className="group bg-slate-800/60 backdrop-blur-md rounded-xl border border-slate-600/50 hover:border-orange-400/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden opacity-0 animate-fade-in-up"
-              style={{animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards'}}
-            >
-              <div className="relative">
-                <ImageCarousel images={event.images} eventTitle={event.title} />
-                {/* Subtle overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-              </div>
-              
-              <div className="p-4 sm:p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
-                    event.type === 'upcoming' 
-                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' 
-                      : event.type === 'ongoing'
-                      ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30'
-                      : 'bg-slate-600/40 text-slate-300 border border-slate-500/30'
-                  }`}>
-                    {event.type === 'upcoming' ? 'Upcoming' : event.type === 'ongoing' ? 'Ongoing' : 'Completed'}
-                  </span>
-                  <span className="px-2 sm:px-3 py-1 bg-orange-500/20 text-orange-300 border border-orange-400/30 rounded-full text-xs font-medium capitalize">
-                    {event.category}
-                  </span>
-                </div>
-                
-                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 group-hover:text-orange-200 transition-colors duration-300">
-                  {event.title}
-                </h3>
-                <p className="text-slate-300 text-sm mb-4 line-clamp-3 leading-relaxed">
-                  {event.description}
-                </p>
-                
-                <div className="space-y-2 mb-4 sm:mb-6">
-                  <div className="flex items-center text-sm text-slate-400">
-                    <svg className="w-4 h-4 mr-2 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span className="truncate">{event.date}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400">
-                    <svg className="w-4 h-4 mr-2 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="truncate">{event.location}</span>
-                  </div>
-                </div>
-                
-                <Link 
-                  href={`/events/${event.id}`}
-                  className={`inline-flex items-center justify-center w-full px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    event.type === 'upcoming'
-                      ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl'
-                      : event.type === 'ongoing'
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl'
-                      : 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-lg hover:shadow-xl'
-                  }`}
-                >
-                  <span>View Details</span>
-                  <svg className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0"
+        >
+          <AnimatePresence mode="popLayout">
+            {[...filteredEvents].reverse().map((event) => (
+              <motion.div
+                key={event.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <EventCard event={event} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Empty State */}
         {filteredEvents.length === 0 && (

@@ -4,6 +4,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "../components/Footer";
 import ClientChatBotWrapper from "@/components/ClientChatBotWrapper";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import CommandPalette from "@/components/CommandPalette";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,20 +36,30 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen transition-colors duration-300`}
         suppressHydrationWarning={true}
       >
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-          {/* Floating ChatBot */}
-          <div className="fixed bottom-6 right-6 z-50 max-w-full w-80">
-            <ClientChatBotWrapper />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+            <Header />
+            <ScrollProgress />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+            <CommandPalette />
+            <BackToTop />
+            {/* Floating ChatBot */}
+            <div className="fixed bottom-6 right-6 z-50 max-w-full w-80">
+              <ClientChatBotWrapper />
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );
