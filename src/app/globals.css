@@ -7,8 +7,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #ffffff;
   }
 }
 
@@ -293,7 +293,7 @@ html {
 
 /* Seamless page background */
 body {
-  background: linear-gradient(135deg, #020617 0%, #0f172a 25%, #1e293b 50%, #334155 75%, #475569 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #94a3b8 100%);
   min-height: 100vh;
 }
 
@@ -303,17 +303,17 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #374151;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
   background: #6b7280;
   border-radius: 4px;
 }
 
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #e2e8f0;
 }
 
 /* Premium hover effects */
