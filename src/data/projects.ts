@@ -971,9 +971,33 @@ export const projectSemesters: ProjectSemester[] = [
             sourceCodeUrl: "https://github.com/srabonAich/ChatChat2.0"
           }
         ]
-      }
+      },
+      {
+        id: "cse3112",
+        name: "Software Engineering Lab",
+        code: "CSE-3112",
+        credits: 0.75,
+        projects: [
+          {
+            id: "cse3112-project1",
+            title: "TizKit — AI-Powered LaTeX Workspace",
+            description: "TizKit is a professional full-stack LaTeX platform that turns visual design and AI vision into high-quality, publication-ready diagrams, tables, and documents.",
+            course: "Software Engineering Lab",
+            courseCode: "CSE-3112",
+            technologies: ["Nextjs","Reactjs","FastAPI","PostgreSQL","Rest API","Gemini API","Groq API","Alembic","Tailwind CSS","React-Conva"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "H.M. Mehedi Hasan", githubUsername: "Mehedi26696" },
+              { name: "Md. Abu Bakar Siddique", githubUsername: "Abs-Futy7" },
+              { name: "Abantika Paul", githubUsername: "abantika-186" }
+            ],
+            coverImage: "/projects/sem5/tizkit.PNG",
+            sourceCodeUrl: "https://github.com/Mehedi26696/Tizkit"
+          }
+        ]
+      },
     ]
-  }
+  },
 ];
 
 // Helper functions

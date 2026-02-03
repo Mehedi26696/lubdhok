@@ -70,14 +70,11 @@ Our YouTube Channel
 					</div>
 
 <div>
-<h3 className="text-white font-black uppercase tracking-widest text-[10px] mb-8 opacity-50">Metadata</h3>
 <div className="space-y-4">
 <div className="p-4 bg-black/40 border border-white/5 rounded-2xl group hover:border-violet-500/30 transition-all">
-<div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Batch ID</div>
 <div className="text-white font-bold text-sm">CSEDU-29 (2022-26)</div>
 </div>
 <div className="p-4 bg-black/40 border border-white/5 rounded-2xl group hover:border-indigo-500/30 transition-all">
-<div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Affiliation</div>
 <div className="text-white font-bold text-sm">University of Dhaka</div>
 </div>
 </div>

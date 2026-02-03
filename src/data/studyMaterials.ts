@@ -1189,6 +1189,17 @@ export const semesters: Semester[] = [
 							"https://github.com/Mehedi26696/Software-Engineering/tree/main/Lecture%20Slides",
 					},
 					{
+						id: "cse3102-notes",
+						title: "Software Engineering Notes",
+						description: "Comprehensive notes on Software Engineering",
+						type: "note",
+						subject: "Software Engineering",
+						uploadDate: "2025-09-03",
+						viewUrl:
+							"https://github.com/Mehedi26696/Software-Engineering/tree/main/Notes",
+
+					},
+					{
 						id: "cse3102-books",
 						title: "Software Engineering Books",
 						description: "Textbook on Software Engineering",
@@ -1294,7 +1305,17 @@ export const semesters: Semester[] = [
 						uploadDate: "2025-08-31",
 						viewUrl:
 							"https://drive.google.com/drive/folders/1vW0-manGuWpuWkWUUFGWa-ctchjequRI?usp=sharing",
-					}
+					},
+					{
+						id: "cse3105-slides",
+						title: "Multivariable Calculus and Geometry - Slides",
+						description: "Slides covering key concepts in Multivariable Calculus and Geometry",
+						type: "slide",
+						subject: "Multivariable Calculus and Geometry",
+						uploadDate: "2025-08-31",
+						viewUrl:
+							"https://drive.google.com/drive/folders/1vCq32SNcBVH6NoPe8WoKb4c-dYcKbS1C?usp=drive_link",
+					},
 				],
 			},
 			// Lab Courses

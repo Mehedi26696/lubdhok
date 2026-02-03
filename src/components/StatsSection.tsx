@@ -6,6 +6,12 @@ import { motion } from 'framer-motion'
 import { BookOpen, Code, FileText, Layout, Award } from 'lucide-react'
 
 export default function StatsSection() {
+  const creditsCompleted = semesters.reduce(
+    (acc, semester) =>
+      acc + semester.subjects.reduce((subAcc, subject) => subAcc + subject.credits, 0),
+    0
+  )
+
   const totalMaterials = semesters.reduce((acc, semester) => 
     acc + semester.subjects.reduce((subAcc, subject) => subAcc + subject.materials.length, 0), 0
   )
@@ -24,7 +30,7 @@ export default function StatsSection() {
   const stats = [
     {
       label: 'Credits Completed',
-      value: '75.5',
+      value: creditsCompleted.toFixed(1),
       icon: Award,
       color: 'text-amber-400',
       bgColor: 'bg-amber-400/10',
