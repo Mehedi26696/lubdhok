@@ -5,10 +5,10 @@ import { Youtube } from "lucide-react";
 
 export default function Footer() {
 return (
-<footer className="bg-slate-900 relative overflow-hidden pt-24 border-t border-white/5 pb-12">
+<footer className="bg-slate-800 relative overflow-hidden pt-24 border-t border-white/5 pb-12">
 {/* Background decorative elements */}
 <div className="absolute inset-0 pointer-events-none select-none">
-	<div className="absolute inset-0 bg-[#0f172a]"></div>
+	<div className="absolute inset-0 bg-[#111c33]"></div>
 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-600/5 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2"></div>
 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-600/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
 </div>

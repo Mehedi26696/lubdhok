@@ -32,7 +32,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
       {/* Visual Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl opacity-50" />
@@ -77,11 +77,11 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
             </div>
 
             <div className="flex gap-4 w-full md:w-auto">
-               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-900/40 border border-slate-800 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
+               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-800/40 border border-slate-700/60 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
                   <div className="text-4xl font-black text-white mb-1">{course.projects.length}</div>
                   <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest opacity-60">Projects</div>
                </div>
-               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-900/40 border border-slate-800 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
+               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-800/40 border border-slate-700/60 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
                   <div className="text-4xl font-black text-white mb-1">{course.credits}</div>
                   <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest opacity-60">Credits</div>
                </div>
@@ -97,10 +97,10 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
         />
 
         {/* Footer Navigation */}
-        <div className="mt-40 pt-16 border-t border-slate-900 text-center">
+        <div className="mt-40 pt-16 border-t border-slate-800/60 text-center">
           <Link
             href="/projects"
-            className="group inline-flex items-center px-12 py-5 bg-slate-900 border border-slate-800 text-slate-300 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-800 hover:text-white transition-all shadow-2xl hover:-translate-y-1"
+            className="group inline-flex items-center px-12 py-5 bg-slate-800 border border-slate-700/60 text-slate-200 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-700 hover:text-white transition-all shadow-2xl hover:-translate-y-1"
           >
             <svg className="w-4 h-4 mr-3 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

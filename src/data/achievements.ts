@@ -56,6 +56,15 @@ export const achievements: Achievement[] = [
     },
     {
         id: '6',
+        title: "1st Runner-Up | Echologyx Hackathon 2025",
+        description: "Team Dev_Mavericks secured the 🥈1st Runner-Up position at Echologyx Hackathon 2025 organized by Echologyx.",
+        date: '2025-11-08',
+        awardedBy: 'Echologyx',
+        link: 'https://www.facebook.com/sumaiya.rahman.296910/posts/pfbid0PLwhwoeEEopvePWxZJzckKeDXF4TPL4ZnBkToD33kMrgpXcNZ1xkTJ1X3yvFY5SMl',
+        coverImage: 'achievements/ecologyx.jpg'
+    },
+    {
+        id: '7',
         title: "𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 | 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭 CTF - 𝐂𝐈𝐑𝐂𝐔𝐈𝐓 𝐂𝐋𝐀𝐒𝐇 𝟏.𝟎",
         description: "𝐃𝐔_𝐁𝐥𝐚𝐜𝐤_𝐍𝐨𝐨𝐝𝐥𝐞𝐬 secured the 🥈𝟏𝐬𝐭 𝐑𝐮𝐧𝐧𝐞𝐫-𝐔𝐩 position in the CipherSprint CTF 2025, powered by Knight Squad and organized by the BUP Robotics Club",
         date: '2025-11-20',
@@ -64,7 +73,7 @@ export const achievements: Achievement[] = [
         coverImage: 'achievements/BUP2.png'
     },
     {
-        id: '7',
+        id: '8',
         title: "Champion | 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭 CTF - 𝐂𝐈𝐑𝐂𝐔𝐈𝐓 𝐂𝐋𝐀𝐒𝐇 𝟏.𝟎",
         description: "𝐒𝐥𝐞𝐞𝐩𝐲 𝐏𝐚𝐧𝐝𝐚𝐬, secured 1𝐬𝐭 𝐩𝐥𝐚𝐜𝐞 𝐚𝐭 𝐂𝐢𝐩𝐡𝐞𝐫𝐒𝐩𝐫𝐢𝐧𝐭– powered by Knight Squad and organized by the BUP Robotics Club",
         date: '2025-11-20',

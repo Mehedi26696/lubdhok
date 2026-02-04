@@ -30,7 +30,7 @@ export default function ProjectsPage() {
   }, [courseSearch])
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
       {/* Visual Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 -right-40 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
@@ -73,11 +73,11 @@ export default function ProjectsPage() {
 
           {/* Quick Stats */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <div className="px-6 py-3 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-sm shadow-xl">
+            <div className="px-6 py-3 bg-slate-800/50 border border-slate-700/60 rounded-2xl backdrop-blur-sm shadow-xl">
               <span className="text-2xl font-black text-white mr-2">{totalProjectsCount}</span>
               <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Milestones</span>
             </div>
-            <div className="px-6 py-3 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-sm shadow-xl">
+            <div className="px-6 py-3 bg-slate-800/50 border border-slate-700/60 rounded-2xl backdrop-blur-sm shadow-xl">
               <span className="text-2xl font-black text-white mr-2">{totalCoursesCount}</span>
               <span className="text-slate-500 text-xs font-bold uppercase tracking-wider">Disciplines</span>
             </div>
@@ -91,7 +91,7 @@ export default function ProjectsPage() {
               placeholder="Find a specific course..."
               value={courseSearch}
               onChange={(e) => setCourseSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-slate-900/40 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-600 transition-all shadow-2xl"
+              className="w-full pl-12 pr-4 py-4 bg-slate-800/40 border border-slate-700/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-600 transition-all shadow-2xl"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.05 }}
-                      className="group relative bg-slate-900/40 border border-slate-800 p-8 rounded-3xl hover:border-violet-500/30 transition-all duration-300 flex flex-col h-full"
+                      className="group relative bg-slate-800/40 border border-slate-700/60 p-8 rounded-3xl hover:border-violet-500/30 transition-all duration-300 flex flex-col h-full"
                     >
                       <div className="flex justify-between items-start mb-6">
                         <div className="bg-slate-800/80 p-3 rounded-2xl group-hover:bg-violet-600/20 transition-colors shadow-inner">
@@ -151,7 +151,7 @@ export default function ProjectsPage() {
           ))}
 
           {filteredSemesters.length === 0 && (
-            <div className="text-center py-40 bg-slate-900/20 rounded-[3rem] border border-dashed border-slate-800">
+            <div className="text-center py-40 bg-slate-800/20 rounded-[3rem] border border-dashed border-slate-700/60">
                <div className="text-6xl mb-6 opacity-50">🏜️</div>
                <h3 className="text-3xl font-bold text-white mb-2">No Courses Found</h3>
                <p className="text-slate-500 max-w-md mx-auto">We couldn&apos;t find any courses matching your search. Try a broader term.</p>

@@ -80,7 +80,7 @@ export default function SemesterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
       {/* Background Orbs */}
       <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-violet-600/10 to-transparent pointer-events-none" />
       
@@ -110,7 +110,7 @@ export default function SemesterPage() {
           </p>
 
           {/* Search & Filter Bar */}
-          <div className="sticky top-20 z-40 bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
+          <div className="sticky top-20 z-40 bg-slate-800/80 backdrop-blur-xl border border-slate-700/60 p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
             <div className="relative w-full md:w-96">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input 
@@ -118,7 +118,7 @@ export default function SemesterPage() {
                 placeholder="Search materials..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-500"
+                className="w-full pl-12 pr-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-500"
               />
             </div>
             
@@ -130,7 +130,7 @@ export default function SemesterPage() {
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all border ${
                     selectedType === type.id 
                     ? 'bg-violet-600 border-violet-500 text-white' 
-                    : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                    : 'bg-slate-800/50 border-slate-700/60 text-slate-300 hover:border-slate-600/70 hover:text-white'
                   }`}
                 >
                   {type.icon}
@@ -158,7 +158,7 @@ export default function SemesterPage() {
                   <motion.div 
                     layout
                     key={subject.id} 
-                    className="bg-slate-900/30 border border-slate-800/50 rounded-3xl p-8 overflow-hidden group hover:border-violet-500/20 transition-all duration-500"
+                    className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 overflow-hidden group hover:border-violet-500/20 transition-all duration-500"
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                       <div>
@@ -216,7 +216,7 @@ export default function SemesterPage() {
                 <motion.div 
                   layout
                   key={subject.id} 
-                  className="bg-slate-900/30 border border-slate-800/50 rounded-3xl p-8 hover:border-emerald-500/20 transition-all duration-500"
+                  className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 hover:border-emerald-500/20 transition-all duration-500"
                 >
                   <div className="flex justify-between items-start mb-8">
                     <div>
@@ -258,7 +258,7 @@ export default function SemesterPage() {
                 <motion.div
                   layout
                   key={subject.id}
-                  className="bg-slate-900/30 border border-slate-800/50 rounded-3xl p-8 hover:border-rose-500/20 transition-all duration-500"
+                  className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 hover:border-rose-500/20 transition-all duration-500"
                 >
                   <div className="flex justify-between items-start mb-8">
                     <div>
@@ -287,7 +287,7 @@ export default function SemesterPage() {
 
         {/* No Results Fallback */}
         {(filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0 && filteredQuestionSubjects.length === 0) && (
-          <div className="text-center py-32 bg-slate-900/20 rounded-3xl border border-dashed border-slate-800">
+          <div className="text-center py-32 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700/60">
             <div className="text-6xl mb-6">🔍</div>
             <h3 className="text-2xl font-bold text-white mb-2">No materials found</h3>
             <p className="text-slate-500">Try adjusting your search or filters to find what you&apos;re looking for.</p>

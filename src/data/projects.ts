@@ -1044,6 +1044,22 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem5/black.jpg",
             sourceCodeUrl: "https://github.com/Clear20-22/Cognify-AI-Powered-Learning-Platform"
+          },
+          {
+            id: "cse3112-project4",
+            title: "Automation App",  
+            description: "An automation application that streamlines repetitive tasks and enhances productivity through customizable workflows.",
+            course: "Software Engineering Lab",
+            courseCode: "CSE-3112",
+            technologies: ["Node.js","Rust","Tauri CLI"],
+            teamSize: 3,
+            teamMembers: [
+              { name: "Istiak Ahammed Rhyme", githubUsername: "IstiakAR" },
+              { name: "Nadim Mahmud", githubUsername: "Nadim-2003" },
+              { name: "Dipta Bhattacharjee", githubUsername: "dipta11" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/IstiakAR/Automation"
           }
         ]
       },

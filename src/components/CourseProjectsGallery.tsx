@@ -44,7 +44,7 @@ export default function CourseProjectsGallery({ projects, courseCode, courseName
   return (
     <div className="space-y-12">
       {/* Search & Filter Section */}
-      <div className="bg-slate-900/40 border border-slate-800/60 p-8 rounded-[2.5rem] backdrop-blur-md shadow-2xl">
+      <div className="bg-slate-800/40 border border-slate-700/60 p-8 rounded-[2.5rem] backdrop-blur-md shadow-2xl">
         <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center">
           <div className="relative flex-1 group w-full">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 transition-colors group-focus-within:text-violet-500" />
@@ -121,7 +121,7 @@ export default function CourseProjectsGallery({ projects, courseCode, courseName
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center py-32 bg-slate-900/20 rounded-[3rem] border border-dashed border-slate-800"
+          className="text-center py-32 bg-slate-800/20 rounded-[3rem] border border-dashed border-slate-700/60"
         >
            <div className="text-5xl mb-6 grayscale opacity-50">🔍</div>
            <h3 className="text-2xl font-bold text-white mb-2">No projects match your criteria</h3>

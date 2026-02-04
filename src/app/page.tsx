@@ -192,7 +192,7 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-20 bg-transparent z-40"></div>
       
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -209,7 +209,7 @@ export default function HomePage() {
             filter: 'brightness(0.5) contrast(1.1) saturate(1.1)'
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f172a]/50 to-[#0f172a]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#111c33]/50 to-[#111c33]"></div>
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <motion.div 
@@ -243,7 +243,7 @@ export default function HomePage() {
 
       <StatsSection />
 
-      <section id="discover" className="relative py-48 bg-slate-900 overflow-hidden border-t border-white/5">
+      <section id="discover" className="relative py-48 bg-slate-800 overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-indigo-600/5 rounded-full blur-[120px]"></div>
         </div>

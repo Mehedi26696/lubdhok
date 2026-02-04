@@ -48,7 +48,7 @@ export default function EventCard({ event }: EventCardProps) {
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="group relative bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-3xl overflow-hidden shadow-2xl hover:border-orange-500/30 transition-colors duration-500"
+      className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/60 rounded-3xl overflow-hidden shadow-2xl hover:border-orange-500/30 transition-colors duration-500"
     >
       <div className="relative h-64 w-full overflow-hidden">
         {event.images && event.images[0] ? (

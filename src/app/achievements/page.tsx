@@ -25,7 +25,7 @@ export default function AchievementsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -mr-40 -mt-40" />
@@ -90,7 +90,7 @@ export default function AchievementsPage() {
                 className="group relative"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
-                <div className="relative h-full bg-slate-900/50 border border-slate-800 rounded-3xl p-6 md:p-8 backdrop-blur-sm hover:border-emerald-500/30 transition-all">
+                <div className="relative h-full bg-slate-800/50 border border-slate-700/60 rounded-3xl p-6 md:p-8 backdrop-blur-sm hover:border-emerald-500/30 transition-all">
                   <div className="flex flex-col h-full">
                     {ach.coverImage && (
                       <div className="mb-6 relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-800 ring-1 ring-white/10 group-hover:ring-emerald-500/30 transition-all">

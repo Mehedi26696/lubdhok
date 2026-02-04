@@ -24,7 +24,7 @@ export default function SemesterCard({ semester }: SemesterCardProps) {
       whileHover={{ y: -5, scale: 1.02 }}
       className="group relative h-full"
     >
-      <div className="h-full bg-slate-900/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-800 hover:border-violet-500/50 transition-all duration-300 overflow-hidden flex flex-col shadow-2xl hover:shadow-violet-500/10">
+      <div className="h-full bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-700/60 hover:border-violet-500/50 transition-all duration-300 overflow-hidden flex flex-col shadow-2xl hover:shadow-violet-500/10">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-violet-600/10 transition-colors" />
         
