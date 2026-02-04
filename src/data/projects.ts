@@ -969,6 +969,21 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem5/black.jpg",
             sourceCodeUrl: "https://github.com/srabonAich/ChatChat2.0"
+          },
+          {
+            id: "cse3111-project11",
+            title: "LearnLive - TCP-Based Classroom Management System",
+            description: "A desktop classroom management application built with Python TCP sockets, similar to Google Classroom, for managing classes, assignments, announcements, and materials.",
+            course: "Computer Networking Lab",
+            courseCode: "CSE-3111",
+            technologies: ["Python", "Socket Programming", "TCP Protocols","Tkinter"],
+            teamSize: 2,
+            teamMembers: [
+              { name: "Ishrak Faisal", githubUsername: "ishrak100" },
+              { name: "Dipta Bhattacharjee", githubUsername: "dipta11" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/ishrak100/LearnLive"
           }
         ]
       },
@@ -993,6 +1008,42 @@ export const projectSemesters: ProjectSemester[] = [
             ],
             coverImage: "/projects/sem5/tizkit.PNG",
             sourceCodeUrl: "https://github.com/Mehedi26696/Tizkit"
+          },
+          {
+            id: "cse3112-project2",
+            title: "CollabCanvas – MERN Collaborative Whiteboard",
+            description: "CollabCanvas is a full-stack collaborative whiteboard platform inspired by Miro.",
+            course: "Software Engineering Lab",
+            courseCode: "CSE-3112",
+            technologies: ["React","Node.js","Express.js","MongoDB","REST APIs"],
+            teamSize: 5,
+            teamMembers: [
+              { name: "Farhana Alam", githubUsername: "mastermind-fa" },
+              { name: "Jubair Ahammad Akter", githubUsername: "Jubair-Adib" },
+              { name: "Atiya Fahmida", githubUsername: "noshinCriesHere" },
+              { name: "Tamal Kanti Sarker", githubUsername: "tamalkanti223" },
+              { name: "MD. SHAKIN ALAM KABBO", githubUsername: "shakinalamkabbo" }
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/mastermind-fa/SoftwareProject"
+          },
+          {
+            id: "cse3112-project3",
+            title: "Cognify - AI-Powered Learning Platform",
+            description: "An intelligent learning platform that leverages AI to generate personalized educational content, interactive chats, and adaptive exams.",
+            course: "Software Engineering Lab",
+            courseCode: "CSE-3112",
+            technologies: ["React", "FastAPI","Supabase","Gemini API"],
+            teamSize: 5,
+            teamMembers: [
+              { name: "Jubayer Ahmed Sojib", githubUsername: "Clear20-22" },
+              { name: "Md. Akram Khan", githubUsername: "Md-Akram-Khan" },
+              { name: "Suraya Jannat Mim", githubUsername: "Mim1726" },
+              { name: "Nmr Masum", githubUsername: "nmrmasum" },
+              { name: "Arik Islam", githubUsername: "arikislam123"}
+            ],
+            coverImage: "/projects/sem5/black.jpg",
+            sourceCodeUrl: "https://github.com/Clear20-22/Cognify-AI-Powered-Learning-Platform"
           }
         ]
       },

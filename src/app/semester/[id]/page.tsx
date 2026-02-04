@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 import { notFound, useParams } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Filter, BookOpen, FileText, Video, Code, Box, Info } from 'lucide-react'
+import { Search, BookOpen, FileText, Video, Code, Box, Info, HelpCircle } from 'lucide-react'
 import { semesters, StudyMaterial } from '@/data/studyMaterials'
 import MaterialCard from '@/components/MaterialCard'
 
@@ -23,8 +23,6 @@ export default function SemesterPage() {
   const theorySubjects = semester.subjects.filter(subject => subject.type === 'theory' && subject.name !== 'Question Banks')
   const labSubjects = semester.subjects.filter(subject => subject.type === 'lab')
   const questionSubjects = semester.subjects.filter(subject => subject.name === 'Question Banks')
-  const actualSubjects = semester.subjects.filter(subject => subject.name !== 'Question Banks')
-  const totalMaterials = actualSubjects.reduce((acc, subject) => acc + subject.materials.length, 0)
 
   const materialTypes = [
     { id: 'slide', label: 'Slides', icon: <Box size={14} /> },
@@ -33,6 +31,7 @@ export default function SemesterPage() {
     { id: 'lecture', label: 'Lectures', icon: <Video size={14} /> },
     { id: 'code', label: 'Code', icon: <Code size={14} /> },
     { id: 'books', label: 'Books', icon: <BookOpen size={14} /> },
+    { id: 'question', label: 'Questions', icon: <HelpCircle size={14} /> },
   ]
 
   const filteredTheorySubjects = useMemo(() => {
@@ -57,6 +56,17 @@ export default function SemesterPage() {
     })).filter(subject => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
   }, [labSubjects, searchQuery, selectedType])
 
+  const filteredQuestionSubjects = useMemo(() => {
+    return questionSubjects.map(subject => ({
+      ...subject,
+      materials: subject.materials.filter(m => {
+        const matchesSearch = m.title.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesType = !selectedType || m.type === selectedType
+        return matchesSearch && matchesType
+      })
+    })).filter(subject => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
+  }, [questionSubjects, searchQuery, selectedType])
+
   const organizeMaterials = (materials: StudyMaterial[]) => {
     return {
       slides: materials.filter(m => m.type === 'slide'),
@@ -64,7 +74,8 @@ export default function SemesterPage() {
       assignments: materials.filter(m => m.type === 'assignment'),
       lectures: materials.filter(m => m.type === 'lecture'),
       code: materials.filter(m => m.type === 'code'),
-      books: materials.filter(m => m.type === 'books')
+      books: materials.filter(m => m.type === 'books'),
+      questions: materials.filter(m => m.type === 'question'),
     }
   }
 
@@ -232,8 +243,50 @@ export default function SemesterPage() {
           </div>
         )}
 
+        {/* Question Banks Section */}
+        {filteredQuestionSubjects.length > 0 && (
+          <div className="mb-32">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="w-10 h-10 bg-rose-600/20 rounded-xl flex items-center justify-center text-rose-400">
+                <HelpCircle size={20} />
+              </div>
+              <h2 className="text-3xl font-bold text-white">Question Banks</h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {filteredQuestionSubjects.map((subject) => (
+                <motion.div
+                  layout
+                  key={subject.id}
+                  className="bg-slate-900/30 border border-slate-800/50 rounded-3xl p-8 hover:border-rose-500/20 transition-all duration-500"
+                >
+                  <div className="flex justify-between items-start mb-8">
+                    <div>
+                      <span className="text-[10px] font-bold text-rose-500 uppercase tracking-widest bg-rose-500/10 px-3 py-1 rounded-full mb-3 inline-block">
+                        {subject.code}
+                      </span>
+                      <h3 className="text-xl font-bold text-white uppercase">
+                        {subject.name}
+                      </h3>
+                    </div>
+                    <span className="text-xs text-slate-500">{subject.materials.length} Items</span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {subject.materials.map(item => (
+                      <motion.div layout key={item.id}>
+                        <MaterialCard material={item} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* No Results Fallback */}
-        {(filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0) && (
+        {(filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0 && filteredQuestionSubjects.length === 0) && (
           <div className="text-center py-32 bg-slate-900/20 rounded-3xl border border-dashed border-slate-800">
             <div className="text-6xl mb-6">🔍</div>
             <h3 className="text-2xl font-bold text-white mb-2">No materials found</h3>

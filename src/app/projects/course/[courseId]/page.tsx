@@ -73,9 +73,7 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
               <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 uppercase italic leading-none">
                 {course.name}
               </h1>
-              <p className="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed font-medium">
-                Showing {course.projects.length} academic {course.projects.length === 1 ? 'milestone' : 'milestones'} from our batch curriculum.
-              </p>
+               
             </div>
 
             <div className="flex gap-4 w-full md:w-auto">
