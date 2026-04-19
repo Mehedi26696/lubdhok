@@ -80,5 +80,15 @@ export const achievements: Achievement[] = [
         awardedBy: 'Bangladesh University of Professionals',
         link: 'https://www.linkedin.com/posts/rushan-jamil-453a20330_ciphersprint-buproboticsclub-knightsquad-activity-7396555137864945664-43ve?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
         coverImage: 'achievements/BUP3.png'
+    },
+    {
+        id: '9',
+        title: "4th Winner | 𝐀𝐥-𝐊𝐡𝐰𝐚𝐫𝐢𝐳𝐦𝐢 𝐂𝐓𝐅",
+        description: "𝐃𝐔_𝐁𝐥𝐚𝐜𝐤_𝐍𝐨𝐨𝐝𝐥𝐞𝐬 secured the 4th position at the Al-Khwarizmi CTF, organized by Bangladesh Islami Chhatra Shibir Central Science Department.",
+        date: '2026-01-29',
+        awardedBy: 'Bangladesh Islami Chhatra Shibir Central Science Department',
+        link: 'https://www.linkedin.com/posts/md-abu-bakar-siddique-59b881237_ctf-capturetheflag-cybersecurity-activity-7434965825544978432-KJRQ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEQit6YBYxNqku484MeM9Wg9fdumwv23N8M',
+        coverImage: 'achievements/alkhwarizmi.png'
+
     }
 ];
