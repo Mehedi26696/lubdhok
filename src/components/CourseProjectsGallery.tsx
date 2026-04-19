@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Search, X, Filter } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Filter, Search, X } from 'lucide-react'
 import { type AcademicProject } from '@/data/projects'
 import ProjectCard from '@/components/ProjectCard'
 
@@ -18,98 +18,86 @@ export default function CourseProjectsGallery({ projects, courseCode, courseName
 
   const courseTechnologies = useMemo(() => {
     const techs = new Set<string>()
-    projects.forEach((p) => p.technologies.forEach((t) => techs.add(t)))
+    projects.forEach((project) => project.technologies.forEach((tech) => techs.add(tech)))
     return Array.from(techs).sort()
   }, [projects])
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
-      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()))
-      
-      const matchesTech = selectedTechs.length === 0 || 
-                          selectedTechs.some(tech => project.technologies.includes(tech))
-      
+      const query = searchQuery.toLowerCase()
+      const matchesSearch =
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.technologies.some((tech) => tech.toLowerCase().includes(query))
+
+      const matchesTech = selectedTechs.length === 0 || selectedTechs.some((tech) => project.technologies.includes(tech))
       return matchesSearch && matchesTech
     })
   }, [projects, searchQuery, selectedTechs])
 
   const toggleTech = (tech: string) => {
-    setSelectedTechs(prev => 
-      prev.includes(tech) ? prev.filter(t => t !== tech) : [...prev, tech]
-    )
+    setSelectedTechs((prev) => (prev.includes(tech) ? prev.filter((item) => item !== tech) : [...prev, tech]))
   }
 
   return (
-    <div className="space-y-12">
-      {/* Search & Filter Section */}
-      <div className="bg-slate-800/40 border border-slate-700/60 p-8 rounded-[2.5rem] backdrop-blur-md shadow-2xl">
-        <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center">
-          <div className="relative flex-1 group w-full">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 transition-colors group-focus-within:text-violet-500" />
+    <div className="space-y-10">
+      <div className="raw-panel p-5 md:p-6">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start">
+          <div className="relative w-full lg:max-w-md">
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" style={{ color: 'var(--muted)' }} />
             <input
               type="text"
-              placeholder={`Search within ${courseCode}...`}
+              placeholder={`Search ${courseCode} projects...`}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-14 pr-6 py-4 bg-slate-950/50 border border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-600 transition-all font-medium"
+              onChange={(event) => setSearchQuery(event.target.value)}
+              className="form-field pl-12"
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2 mr-2">
-               <Filter size={12} className="text-violet-500" />
-               Quick Tags
-            </div>
-            {courseTechnologies.map(tech => (
+          <div className="flex flex-1 flex-wrap items-center gap-2">
+            <span className="mono-label mr-1 inline-flex items-center gap-2">
+              <Filter className="h-4 w-4" />
+              Tags
+            </span>
+            {courseTechnologies.map((tech) => (
               <button
                 key={tech}
+                type="button"
                 onClick={() => toggleTech(tech)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 border ${
-                  selectedTechs.includes(tech)
-                    ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/20 translate-y-[-2px]'
-                    : 'bg-slate-800/40 border-slate-700/50 text-slate-500 hover:text-slate-200 hover:border-slate-600'
-                }`}
+                className={selectedTechs.includes(tech) ? 'btn-primary min-h-0 px-3 py-2 text-xs' : 'btn-outline min-h-0 px-3 py-2 text-xs'}
               >
                 {tech}
               </button>
             ))}
             {selectedTechs.length > 0 && (
-              <button 
-                onClick={() => setSelectedTechs([])}
-                className="ml-2 p-2 text-slate-500 hover:text-red-400 transition-colors bg-slate-800/50 rounded-lg border border-slate-700/50"
-                title="Clear selected tags"
-              >
-                <X size={16} />
+              <button type="button" onClick={() => setSelectedTechs([])} className="icon-button h-9 w-9" title="Clear selected tags">
+                <X className="h-4 w-4" />
               </button>
             )}
           </div>
         </div>
       </div>
 
-      {/* Results Header */}
-      <div className="flex items-center justify-between px-2">
-         <div className="flex items-center gap-4">
-            <h2 className="text-xl font-bold text-white tracking-tight">Project Gallery</h2>
-            <div className="h-1 w-12 bg-gradient-to-r from-violet-500 to-transparent rounded-full" />
-         </div>
-         <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
-            {filteredProjects.length} matching results
-         </p>
+      <div className="flex flex-col gap-2 border-b pb-4 sm:flex-row sm:items-end sm:justify-between" style={{ borderColor: 'var(--line)' }}>
+        <div>
+          <p className="mono-label">{courseName}</p>
+          <h2 className="text-2xl font-black" style={{ color: 'var(--foreground)' }}>
+            Project Gallery
+          </h2>
+        </div>
+        <p className="mono-label">{filteredProjects.length} matching results</p>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => (
             <motion.div
               layout
               key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
               <ProjectCard project={project} />
             </motion.div>
@@ -118,20 +106,21 @@ export default function CourseProjectsGallery({ projects, courseCode, courseName
       </div>
 
       {filteredProjects.length === 0 && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center py-32 bg-slate-800/20 rounded-[3rem] border border-dashed border-slate-700/60"
-        >
-           <div className="text-5xl mb-6 grayscale opacity-50">🔍</div>
-           <h3 className="text-2xl font-bold text-white mb-2">No projects match your criteria</h3>
-           <p className="text-slate-500 max-w-sm mx-auto text-sm">Try adjusting your search query or removing some technology filters.</p>
-           <button 
-             onClick={() => { setSearchQuery(''); setSelectedTechs([]); }}
-             className="mt-8 px-6 py-3 bg-violet-600/10 border border-violet-500/20 text-violet-400 font-bold rounded-xl hover:bg-violet-600/20 transition-all"
-           >
-             Reset all filters
-           </button>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="surface-card py-20 text-center">
+          <h3 className="mb-2 text-2xl font-black" style={{ color: 'var(--foreground)' }}>
+            No projects match your filters
+          </h3>
+          <p className="section-copy mx-auto max-w-sm text-sm">Try a broader search or remove a technology tag.</p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery('')
+              setSelectedTechs([])
+            }}
+            className="btn-outline mt-6"
+          >
+            Reset Filters
+          </button>
         </motion.div>
       )}
     </div>

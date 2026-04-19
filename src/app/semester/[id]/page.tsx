@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
-import { notFound, useParams } from 'next/navigation'
+import { useCallback, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Search, BookOpen, FileText, Video, Code, Box, Info, HelpCircle } from 'lucide-react'
+import { notFound, useParams } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { BookOpen, Box, Code, FileText, HelpCircle, Info, Search, Video } from 'lucide-react'
 import { semesters, StudyMaterial } from '@/data/studyMaterials'
 import MaterialCard from '@/components/MaterialCard'
 
@@ -14,283 +14,222 @@ export default function SemesterPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedType, setSelectedType] = useState<string | null>(null)
 
-  const semester = semesters.find(s => s.id === id)
+  const semester = semesters.find((item) => item.id === id)
 
   if (!semester) {
     notFound()
   }
 
-  const theorySubjects = semester.subjects.filter(subject => subject.type === 'theory' && subject.name !== 'Question Banks')
-  const labSubjects = semester.subjects.filter(subject => subject.type === 'lab')
-  const questionSubjects = semester.subjects.filter(subject => subject.name === 'Question Banks')
+  const theorySubjects = semester.subjects.filter((subject) => subject.type === 'theory' && subject.name !== 'Question Banks')
+  const labSubjects = semester.subjects.filter((subject) => subject.type === 'lab')
+  const questionSubjects = semester.subjects.filter((subject) => subject.name === 'Question Banks')
 
   const materialTypes = [
-    { id: 'slide', label: 'Slides', icon: <Box size={14} /> },
-    { id: 'note', label: 'Notes', icon: <FileText size={14} /> },
-    { id: 'assignment', label: 'Assignments', icon: <FileText size={14} /> },
-    { id: 'lecture', label: 'Lectures', icon: <Video size={14} /> },
-    { id: 'code', label: 'Code', icon: <Code size={14} /> },
-    { id: 'books', label: 'Books', icon: <BookOpen size={14} /> },
-    { id: 'question', label: 'Questions', icon: <HelpCircle size={14} /> },
+    { id: 'slide', label: 'Slides', icon: Box },
+    { id: 'note', label: 'Notes', icon: FileText },
+    { id: 'assignment', label: 'Assignments', icon: FileText },
+    { id: 'lecture', label: 'Lectures', icon: Video },
+    { id: 'code', label: 'Code', icon: Code },
+    { id: 'books', label: 'Books', icon: BookOpen },
+    { id: 'question', label: 'Questions', icon: HelpCircle },
   ]
 
-  const filteredTheorySubjects = useMemo(() => {
-    return theorySubjects.map(subject => ({
-      ...subject,
-      materials: subject.materials.filter(m => {
-        const matchesSearch = m.title.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesType = !selectedType || m.type === selectedType
+  const filterMaterials = useCallback(
+    (materials: StudyMaterial[]) =>
+      materials.filter((material) => {
+        const matchesSearch = material.title.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesType = !selectedType || material.type === selectedType
         return matchesSearch && matchesType
-      })
-    })).filter(subject => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [theorySubjects, searchQuery, selectedType])
+      }),
+    [searchQuery, selectedType]
+  )
+
+  const filteredTheorySubjects = useMemo(() => {
+    return theorySubjects
+      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
+      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
+  }, [theorySubjects, searchQuery, selectedType, filterMaterials])
 
   const filteredLabSubjects = useMemo(() => {
-    return labSubjects.map(subject => ({
-      ...subject,
-      materials: subject.materials.filter(m => {
-        const matchesSearch = m.title.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesType = !selectedType || m.type === selectedType
-        return matchesSearch && matchesType
-      })
-    })).filter(subject => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [labSubjects, searchQuery, selectedType])
+    return labSubjects
+      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
+      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
+  }, [labSubjects, searchQuery, selectedType, filterMaterials])
 
   const filteredQuestionSubjects = useMemo(() => {
-    return questionSubjects.map(subject => ({
-      ...subject,
-      materials: subject.materials.filter(m => {
-        const matchesSearch = m.title.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesType = !selectedType || m.type === selectedType
-        return matchesSearch && matchesType
-      })
-    })).filter(subject => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [questionSubjects, searchQuery, selectedType])
+    return questionSubjects
+      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
+      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
+  }, [questionSubjects, searchQuery, selectedType, filterMaterials])
 
-  const organizeMaterials = (materials: StudyMaterial[]) => {
-    return {
-      slides: materials.filter(m => m.type === 'slide'),
-      notes: materials.filter(m => m.type === 'note'),  
-      assignments: materials.filter(m => m.type === 'assignment'),
-      lectures: materials.filter(m => m.type === 'lecture'),
-      code: materials.filter(m => m.type === 'code'),
-      books: materials.filter(m => m.type === 'books'),
-      questions: materials.filter(m => m.type === 'question'),
-    }
-  }
+  const organizeMaterials = (materials: StudyMaterial[]) => ({
+    slides: materials.filter((material) => material.type === 'slide'),
+    notes: materials.filter((material) => material.type === 'note'),
+    assignments: materials.filter((material) => material.type === 'assignment'),
+    lectures: materials.filter((material) => material.type === 'lecture'),
+    code: materials.filter((material) => material.type === 'code'),
+    books: materials.filter((material) => material.type === 'books'),
+    questions: materials.filter((material) => material.type === 'question'),
+  })
 
   return (
-    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-violet-600/10 to-transparent pointer-events-none" />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        {/* Breadcrumb */}
-        <nav className="flex mb-12" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-2 text-sm">
-            <li><Link href="/" className="text-slate-500 hover:text-white transition-colors">Home</Link></li>
-            <li className="text-slate-700">/</li>
-            <li><Link href="/semesters" className="text-slate-500 hover:text-white transition-colors">Resources</Link></li>
-            <li className="text-slate-700">/</li>
-            <li className="text-slate-200 font-medium">{semester.name}</li>
-          </ol>
+    <div className="page-shell">
+      <div className="page-content">
+        <nav className="mb-10 text-sm" aria-label="Breadcrumb">
+          <Link href="/" className="font-bold" style={{ color: 'var(--muted)' }}>Home</Link>
+          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
+          <Link href="/semesters" className="font-bold" style={{ color: 'var(--muted)' }}>Resources</Link>
+          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
+          <span className="font-bold" style={{ color: 'var(--foreground)' }}>{semester.name}</span>
         </nav>
 
-        {/* Header Section */}
-        <div className="mb-20">
-          <motion.h1 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-          >
-            {semester.name}
-          </motion.h1>
-          <p className="text-xl text-slate-400 max-w-3xl mb-12">
-            {semester.description}
-          </p>
+        <header className="mb-12">
+          <div className="eyebrow mb-5">
+            <BookOpen className="h-4 w-4" />
+            Semester Archive
+          </div>
+          <h1 className="section-title">{semester.name}</h1>
+          <p className="section-copy mt-5 max-w-3xl">{semester.description}</p>
+        </header>
 
-          {/* Search & Filter Bar */}
-          <div className="sticky top-20 z-40 bg-slate-800/80 backdrop-blur-xl border border-slate-700/60 p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-4 items-center">
-            <div className="relative w-full md:w-96">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
-              <input 
+        <div className="sticky top-24 z-30 mb-16 rounded-lg border p-4 shadow-[var(--shadow-soft)]" style={{ borderColor: 'var(--line)', background: 'var(--nav-bg)', backdropFilter: 'blur(18px)' }}>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+            <div className="relative w-full lg:max-w-sm">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" style={{ color: 'var(--muted)' }} />
+              <input
                 type="text"
                 placeholder="Search materials..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/50 text-white placeholder:text-slate-500"
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="form-field pl-12"
               />
             </div>
-            
-            <div className="flex flex-wrap gap-2 justify-center">
-              {materialTypes.map(type => (
-                <button
-                  key={type.id}
-                  onClick={() => setSelectedType(selectedType === type.id ? null : type.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all border ${
-                    selectedType === type.id 
-                    ? 'bg-violet-600 border-violet-500 text-white' 
-                    : 'bg-slate-800/50 border-slate-700/60 text-slate-300 hover:border-slate-600/70 hover:text-white'
-                  }`}
-                >
-                  {type.icon}
-                  {type.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Theory Section */}
-        {filteredTheorySubjects.length > 0 && (
-          <div className="mb-32">
-            <div className="flex items-center gap-3 mb-10">
-              <div className="w-10 h-10 bg-violet-600/20 rounded-xl flex items-center justify-center text-violet-400">
-                <BookOpen size={20} />
-              </div>
-              <h2 className="text-3xl font-bold text-white">Theory Courses</h2>
-            </div>
-
-            <div className="space-y-16">
-              {filteredTheorySubjects.map((subject) => {
-                const organized = organizeMaterials(subject.materials)
+            <div className="flex flex-wrap gap-2">
+              {materialTypes.map((type) => {
+                const Icon = type.icon
                 return (
-                  <motion.div 
-                    layout
-                    key={subject.id} 
-                    className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 overflow-hidden group hover:border-violet-500/20 transition-all duration-500"
+                  <button
+                    key={type.id}
+                    type="button"
+                    onClick={() => setSelectedType(selectedType === type.id ? null : type.id)}
+                    className={selectedType === type.id ? 'btn-primary min-h-0 px-3 py-2 text-sm' : 'btn-outline min-h-0 px-3 py-2 text-sm'}
                   >
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                      <div>
-                        <span className="text-xs font-bold text-violet-500 uppercase tracking-widest bg-violet-500/10 px-3 py-1 rounded-full mb-3 inline-block">
-                          {subject.code}
-                        </span>
-                        <h3 className="text-2xl font-bold text-white group-hover:text-violet-400 transition-colors uppercase">
-                          {subject.name}
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2 text-slate-500 bg-slate-800/50 px-4 py-2 rounded-xl border border-slate-700/50">
-                        <Info size={14} />
-                        <span className="text-sm">{subject.credits} Credits • {subject.materials.length} Items</span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {Object.entries(organized).map(([type, items]) => (
-                        items.length > 0 && (
-                          <div key={type} className="space-y-4">
-                            <h4 className="text-sm font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2 px-2">
-                              <span className="w-1.5 h-1.5 bg-violet-500 rounded-full" />
-                              {type}
-                            </h4>
-                            <div className="space-y-3">
-                              {items.map(item => (
-                                <motion.div layout key={item.id}>
-                                  <MaterialCard material={item} />
-                                </motion.div>
-                              ))}
-                            </div>
-                          </div>
-                        )
-                      ))}
-                    </div>
-                  </motion.div>
+                    <Icon className="h-4 w-4" />
+                    {type.label}
+                  </button>
                 )
               })}
             </div>
           </div>
+        </div>
+
+        {filteredTheorySubjects.length > 0 && (
+          <section className="mb-20">
+            <div className="mb-8 flex items-center gap-3">
+              <BookOpen className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Theory Courses</h2>
+            </div>
+
+            <div className="space-y-8">
+              {filteredTheorySubjects.map((subject) => {
+                const organized = organizeMaterials(subject.materials)
+                return (
+                  <motion.article layout key={subject.id} className="surface-card p-6">
+                    <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <span className="stamp mb-3">{subject.code}</span>
+                        <h3 className="text-2xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
+                      </div>
+                      <div className="inline-flex items-center gap-2 text-sm" style={{ color: 'var(--muted)' }}>
+                        <Info className="h-4 w-4" />
+                        <span>{subject.credits} credits / {subject.materials.length} items</span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                      {Object.entries(organized).map(([type, items]) =>
+                        items.length > 0 ? (
+                          <div key={type} className="space-y-3">
+                            <h4 className="mono-label">{type}</h4>
+                            {items.map((item) => (
+                              <motion.div layout key={item.id}>
+                                <MaterialCard material={item} />
+                              </motion.div>
+                            ))}
+                          </div>
+                        ) : null
+                      )}
+                    </div>
+                  </motion.article>
+                )
+              })}
+            </div>
+          </section>
         )}
 
-        {/* Labs Section */}
         {filteredLabSubjects.length > 0 && (
-          <div className="mb-32">
-            <div className="flex items-center gap-3 mb-10">
-              <div className="w-10 h-10 bg-emerald-600/20 rounded-xl flex items-center justify-center text-emerald-400">
-                <Code size={20} />
-              </div>
-              <h2 className="text-3xl font-bold text-white">Lab Courses</h2>
+          <section className="mb-20">
+            <div className="mb-8 flex items-center gap-3">
+              <Code className="h-6 w-6" style={{ color: 'var(--accent-secondary)' }} />
+              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Lab Courses</h2>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {filteredLabSubjects.map((subject) => (
-                <motion.div 
-                  layout
-                  key={subject.id} 
-                  className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 hover:border-emerald-500/20 transition-all duration-500"
-                >
-                  <div className="flex justify-between items-start mb-8">
+                <motion.article layout key={subject.id} className="surface-card p-6">
+                  <div className="mb-6 flex items-start justify-between gap-4">
                     <div>
-                      <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full mb-3 inline-block">
-                        {subject.code}
-                      </span>
-                      <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors uppercase">
-                        {subject.name}
-                      </h3>
+                      <span className="stamp mb-3">{subject.code}</span>
+                      <h3 className="text-xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
                     </div>
-                    <span className="text-xs text-slate-500">{subject.credits} Credit</span>
+                    <span className="mono-label">{subject.credits} credit</span>
                   </div>
-
                   <div className="space-y-3">
-                    {subject.materials.map(item => (
+                    {subject.materials.map((item) => (
                       <motion.div layout key={item.id}>
                         <MaterialCard material={item} />
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Question Banks Section */}
         {filteredQuestionSubjects.length > 0 && (
-          <div className="mb-32">
-            <div className="flex items-center gap-3 mb-10">
-              <div className="w-10 h-10 bg-rose-600/20 rounded-xl flex items-center justify-center text-rose-400">
-                <HelpCircle size={20} />
-              </div>
-              <h2 className="text-3xl font-bold text-white">Question Banks</h2>
+          <section className="mb-20">
+            <div className="mb-8 flex items-center gap-3">
+              <HelpCircle className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Question Banks</h2>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {filteredQuestionSubjects.map((subject) => (
-                <motion.div
-                  layout
-                  key={subject.id}
-                  className="bg-slate-800/30 border border-slate-700/60 rounded-3xl p-8 hover:border-rose-500/20 transition-all duration-500"
-                >
-                  <div className="flex justify-between items-start mb-8">
+                <motion.article layout key={subject.id} className="surface-card p-6">
+                  <div className="mb-6 flex items-start justify-between gap-4">
                     <div>
-                      <span className="text-[10px] font-bold text-rose-500 uppercase tracking-widest bg-rose-500/10 px-3 py-1 rounded-full mb-3 inline-block">
-                        {subject.code}
-                      </span>
-                      <h3 className="text-xl font-bold text-white uppercase">
-                        {subject.name}
-                      </h3>
+                      <span className="stamp mb-3">{subject.code}</span>
+                      <h3 className="text-xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
                     </div>
-                    <span className="text-xs text-slate-500">{subject.materials.length} Items</span>
+                    <span className="mono-label">{subject.materials.length} items</span>
                   </div>
-
                   <div className="space-y-3">
-                    {subject.materials.map(item => (
+                    {subject.materials.map((item) => (
                       <motion.div layout key={item.id}>
                         <MaterialCard material={item} />
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        {/* No Results Fallback */}
-        {(filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0 && filteredQuestionSubjects.length === 0) && (
-          <div className="text-center py-32 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700/60">
-            <div className="text-6xl mb-6">🔍</div>
-            <h3 className="text-2xl font-bold text-white mb-2">No materials found</h3>
-            <p className="text-slate-500">Try adjusting your search or filters to find what you&apos;re looking for.</p>
+        {filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0 && filteredQuestionSubjects.length === 0 && (
+          <div className="surface-card py-24 text-center">
+            <h3 className="mb-2 text-2xl font-black" style={{ color: 'var(--foreground)' }}>No materials found</h3>
+            <p className="section-copy">Try adjusting your search or filters.</p>
           </div>
         )}
       </div>

@@ -1,320 +1,432 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Calendar, Rocket, Sparkles, ChevronRight, Play, MapPin, Clock, Code } from 'lucide-react'
+import {
+  ArrowUpRight,
+  BookOpen,
+  Calendar,
+  ChevronRight,
+  Clock,
+  Code,
+  Sparkles,
+  Users,
+} from 'lucide-react'
 import { semesters, type Semester } from '@/data/studyMaterials'
 import { events, type Event } from '@/data/events'
 import { getAllProjects, type AcademicProject } from '@/data/projects'
-import StatsSection from '@/components/StatsSection'
 
 type DiscoveryItem =
   | { type: 'semester'; data: Semester }
   | { type: 'project'; data: AcademicProject }
   | { type: 'event'; data: Event }
 
-// Discovery Card Component
+type EntryPoint = {
+  code: string
+  label: string
+  title: string
+  description: string
+  href: string
+  icon: typeof BookOpen
+  meta: string
+  items: string[]
+}
+
 function DiscoveryCard({ item }: { item: DiscoveryItem }) {
-  if (item.type === 'semester') {
-    return (
-      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-violet-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
-        
-        <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-black text-white group-hover/card:text-violet-400 transition-colors uppercase tracking-[0.05em] leading-tight">
-              {item.data.name}
-            </h3>
-            <div className="p-3 bg-violet-500/10 rounded-2xl border border-violet-500/20 group-hover/card:scale-110 transition-transform">
-              <Clock className="w-5 h-5 text-violet-400" />
-            </div>
-          </div>
-          
-          <div className="space-y-4 mb-8">
-            <div className="flex items-center text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">
-              <div className="w-1.5 h-1.5 rounded-full bg-violet-500 mr-3 animate-pulse"></div>
-              {item.data.subjects.length} Subjects Registry
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
-              Explore the curated digital archives and collective knowledge for this temporal node.
-            </p>
-          </div>
+  const card =
+    item.type === 'semester'
+      ? {
+          kind: 'Material Shelf',
+          title: item.data.name,
+          image: null,
+          href: `/semester/${item.data.id}`,
+          external: false,
+          details: [
+            ['Subjects', String(item.data.subjects.length)],
+            [
+              'Files',
+              String(item.data.subjects.reduce((total, subject) => total + subject.materials.length, 0)),
+            ],
+          ],
+        }
+      : item.type === 'project'
+        ? {
+            kind: item.data.courseCode,
+            title: item.data.title,
+            image: item.data.coverImage || null,
+            href: item.data.sourceCodeUrl || '/projects',
+            external: Boolean(item.data.sourceCodeUrl),
+            details: [
+              ['Course', item.data.courseCode],
+              ['Team', `${item.data.teamSize} ${item.data.teamSize === 1 ? 'member' : 'members'}`],
+            ],
+          }
+        : {
+            kind: 'Event',
+            title: item.data.title,
+            image: item.data.images[0] || null,
+            href: `/events/${item.data.id}`,
+            external: false,
+            details: [
+              ['Date', item.data.date],
+              ['Place', item.data.location],
+            ],
+          }
 
-          <div className="mt-auto pt-4">
-            <Link
-              href={`/semester/${item.data.id}`}
-              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-violet-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
-              <span className="relative z-10">Access Node</span>
-              <ChevronRight className="relative z-10 ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+  if (!card.image) {
+    return (
+      <Link
+        href={card.href}
+        target={card.external ? '_blank' : undefined}
+        rel={card.external ? 'noreferrer' : undefined}
+        className="surface-card group grid h-full grid-rows-[auto_1fr_auto] overflow-hidden"
+        aria-label={card.title}
+      >
+        <div className="flex items-center justify-between gap-4 border-b px-4 py-3" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+          <span className="mono-label">{card.kind}</span>
+          <ArrowUpRight className="h-4 w-4" style={{ color: 'var(--accent)' }} />
         </div>
-      </div>
-    )
-  }
-
-  if (item.type === 'project') {
-    return (
-      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-emerald-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
-        
-        <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-black text-white group-hover/card:text-emerald-400 transition-colors line-clamp-2 uppercase tracking-[0.05em] leading-tight">
-              {item.data.title}
-            </h3>
-            <div className="p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 group-hover/card:scale-110 transition-transform">
-              <Code className="w-5 h-5 text-emerald-400" />
-            </div>
-          </div>
-          
-          <div className="space-y-4 mb-8">
-            <div className="flex flex-wrap gap-2">
-              {item.data.technologies.slice(0, 3).map((tech, i) => (
-                <span key={`${tech}-${i}`} className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                  {tech}
+        <div className="p-4">
+          <h3 className="mb-5 line-clamp-3 text-2xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
+            {card.title}
+          </h3>
+          <div className="space-y-2">
+            {card.details.map(([label, value]) => (
+              <div key={label} className="grid grid-cols-[4.5rem_1fr] gap-3 border-t pt-2 text-sm" style={{ borderColor: 'var(--line)' }}>
+                <span className="mono-label">{label}</span>
+                <span className="truncate font-bold" style={{ color: 'var(--foreground)' }}>
+                  {value}
                 </span>
-              ))}
-              {item.data.technologies.length > 3 && (
-                <span className="px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 text-[9px] font-black text-slate-600">
-                  +{item.data.technologies.length - 3}
-                </span>
-              )}
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 font-medium">
-              Technical implementation and architecture documentation for distributed projects.
-            </p>
-          </div>
-
-          <div className="mt-auto pt-4">
-            <Link
-              href={item.data.sourceCodeUrl || '/projects'}
-              target={item.data.sourceCodeUrl ? '_blank' : '_self'}
-              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-emerald-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
-              <span className="relative z-10">Sync Source</span>
-              <Rocket className="relative z-10 ml-2 w-4 h-4 group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform" />
-            </Link>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+        <div className="border-t px-4 py-3" style={{ borderColor: 'var(--line)' }}>
+          <span className="mono-label">Open Record</span>
+        </div>
+      </Link>
     )
   }
 
-  if (item.type === 'event') {
-    return (
-      <div className="group/card relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden h-full flex flex-col hover:scale-[1.02] hover:-translate-y-1">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"></div>
-        
-        <div className="relative p-8 flex flex-col h-full">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-black text-white group-hover/card:text-orange-400 transition-colors uppercase tracking-[0.05em] leading-tight line-clamp-1">
-              {item.data.title}
-            </h3>
-            <div className="p-3 bg-orange-500/10 rounded-2xl border border-orange-500/20 group-hover/card:scale-110 transition-transform">
-              <Calendar className="w-5 h-5 text-orange-400" />
-            </div>
-          </div>
-          
-          <div className="space-y-4 mb-8">
-            <div className="flex items-center text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
-              <MapPin className="w-4 h-4 mr-3 text-orange-500/60" />
-              <span className="truncate">{item.data.location}</span>
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 font-medium">
-              Scheduled synchronization event for the Lubdhok collective ecosystem.
-            </p>
-          </div>
+  return (
+    <Link
+      href={card.href}
+      target={card.external ? '_blank' : undefined}
+      rel={card.external ? 'noreferrer' : undefined}
+      className="surface-card group relative block h-full overflow-hidden"
+      aria-label={card.title}
+    >
+      <Image
+        src={card.image}
+        alt={card.title}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        sizes="288px"
+      />
+      <div className="absolute inset-x-0 bottom-0 border-t p-4" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--surface) 88%, transparent)' }}>
+        <h3 className="line-clamp-2 text-xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
+          {card.title}
+        </h3>
+      </div>
+    </Link>
+  )
+}
 
-          <div className="mt-auto pt-4">
-            <Link
-              href={`/events/${item.data.id}`}
-              className="group/btn relative inline-flex items-center w-full justify-center px-6 py-4 bg-white/5 text-slate-300 text-[10px] font-black uppercase tracking-[0.3em] rounded-[1.25rem] hover:bg-orange-600 hover:text-white transition-all duration-500 border border-white/10 hover:border-transparent overflow-hidden shadow-xl shadow-black/20"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
-              <span className="relative z-10">Event Protocol</span>
-              <Play className="relative z-10 ml-2 w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-            </Link>
-          </div>
+function EntryPointCard({ entry, index }: { entry: EntryPoint; index: number }) {
+  const Icon = entry.icon
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.06 }}
+      className="surface-card group grid min-h-[330px] grid-rows-[auto_1fr_auto] overflow-hidden"
+    >
+      <div className="flex items-center justify-between gap-4 border-b px-5 py-4" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+        <div className="flex items-center gap-3">
+          <span className="mono-label flex h-9 w-9 items-center justify-center border" style={{ borderColor: 'var(--line-strong)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 6 }}>
+            {entry.code}
+          </span>
+          <span className="mono-label">{entry.label}</span>
+        </div>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center border" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 6 }}>
+          <Icon className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+        </span>
+      </div>
+
+      <div className="p-5">
+        <h3 className="mb-4 text-3xl font-black leading-none" style={{ color: 'var(--foreground)' }}>
+          {entry.title}
+        </h3>
+        <p className="section-copy mb-6 text-sm">{entry.description}</p>
+
+        <div className="space-y-2">
+          {entry.items.map((item) => (
+            <div key={item} className="flex items-center gap-3 border px-3 py-2 text-sm font-bold" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 6 }}>
+              <span className="h-2 w-2 shrink-0" style={{ background: 'var(--accent)' }} />
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
-    )
-  }
-  return null
+
+      <div className="flex items-center justify-between gap-4 border-t px-5 py-4" style={{ borderColor: 'var(--line)' }}>
+        <span className="mono-label">{entry.meta}</span>
+        <Link href={entry.href} className="btn-outline min-h-0 px-3 py-2 text-sm" aria-label={`Open ${entry.title}`}>
+          Open
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </motion.article>
+  )
 }
 
 export default function HomePage() {
-  // Get sample data for rolling animation - prioritize latest content
   const allProjects = getAllProjects()
-  
-  // Sort events by date (latest first)
+
   const sortedEvents = [...events].sort((a, b) => {
     const dateA = new Date(a.date.split(' to ')[0])
     const dateB = new Date(b.date.split(' to ')[0])
     return dateB.getTime() - dateA.getTime()
   })
   const recentEvents = sortedEvents.slice(0, 8)
-  
-  // Get all study materials from all semesters and sort by upload date (latest first)
-  const allStudyMaterials = semesters.flatMap(semester => 
-    semester.subjects.flatMap(subject => 
-      subject.materials.map(material => ({ ...material, semesterName: semester.name }))
+
+  const allStudyMaterials = semesters
+    .flatMap((semester) =>
+      semester.subjects.flatMap((subject) =>
+        subject.materials.map((material) => ({ ...material, semesterName: semester.name, semesterId: semester.id }))
+      )
     )
-  ).sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime())
-  
-  // Create semester objects from recent materials
-  const recentMaterialsBySemester = allStudyMaterials.slice(0, 12).reduce((acc, material) => {
-    const semester = semesters.find(s => s.name === material.semesterName)
-    if (semester && !acc.find(s => s.id === semester.id)) {
-      acc.push(semester)
-    }
-    return acc
-  }, [] as Semester[]).slice(0, 4)
-  
-  // Create rolling items combining all types - prioritizing recent content
+    .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime())
+
+  const recentMaterialsBySemester = allStudyMaterials
+    .slice(0, 12)
+    .reduce((acc, material) => {
+      const semester = semesters.find((item) => item.name === material.semesterName)
+      if (semester && !acc.find((item) => item.id === semester.id)) {
+        acc.push(semester)
+      }
+      return acc
+    }, [] as Semester[])
+    .slice(0, 4)
+
+  const materialCount = semesters.reduce(
+    (acc, semester) => acc + semester.subjects.reduce((total, subject) => total + subject.materials.length, 0),
+    0
+  )
+  const subjectCount = semesters.reduce(
+    (acc, semester) => acc + semester.subjects.filter((subject) => !subject.code.startsWith('QB-')).length,
+    0
+  )
+
+  const entryPoints: EntryPoint[] = [
+    {
+      code: '01',
+      label: 'Academic Shelf',
+      title: 'Study Materials',
+      description: 'Semester-wise resources grouped for fast lookup before class, lab, or exam week.',
+      href: '/semesters',
+      icon: BookOpen,
+      meta: `${materialCount} files`,
+      items: ['Notes and slides', 'Lab code', 'Question banks'],
+    },
+    {
+      code: '02',
+      label: 'Workshop Ledger',
+      title: 'Project Archive',
+      description: 'A clean record of coursework builds with source links, stacks, teams, and course context.',
+      href: '/projects',
+      icon: Code,
+      meta: `${allProjects.length} builds`,
+      items: ['Source links', 'Tech stacks', 'Team records'],
+    },
+    {
+      code: '03',
+      label: 'Batch Timeline',
+      title: 'Events & Moments',
+      description: 'Department memories, programs, contests, tours, and batch moments arranged by time.',
+      href: '/events',
+      icon: Calendar,
+      meta: `${events.length} entries`,
+      items: ['Chronology', 'Locations', 'Highlights'],
+    },
+  ]
+
   const rollingItems: DiscoveryItem[] = [
-    ...recentEvents.map(event => ({
-      type: 'event' as const,
-      data: event
-    })),
-    ...recentMaterialsBySemester.map(semester => ({
-      type: 'semester' as const,
-      data: semester
-    })),
-    ...allProjects.slice(-6).reverse().map(project => ({
-      type: 'project' as const,
-      data: project
-    }))
+    ...recentEvents.map((event) => ({ type: 'event' as const, data: event })),
+    ...recentMaterialsBySemester.map((semester) => ({ type: 'semester' as const, data: semester })),
+    ...allProjects.slice(-6).reverse().map((project) => ({ type: 'project' as const, data: project })),
   ]
 
   return (
-    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-20 bg-transparent z-40"></div>
-      
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-32 -right-40 w-[600px] h-[600px] bg-violet-600/5 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute top-1/2 -left-40 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.03),transparent_70%)]"></div>
-      </div>
-
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    <div className="page-shell">
+      <section className="relative min-h-[94vh] overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+        <div
+          className="absolute inset-0 opacity-50"
           style={{
-            backgroundImage: 'url(/batch.jpg)',
-            filter: 'brightness(0.5) contrast(1.1) saturate(1.1)'
+            backgroundImage:
+              'linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
           }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#111c33]/50 to-[#111c33]"></div>
+        />
+        <div className="absolute inset-x-0 top-20 h-px" style={{ background: 'var(--line)' }} />
+        <div className="absolute bottom-12 left-0 right-0 h-px" style={{ background: 'var(--line)' }} />
+        <div className="absolute left-6 top-28 hidden h-[calc(100%-10rem)] w-px lg:block" style={{ background: 'var(--line)' }} />
+        <div className="absolute right-6 top-28 hidden h-[calc(100%-10rem)] w-px lg:block" style={{ background: 'var(--line)' }} />
 
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+        <div className="relative z-10 mx-auto flex min-h-[94vh] w-full max-w-[92rem] flex-col justify-end px-4 pb-7 pt-32 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="space-y-10"
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="w-full pb-7"
           >
-            <div className="space-y-6">
-              <div className="flex items-center justify-center space-x-4 mb-6">
-                <div className="w-16 h-px bg-white/20"></div>
-                <span className="text-slate-400 font-black text-[10px] uppercase tracking-[0.4em]">Computer Science & Engineering</span>
-                <div className="w-16 h-px bg-white/20"></div>
+            <div className="raw-panel overflow-hidden">
+              <div className="flex flex-col gap-3 border-b px-5 py-4 sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: 'var(--line)' }}>
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="eyebrow">CSEDU / 29th Batch</span>
+                </div>
+                
               </div>
-              
-              <h1 className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-none">
-                <span className="text-white drop-shadow-2xl">LUBDHOK</span>
-              </h1>
-              
-              <div className="w-24 h-1.5 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full mx-auto shadow-2xl"></div>
+
+              <div className="p-6 sm:p-8 lg:p-12">
+                <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+                  <div>
+                    <h1 className="text-[clamp(4.25rem,13vw,11rem)] font-black leading-[0.78]" style={{ color: 'var(--foreground)' }}>
+                      LUBDHOK
+                    </h1>
+
+                    <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                      {[
+                        { href: '/semesters', label: 'Open Materials', icon: BookOpen, primary: true },
+                        { href: '/projects', label: 'Browse Projects', icon: Code },
+                        { href: '/events', label: 'View Events', icon: Calendar },
+                      ].map((item) => {
+                        const Icon = item.icon
+                        return (
+                          <Link key={item.href} href={item.href} className={item.primary ? 'btn-primary justify-between' : 'btn-outline justify-between'}>
+                            <span className="inline-flex items-center gap-2">
+                              <Icon className="h-4 w-4" />
+                              {item.label}
+                            </span>
+                            <ChevronRight className="h-4 w-4" />
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="border p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}>
+                    <div className="mb-6 flex items-start justify-between gap-4">
+                      <div>
+                        <div className="text-7xl font-black leading-none" style={{ color: 'var(--accent)' }}>29th</div>
+                        <div className="mono-label mt-2">Batch</div>
+                      </div>
+                      <Users className="h-8 w-8" style={{ color: 'var(--accent-secondary)' }} />
+                    </div>
+
+                    <div className="space-y-3">
+                      {[
+                        ['Dept', 'Department of Computer Science and Engineering'],
+                        ['Home', 'University of Dhaka'],
+                      ].map(([label, value]) => (
+                        <div key={label} className="grid grid-cols-[4rem_1fr] gap-3 border-t pt-3" style={{ borderColor: 'var(--line)' }}>
+                          <span className="mono-label">{label}</span>
+                          <span className="text-sm font-black" style={{ color: 'var(--foreground)' }}>{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-widest opacity-90">
-                29th Batch • CSEDU
-              </h2>
-            </div>
           </motion.div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Semesters', value: semesters.length, icon: BookOpen },
+              { label: 'Subjects', value: subjectCount, icon: Clock },
+              { label: 'Projects', value: allProjects.length, icon: Code },
+              { label: 'Events', value: events.length, icon: Calendar },
+            ].map((stat) => {
+              const Icon = stat.icon
+              return (
+                <div key={stat.label} className="surface-card flex items-center justify-between gap-4 p-4">
+                  <div>
+                    <div className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>{stat.value}</div>
+                    <div className="mono-label">{stat.label}</div>
+                  </div>
+                  <Icon className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+                </div>
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      <StatsSection />
-
-      <section id="discover" className="relative py-48 bg-slate-800 overflow-hidden border-t border-white/5">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-indigo-600/5 rounded-full blur-[120px]"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-24">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center space-x-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-violet-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Real-time Ecosystem</span>
-            </motion.div>
-            <h2 className="text-5xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase">
-              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-500">Updates</span>
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              An automated feed of our most recent academic entries, collective builds, and synchronized events.
-            </p>
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 grid gap-6 lg:grid-cols-[0.9fr_22rem] lg:items-end">
+            <div>
+              <div className="eyebrow mb-5">
+                <Sparkles className="h-4 w-4" />
+                Archive Index
+              </div>
+               
+            </div>
           </div>
 
-          <div className="relative h-[480px] overflow-hidden rounded-[3rem] bg-black/40 backdrop-blur-3xl border border-white/5 shadow-[0_0_50px_rgba(0,0,0,0.5)] group">
-            <div className="absolute inset-0 flex items-center">
-              <motion.div 
-                className="flex space-x-8 px-8"
-                animate={{
-                  x: [0, -rollingItems.length * (320 + 32)],
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {entryPoints.map((entry, index) => (
+              <EntryPointCard key={entry.title} entry={entry} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="discover" className="border-y py-24" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_22rem] lg:items-end">
+            <div>
+              <div className="eyebrow mb-5">
+                <Users className="h-4 w-4" />
+                Live Ledger
+              </div>
+              <h2 className="section-title">Recent records</h2>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden border" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}>
+            
+
+            <div className="moving-shelf relative py-6">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16" style={{ background: 'linear-gradient(90deg, var(--surface), transparent)' }} />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16" style={{ background: 'linear-gradient(270deg, var(--surface), transparent)' }} />
+              <div
+                className="moving-shelf-track flex gap-4 px-5"
+                style={{
+                  width: 'fit-content',
+                  animationDuration: `${Math.max(44, rollingItems.length * 4)}s`,
                 }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    duration: rollingItems.length * 4,
-                    ease: 'linear',
-                  },
-                }}
-                style={{ width: 'fit-content' }}
               >
                 {rollingItems.map((item, index) => (
-                  <div key={`roll-1-${item.type}-${index}`} className="flex-shrink-0 w-80 h-[400px]">
+                  <div key={`roll-1-${item.type}-${index}`} className="moving-shelf-card h-[300px] w-72 shrink-0">
                     <DiscoveryCard item={item} />
                   </div>
                 ))}
                 {rollingItems.map((item, index) => (
-                  <div key={`roll-2-${item.type}-${index}`} className="flex-shrink-0 w-80 h-[400px]">
+                  <div key={`roll-2-${item.type}-${index}`} className="moving-shelf-card h-[300px] w-72 shrink-0">
                     <DiscoveryCard item={item} />
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
-
-            <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-16 px-4">
-            <Link href="/semesters" className="px-10 py-4 bg-white text-black font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-violet-600 hover:text-white transition-all duration-300 shadow-2xl text-center">
-              Study Materials
-            </Link>
-            <Link href="/projects" className="px-10 py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-white/10 transition-all duration-300 text-center">
-              Explore Projects
-            </Link>
-            <Link href="/events" className="px-10 py-4 bg-white/5 border border-white/10 text-white font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl hover:bg-white/10 transition-all duration-300 text-center">
-              Timeline Events
-            </Link>
           </div>
         </div>
       </section>
     </div>
   )
 }
-

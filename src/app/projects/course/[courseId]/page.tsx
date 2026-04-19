@@ -1,7 +1,6 @@
-
-import React from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ArrowLeft, FolderKanban } from 'lucide-react'
 import { projectSemesters, type ProjectCourse, type ProjectSemester } from '@/data/projects'
 import CourseProjectsGallery from '@/components/CourseProjectsGallery'
 
@@ -14,12 +13,11 @@ interface CourseProjectPageProps {
 export default async function CourseProjectPage({ params }: CourseProjectPageProps) {
   const { courseId } = await params
 
-  // Find the course and semester
   let course: ProjectCourse | null = null
   let semester: ProjectSemester | null = null
 
   for (const sem of projectSemesters) {
-    const foundCourse = sem.courses.find(c => c.id === courseId)
+    const foundCourse = sem.courses.find((item) => item.id === courseId)
     if (foundCourse) {
       course = foundCourse
       semester = sem
@@ -32,80 +30,43 @@ export default async function CourseProjectPage({ params }: CourseProjectPagePro
   }
 
   return (
-    <div className="min-h-screen bg-slate-800 relative overflow-hidden">
-      {/* Visual Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-20 -left-40 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl opacity-50" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        {/* Breadcrumb */}
-        <nav className="flex mb-16" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-1 md:space-x-3">
-            <li>
-              <Link href="/" className="text-slate-500 hover:text-white transition-colors text-sm">Home</Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mx-2 text-slate-700">/</span>
-              <Link href="/projects" className="text-slate-500 hover:text-white transition-colors text-sm">Projects</Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mx-2 text-slate-700">/</span>
-              <span className="text-slate-200 font-medium text-sm">{course.code}</span>
-            </li>
-          </ol>
+    <div className="page-shell">
+      <div className="page-content">
+        <nav className="mb-10 text-sm" aria-label="Breadcrumb">
+          <Link href="/" className="font-bold" style={{ color: 'var(--muted)' }}>Home</Link>
+          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
+          <Link href="/projects" className="font-bold" style={{ color: 'var(--muted)' }}>Projects</Link>
+          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
+          <span className="font-bold" style={{ color: 'var(--foreground)' }}>{course.code}</span>
         </nav>
 
-        {/* Course Header Info */}
-        <div className="mb-24">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
-            <div className="flex-1">
-              <div className="flex items-center gap-4 mb-6">
-                 <div className="px-4 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-xl text-[10px] font-black text-violet-400 uppercase tracking-[0.2em]">
-                    {course.code}
-                 </div>
-                 <div className="h-px w-8 bg-slate-800" />
-                 <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">
-                    {semester.name}
-                 </div>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 uppercase italic leading-none">
-                {course.name}
-              </h1>
-               
+        <header className="mb-14 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <div className="mb-5 flex flex-wrap items-center gap-3">
+              <span className="stamp">{course.code}</span>
+              <span className="mono-label">{semester.name}</span>
             </div>
-
-            <div className="flex gap-4 w-full md:w-auto">
-               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-800/40 border border-slate-700/60 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
-                  <div className="text-4xl font-black text-white mb-1">{course.projects.length}</div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest opacity-60">Projects</div>
-               </div>
-               <div className="flex-1 md:flex-none px-10 py-6 bg-slate-800/40 border border-slate-700/60 rounded-[2.5rem] text-center shadow-2xl backdrop-blur-sm">
-                  <div className="text-4xl font-black text-white mb-1">{course.credits}</div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest opacity-60">Credits</div>
-               </div>
+            <h1 className="section-title">{course.name}</h1>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="surface-card px-8 py-5 text-center">
+              <div className="text-4xl font-black" style={{ color: 'var(--foreground)' }}>{course.projects.length}</div>
+              <div className="mono-label">Projects</div>
+            </div>
+            <div className="surface-card px-8 py-5 text-center">
+              <div className="text-4xl font-black" style={{ color: 'var(--foreground)' }}>{course.credits}</div>
+              <div className="mono-label">Credits</div>
             </div>
           </div>
-        </div>
+        </header>
 
-        {/* Search & Filtered Grid */}
-        <CourseProjectsGallery 
-           projects={course.projects} 
-           courseCode={course.code}
-           courseName={course.name}
-        />
+        <CourseProjectsGallery projects={course.projects} courseCode={course.code} courseName={course.name} />
 
-        {/* Footer Navigation */}
-        <div className="mt-40 pt-16 border-t border-slate-800/60 text-center">
-          <Link
-            href="/projects"
-            className="group inline-flex items-center px-12 py-5 bg-slate-800 border border-slate-700/60 text-slate-200 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-700 hover:text-white transition-all shadow-2xl hover:-translate-y-1"
-          >
-            <svg className="w-4 h-4 mr-3 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Return to Navigator
+        <div className="mt-20 border-t pt-10 text-center" style={{ borderColor: 'var(--line)' }}>
+          <Link href="/projects" className="btn-outline">
+            <ArrowLeft className="h-4 w-4" />
+            Return to Project Archive
+            <FolderKanban className="h-4 w-4" />
           </Link>
         </div>
       </div>

@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Search, FileText, BookOpen, Code, Terminal, Clock, X, Hash } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { BookOpen, Clock, Code, FileText, Search, X } from 'lucide-react'
 import { semesters } from '@/data/studyMaterials'
 import { projectSemesters } from '@/data/projects'
 
@@ -22,56 +23,51 @@ export default function CommandPalette() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const router = useRouter()
 
-  // Consolidate all searchable items
   const allItems = useMemo(() => {
     const items: SearchResult[] = []
 
-    // Add Semesters
-    semesters.forEach(sem => {
+    semesters.forEach((semester) => {
       items.push({
-        id: sem.id,
-        title: sem.name,
-        description: sem.description,
+        id: semester.id,
+        title: semester.name,
+        description: semester.description,
         type: 'semester',
-        url: `/semester/${sem.id}`
+        url: `/semester/${semester.id}`,
       })
 
-      // Add Subjects
-      sem.subjects.forEach(sub => {
+      semester.subjects.forEach((subject) => {
         items.push({
-          id: sub.id,
-          title: sub.name,
-          description: `${sub.code} • ${sub.credits} Credits`,
+          id: subject.id,
+          title: subject.name,
+          description: `${subject.code} / ${subject.credits} Credits`,
           type: 'subject',
-          url: `/semester/${sem.id}?subject=${sub.id}`,
-          category: sem.name
+          url: `/semester/${semester.id}?subject=${subject.id}`,
+          category: semester.name,
         })
 
-        // Add Materials
-        sub.materials.forEach(mat => {
+        subject.materials.forEach((material) => {
           items.push({
-            id: mat.id,
-            title: mat.title,
-            description: mat.description,
+            id: material.id,
+            title: material.title,
+            description: material.description,
             type: 'material',
-            url: mat.viewUrl || '#',
-            category: sub.name
+            url: material.viewUrl || '#',
+            category: subject.name,
           })
         })
       })
     })
 
-    // Add Projects
-    projectSemesters.forEach(sem => {
-      sem.courses.forEach(course => {
-        course.projects.forEach(project => {
+    projectSemesters.forEach((semester) => {
+      semester.courses.forEach((course) => {
+        course.projects.forEach((project) => {
           items.push({
             id: project.id,
             title: project.title,
             description: project.description,
             type: 'project',
             url: `/projects/course/${course.id}`,
-            category: course.name
+            category: course.name,
           })
         })
       })
@@ -83,32 +79,35 @@ export default function CommandPalette() {
   const filteredResults = useMemo(() => {
     if (!query) return []
     const lowerQuery = query.toLowerCase()
-    return allItems.filter(item => 
-      item.title.toLowerCase().includes(lowerQuery) || 
-      item.description?.toLowerCase().includes(lowerQuery) ||
-      item.category?.toLowerCase().includes(lowerQuery)
-    ).slice(0, 8)
+    return allItems
+      .filter(
+        (item) =>
+          item.title.toLowerCase().includes(lowerQuery) ||
+          item.description?.toLowerCase().includes(lowerQuery) ||
+          item.category?.toLowerCase().includes(lowerQuery)
+      )
+      .slice(0, 8)
   }, [query, allItems])
 
-  const toggle = useCallback(() => setIsOpen(open => !open), [])
+  const toggle = useCallback(() => setIsOpen((open) => !open), [])
+  const updateQuery = (nextQuery: string) => {
+    setQuery(nextQuery)
+    setSelectedIndex(0)
+  }
 
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault()
         toggle()
       }
-      if (e.key === 'Escape') {
+      if (event.key === 'Escape') {
         setIsOpen(false)
       }
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [toggle])
-
-  useEffect(() => {
-    setSelectedIndex(0)
-  }, [query])
 
   const handleSelect = (result: SearchResult) => {
     if (result.type === 'material' && result.url.startsWith('http')) {
@@ -117,200 +116,138 @@ export default function CommandPalette() {
       router.push(result.url)
     }
     setIsOpen(false)
-    setQuery('')
+    updateQuery('')
   }
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setSelectedIndex(i => (i + 1) % filteredResults.length)
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setSelectedIndex(i => (i - 1 + filteredResults.length) % filteredResults.length)
-    } else if (e.key === 'Enter' && filteredResults[selectedIndex]) {
+  const onKeyDown = (event: ReactKeyboardEvent) => {
+    if (filteredResults.length === 0) return
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      setSelectedIndex((index) => (index + 1) % filteredResults.length)
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      setSelectedIndex((index) => (index - 1 + filteredResults.length) % filteredResults.length)
+    } else if (event.key === 'Enter' && filteredResults[selectedIndex]) {
       handleSelect(filteredResults[selectedIndex])
     }
+  }
+
+  const iconForType = (type: SearchResult['type']) => {
+    if (type === 'semester') return Clock
+    if (type === 'subject') return BookOpen
+    if (type === 'material') return FileText
+    return Code
   }
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 sm:px-6">
-          <motion.div
+        <div className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[15vh] sm:px-6">
+          <motion.button
+            type="button"
+            aria-label="Close search"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/45"
           />
-          
+
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            initial={{ opacity: 0, scale: 0.98, y: -12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="relative w-full max-w-2xl bg-[#020617]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            exit={{ opacity: 0, scale: 0.98, y: -12 }}
+            className="raw-panel relative w-full max-w-2xl overflow-hidden"
           >
-            {/* Background Glows */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-violet-600/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-            </div>
-
-            <div className="relative flex items-center p-8 border-b border-white/5 group/input">
-              {/* Specialized Input Glow */}
-              <div className="absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-violet-600/5 to-transparent opacity-0 group-focus-within/input:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-              <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-2xl bg-white/5 border border-white/10 group-focus-within/input:border-violet-500/50 group-focus-within/input:bg-violet-500/10 transition-all duration-500 mr-5">
-                <Search className="w-6 h-6 text-slate-400 group-focus-within/input:text-violet-400 group-focus-within/input:scale-110 transition-all duration-500" />
-              </div>
-
-              <div className="relative flex-1">
-                <input
-                  autoFocus
-                  placeholder="What are you looking for?"
-                  className="w-full bg-transparent text-white border-none focus:ring-0 placeholder-slate-600 text-2xl font-bold tracking-tight py-2"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyDown={onKeyDown}
-                />
-                {query && (
-                  <button 
-                    onClick={() => setQuery('')}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2 hover:bg-white/10 rounded-lg text-slate-500 hover:text-white transition-all"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-
-              <div className="relative z-10 flex items-center gap-3 ml-6">
-                <div className="hidden sm:flex items-center gap-2 px-3 py-2 bg-black/40 border border-white/10 rounded-xl">
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">ESC</span>
-                </div>
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 hover:bg-white/10 rounded-xl text-slate-500 hover:text-white transition-all"
-                >
-                  <X className="w-5 h-5" />
+            <div className="flex items-center gap-4 border-b p-4 sm:p-5" style={{ borderColor: 'var(--line)' }}>
+              <Search className="h-5 w-5 shrink-0" style={{ color: 'var(--muted)' }} />
+              <input
+                autoFocus
+                placeholder="Search materials, projects, courses..."
+                className="w-full bg-transparent text-xl font-black outline-none placeholder:font-bold"
+                style={{ color: 'var(--foreground)' }}
+                value={query}
+                onChange={(event) => updateQuery(event.target.value)}
+                onKeyDown={onKeyDown}
+              />
+              {query && (
+                <button type="button" onClick={() => updateQuery('')} className="icon-button h-9 w-9">
+                  <X className="h-4 w-4" />
                 </button>
-              </div>
+              )}
+              <button type="button" onClick={() => setIsOpen(false)} className="icon-button h-9 w-9">
+                <X className="h-4 w-4" />
+              </button>
             </div>
 
-            <div className="relative max-h-[60vh] overflow-y-auto p-3 custom-scrollbar">
+            <div className="max-h-[60vh] overflow-y-auto p-3">
               {filteredResults.length > 0 ? (
-                <div className="space-y-2 p-1">
-                  {filteredResults.map((result, index) => (
-                    <button
-                      key={`${result.type}-${result.id}-${index}`}
-                      onClick={() => handleSelect(result)}
-                      onMouseEnter={() => setSelectedIndex(index)}
-                      className={`w-full flex items-center p-4 rounded-2xl transition-all duration-300 text-left relative overflow-hidden group ${
-                        index === selectedIndex ? 'scale-[1.01]' : 'hover:bg-white/5'
-                      }`}
-                    >
-                      {/* Active Background */}
-                      {index === selectedIndex && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/20 border border-white/10 rounded-2xl"></div>
-                      )}
-
-                      <div className={`relative z-10 p-3 rounded-xl mr-5 transition-colors duration-300 ${
-                        index === selectedIndex ? 'bg-white/10' : 'bg-white/5'
-                      }`}>
-                        {result.type === 'semester' && <Clock className="w-5 h-5 text-violet-400" />}
-                        {result.type === 'subject' && <BookOpen className="w-5 h-5 text-blue-400" />}
-                        {result.type === 'material' && <FileText className="w-5 h-5 text-emerald-400" />}
-                        {result.type === 'project' && <Code className="w-5 h-5 text-orange-400" />}
-                      </div>
-                      
-                      <div className="relative z-10 flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className={`font-bold block truncate tracking-tight text-lg ${
-                            index === selectedIndex ? 'text-white' : 'text-slate-200'
-                          }`}>
+                <div className="space-y-2">
+                  {filteredResults.map((result, index) => {
+                    const Icon = iconForType(result.type)
+                    const selected = index === selectedIndex
+                    return (
+                      <button
+                        key={`${result.type}-${result.id}-${index}`}
+                        type="button"
+                        onClick={() => handleSelect(result)}
+                        onMouseEnter={() => setSelectedIndex(index)}
+                        className="flex w-full items-center gap-4 border p-4 text-left transition-colors"
+                        style={{
+                          borderColor: selected ? 'var(--accent)' : 'var(--line)',
+                          background: selected ? 'color-mix(in srgb, var(--accent) 10%, var(--surface))' : 'var(--surface)',
+                          borderRadius: 8,
+                        }}
+                      >
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center border" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 6 }}>
+                          <Icon className="h-5 w-5" style={{ color: 'var(--accent)' }} />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-base font-black" style={{ color: 'var(--foreground)' }}>
                             {result.title}
                           </span>
-                          <span className={`text-[9px] uppercase tracking-[0.2em] font-black ml-4 px-2.5 py-1 rounded-lg border transition-colors ${
-                            index === selectedIndex ? 'bg-white/10 border-white/20 text-white' : 'bg-white/5 border-white/5 text-slate-500'
-                          }`}>
-                            {result.type}
-                          </span>
-                        </div>
-                        <div className="flex items-center">
-                          {result.category && (
-                            <>
-                              <span className={`text-[10px] uppercase tracking-widest font-black ${index === selectedIndex ? 'text-violet-300' : 'text-slate-500'}`}>
-                                {result.category}
-                              </span>
-                              <span className="mx-3 text-slate-800 font-bold">•</span>
-                            </>
-                          )}
-                          <span className={`text-xs truncate font-medium ${
-                            index === selectedIndex ? 'text-slate-300' : 'text-slate-500'
-                          }`}>
+                          <span className="block truncate text-sm" style={{ color: 'var(--muted)' }}>
+                            {result.category ? `${result.category} / ` : ''}
                             {result.description}
                           </span>
-                        </div>
-                      </div>
-
-                      {/* Selection Glow */}
-                      {index === selectedIndex && (
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                          <Hash className="w-4 h-4 text-violet-500 opacity-50" />
-                        </div>
-                      )}
-                    </button>
-                  ))}
+                        </span>
+                        <span className="stamp shrink-0">{result.type}</span>
+                      </button>
+                    )
+                  })}
                 </div>
               ) : query ? (
-                <div className="p-20 text-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-white/5 border border-white/10 mb-6 shadow-2xl relative group">
-                    <div className="absolute inset-0 bg-violet-600/20 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <Search className="w-8 h-8 text-slate-600 relative z-10" />
-                  </div>
-                  <p className="text-white text-xl font-bold tracking-tight">No intelligence found</p>
-                  <p className="text-slate-500 text-sm mt-2 max-w-[240px] mx-auto font-medium">Your query did not match any records in our collective vault.</p>
+                <div className="py-16 text-center">
+                  <p className="text-xl font-black" style={{ color: 'var(--foreground)' }}>No results found</p>
+                  <p className="section-copy mx-auto mt-2 max-w-sm text-sm">Try a course code, project title, subject name, or material type.</p>
                 </div>
               ) : (
-                <div className="p-8">
-                  <h3 className="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6 px-2 opacity-50">Quick Discovery</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-5">
+                  <h3 className="mono-label mb-4">Quick Links</h3>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {[
-                      { label: 'Semesters', icon: Clock, color: 'text-violet-400', desc: 'Browse temporal records', url: '/semesters' },
-                      { label: 'Subjects', icon: BookOpen, color: 'text-blue-400', desc: 'Direct academic lookup', url: '/semesters' },
-                      { label: 'Course Projects', icon: Code, color: 'text-orange-400', desc: 'Review implementation logic', url: '/projects' },
-                      { label: 'Study Materials', icon: FileText, color: 'text-emerald-400', desc: 'Access distributed nodes', url: '/semesters' },
+                      { label: 'Semesters', icon: Clock, url: '/semesters' },
+                      { label: 'Subjects', icon: BookOpen, url: '/semesters' },
+                      { label: 'Course Projects', icon: Code, url: '/projects' },
+                      { label: 'Study Materials', icon: FileText, url: '/semesters' },
                     ].map((item) => (
-                      <button 
+                      <button
                         key={item.label}
+                        type="button"
                         onClick={() => {
                           router.push(item.url)
                           setIsOpen(false)
                         }}
-                        className="flex items-start text-left p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-violet-500/30 hover:bg-white/10 transition-all group"
+                        className="surface-card flex items-center gap-3 p-4 text-left"
                       >
-                        <div className="p-2 rounded-lg bg-black/40 mr-4 group-hover:scale-110 group-hover:bg-violet-600/10 transition-all">
-                          <item.icon className={`w-4 h-4 ${item.color}`} />
-                        </div>
-                        <div>
-                          <div className="text-white text-sm font-bold tracking-tight mb-0.5">{item.label}</div>
-                          <div className="text-[10px] text-slate-500 font-medium">{item.desc}</div>
-                        </div>
+                        <item.icon className="h-5 w-5" style={{ color: 'var(--accent)' }} />
+                        <span className="font-black" style={{ color: 'var(--foreground)' }}>{item.label}</span>
                       </button>
                     ))}
                   </div>
-                  
-                  {/* Footer Shortcuts */}
-                  <div className="mt-12 pt-8 border-t border-white/5 flex items-center justify-center gap-8">
-                    {[
-                      { key: 'ENTER', action: 'to select' },
-                      { key: '↑↓', action: 'to navigate' }
-                    ].map((s) => (
-                      <div key={s.key} className="flex items-center gap-3">
-                        <kbd className="px-2 py-1 bg-white/5 border border-white/10 rounded-md text-[9px] font-bold text-slate-400">{s.key}</kbd>
-                        <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">{s.action}</span>
-                      </div>
-                    ))}
+                  <div className="mt-8 flex justify-center gap-4 border-t pt-5" style={{ borderColor: 'var(--line)' }}>
+                    <span className="mono-label">Enter to select</span>
+                    <span className="mono-label">Esc to close</span>
                   </div>
                 </div>
               )}

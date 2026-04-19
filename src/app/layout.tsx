@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -25,7 +25,12 @@ export const metadata: Metadata = {
   title: "Lubdhok",
   description: "Official website of Lubdhok university batch. Access study materials, events, projects, announcements, and connect with batch members all in one place.",
   keywords: "Lubdhok batch, university batch, study materials, events, projects, announcements, batch members, academic resources",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -34,18 +39,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen transition-colors duration-300`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen`}
         suppressHydrationWarning={true}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-50">
+          <div className="site-shell flex flex-col min-h-screen">
             <Header />
             <ScrollProgress />
             <main className="flex-grow">

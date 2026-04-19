@@ -1,44 +1,33 @@
 'use client'
 
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
-import { Sun, Moon } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Moon, Sun } from 'lucide-react'
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  React.useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setMounted(true))
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
 
-  if (!mounted) return null
+  if (!mounted || !resolvedTheme) {
+    return <span className="icon-button opacity-0" aria-hidden="true" />
+  }
+
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="relative p-2 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 transition-all duration-300 group overflow-hidden"
-      aria-label="Toggle theme"
+      type="button"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className="icon-button"
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      title={isDark ? 'Light theme' : 'Dark theme'}
     >
-      <div className="relative z-10">
-        {theme === 'dark' ? (
-          <motion.div
-            initial={{ scale: 0, rotate: -90 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-          >
-            <Sun className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors" />
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ scale: 0, rotate: 90 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-          >
-            <Moon className="w-5 h-5 text-indigo-600 group-hover:text-indigo-500 transition-colors" />
-          </motion.div>
-        )}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>
   )
 }
