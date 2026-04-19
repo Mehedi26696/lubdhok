@@ -390,6 +390,53 @@ export const events: Event[] = [
         organizer: 'Department of Computer Science and Engineering, University of Dhaka',
         registrationLink: 'https://visionx.cse.du.ac.bd/',
 
+    },
+    {
+        id: '17',
+        title: "CSEDU IFTAR 2026",
+        description:
+            "A special Iftar event organized by the Computer Science and Engineering Department to bring together students and faculty for a night of sharing and fellowship.",
+        date: '2026-03-07',
+        time: '6:00 PM - 8:00 PM',
+        location: "CSE Department, University of Dhaka",
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/iftar20261.jpg',
+            '/events/iftar20262.jpg'
+        ],
+        organizer: 'CSEDU Students Club',
+        highlights: [
+            'Traditional Iftar meal',
+            'Quran recitation',
+            'Group prayers'
+        ]
+    },
+    {
+        id: '18',
+        title: "CSEDU Annual Picnic 2026",
+        description:
+            "An annual picnic organized by the Computer Science and Engineering Department to foster camaraderie among students and faculty through fun activities, games, and a relaxing day outdoors.",
+        date: '2026-04-18',
+        time: '07:00 AM - 07:00 PM',
+        location: "CSE Department, University of Dhaka",
+        type: 'past',
+        category: 'social',
+        images: [
+            '/events/picnic20261.jpg',
+            '/events/picnic20262.jpg',
+            '/events/picnic20263.jpg',
+            '/events/picnic20264.jpg',
+            '/events/picnic20265.jpg' 
+
+        ],
+        organizer: '29th Batch',
+        highlights: [
+            'Collaborative Team-Building Challenges',
+            'Thrilling Rides & Interactive Games',
+            'Exciting Raffle Draw & Prizes',
+            'Shared Dining Experience'
+        ]
     }
 
 ]
