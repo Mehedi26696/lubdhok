@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
     { category: 'event', queries: ['event', 'events', 'show events', 'list events', 'tell me about events', 'all events'] },
     { category: 'project', queries: ['project', 'projects', 'show projects', 'list projects', 'tell me about projects', 'all projects'] },
     { category: 'achievement', queries: ['achievement', 'achievements', 'show achievements', 'list achievements', 'tell me about achievements', 'all achievements'] },
-    { category: 'announcement', queries: ['announcement', 'announcements', 'show announcements', 'list announcements', 'tell me about announcements', 'all announcements'] },
     { category: 'studyMaterial', queries: ['study material', 'study materials', 'notes', 'slides', 'assignments', 'books', 'show study materials', 'list study materials', 'tell me about study materials', 'all study materials'] },
   ]
   const lowerQuery = query.toLowerCase();
@@ -40,7 +39,7 @@ export async function POST(req: NextRequest) {
 
   const prompt = `
 You are a helpful assistant for a university batch website. 
-Answer the user's question using ONLY the following knowledge base (from announcements, achievements, events, projects, and study materials):
+Answer the user's question using ONLY the following knowledge base (from achievements, events, projects, and study materials):
 
 ${contextString}
 

@@ -1,4 +1,3 @@
-import { announcements } from './announcements'
 import { achievements } from './achievements'
 import { events } from './events'
 import { getAllProjects } from './projects'
@@ -69,7 +68,6 @@ function addSummaryToStudyMaterials(materials: unknown[]) {
 }
 
 export const knowledgeBase = [
-  ...addSearchText(addSource(announcements, 'announcement', 'announcements.ts')),
   ...addSearchText(addSource(achievements, 'achievement', 'achievements.ts')),
   ...addSearchText(addSource(addSummaryToEvents(events), 'event', 'events.ts')),
   ...addSearchText(addSource(addSummaryToProjects(getAllProjects()), 'project', 'projects.ts')),

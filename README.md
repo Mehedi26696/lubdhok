@@ -48,14 +48,13 @@
 
 ## About
 
-A modern web portal for the **Lubdhok** batch (CSE 29th Batch, Dhaka University) to share study materials, academic projects, events, and announcements. Built with Next.js 15, TypeScript, and Tailwind CSS.
+A modern web portal for the **Lubdhok** batch (CSE 29th Batch, Dhaka University) to share study materials, academic projects, and events. Built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Features
 
 - Study materials organized by semester and course
 - Academic project showcase with GitHub integration
 - Event management (academic, social, cultural, technical)
-- Batch announcements and updates
 - AI-powered chatbot (Google Gemini, OpenAI, Groq)
 
 ## Tech Stack
