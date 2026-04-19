@@ -6,7 +6,7 @@ export default function AboutPage() {
     { label: 'Batch Members', value: '60', icon: Users },
     { label: 'Academic Year', value: '3rd', icon: BookOpen },
     { label: 'Department', value: 'CSE', icon: Laptop },
-    { label: 'Years Together', value: '2+', icon: CalendarDays },
+    { label: 'Years Together', value: '3', icon: CalendarDays },
   ]
 
   const values = [
@@ -32,45 +32,7 @@ export default function AboutPage() {
     },
   ]
 
-  const timeline = [
-    {
-      year: '2023-2024',
-      title: 'Semester 1: New Beginnings',
-      description:
-        'Started our Computer Science journey at University of Dhaka and built the first routines of campus life.',
-    },
-    {
-      year: '2024',
-      title: 'Semester 2: Collaborative Growth',
-      description:
-        'Worked through group projects, lab submissions, and exam preparation with stronger batch support.',
-    },
-    {
-      year: '2024-2025',
-      title: 'Semester 3: Advancing Forward',
-      description:
-        'Took on deeper coursework and started shaping a more practical technical foundation.',
-    },
-    {
-      year: '2025',
-      title: 'Semester 4: Reaching New Heights',
-      description:
-        'Completed heavier project work, celebrated wins, and kept the archive growing.',
-    },
-    {
-      year: '2025-2026',
-      title: 'Semester 5: Looking Ahead',
-      description:
-        'Continuing into advanced courses while keeping the batch records and shared resources organized.',
-    },
-    {
-      year: '2026',
-      title: 'Semester 6: Preparing for the Future',
-      description:
-        'Finalizing our academic journey with capstone projects and preparing for the next steps in our careers.',
-    }
-  ]
-
+ 
   return (
     <div className="page-shell">
       <div className="page-content">
@@ -132,25 +94,6 @@ export default function AboutPage() {
                 </article>
               )
             })}
-          </div>
-        </section>
-
-        <section>
-          <div className="mb-8 max-w-3xl">
-            <h2 className="section-title">Our Journey So Far</h2>
-            <p className="section-copy mt-4">A short batch timeline from admission to the current academic year.</p>
-          </div>
-
-          <div className="space-y-4">
-            {timeline.map((item) => (
-              <article key={`${item.year}-${item.title}`} className="surface-card grid gap-4 p-5 sm:grid-cols-[8rem_1fr]">
-                <div className="text-3xl font-black" style={{ color: 'var(--accent)' }}>{item.year}</div>
-                <div>
-                  <h3 className="mb-2 text-xl font-black" style={{ color: 'var(--foreground)' }}>{item.title}</h3>
-                  <p className="section-copy text-sm">{item.description}</p>
-                </div>
-              </article>
-            ))}
           </div>
         </section>
       </div>
