@@ -16,7 +16,7 @@ export const achievements: Achievement[] = [
         date: '2024-12-15',
         awardedBy: 'CSE, University of Dhaka',
         link: 'https://www.linkedin.com/feed/update/urn:li:activity:7278103645320024064/',
-        coverImage: 'achievements/du.jpeg'
+        coverImage: 'achievements/ductf.png'
     },
     {
         id: '2',
