@@ -4,6 +4,10 @@ import { semester2 } from './semester-2'
 import { semester3 } from './semester-3'
 import { semester4 } from './semester-4'
 import { semester5 } from './semester-5'
+import { semester6 } from './semester-6'
+
 export type { StudyMaterial, Semester, Subject } from './types'
-export const semesters: Semester[] = [semester1, semester2, semester3, semester4, semester5]
-export { semester1, semester2, semester3, semester4, semester5 }
+
+export const semesters: Semester[] = [semester1, semester2, semester3, semester4, semester5, semester6]
+
+export { semester1, semester2, semester3, semester4, semester5, semester6 }
