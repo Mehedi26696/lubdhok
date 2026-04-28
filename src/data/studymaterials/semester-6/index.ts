@@ -12,6 +12,6 @@ import { subjectData as stat3205 } from './stat3205/data'
 export const semester6: Semester = {
   id: 'semester-6',
   name: 'Semester VI',
-  description: 'Sixth Semester',
+  description: 'Sixth Semester - (19.5 Credits)',
   subjects: [cse3201, cse3202, cse3203, cse3204, cse3211, cse3212, cse3216, eng3217, stat3205],
 }
