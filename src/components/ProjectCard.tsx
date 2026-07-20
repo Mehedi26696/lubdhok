@@ -26,9 +26,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <motion.article
       whileHover={{ y: -3 }}
-      className="surface-card flex h-full flex-col overflow-hidden"
+      className="surface-card group flex h-full flex-col overflow-hidden"
     >
-      <div className="relative h-48 w-full border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+      <div className="relative h-52 w-full overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
         {project.coverImage ? (
           <Image
             src={project.coverImage}
@@ -42,8 +42,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <Code className="h-12 w-12" style={{ color: 'var(--muted)' }} />
           </div>
         )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/46 via-transparent to-transparent opacity-80" />
         {project.courseCode && (
-          <div className="absolute right-3 top-3 stamp" style={{ background: 'var(--surface)' }}>
+          <div className="absolute right-3 top-3 stamp shadow-sm" style={{ background: 'color-mix(in srgb, var(--surface) 86%, transparent)', backdropFilter: 'blur(12px)' }}>
             {project.courseCode}
           </div>
         )}
@@ -57,7 +58,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         <div className="mb-5 flex flex-wrap gap-2">
           {project.technologies.slice(0, 5).map((tech) => (
-            <span key={tech} className="mono-label rounded border px-2 py-1" style={{ borderColor: 'var(--line)' }}>
+            <span key={tech} className="mono-label rounded-full border px-2.5 py-1" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
               {tech}
             </span>
           ))}
@@ -75,9 +76,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               const avatarUrl = username ? `https://avatars.githubusercontent.com/${encodeURIComponent(username)}?s=64` : null
 
               return (
-                <div key={`${project.id}-${member.githubUsername}-${member.name}`} className="flex items-center justify-between gap-3 border p-2" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 6 }}>
+                <div key={`${project.id}-${member.githubUsername}-${member.name}`} className="flex items-center justify-between gap-3 border p-2" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 10 }}>
                   <div className="flex min-w-0 items-center gap-3">
-                    <div className="relative h-8 w-8 shrink-0 overflow-hidden border" style={{ borderColor: 'var(--line)', borderRadius: 6, background: 'var(--surface)' }}>
+                    <div className="relative h-8 w-8 shrink-0 overflow-hidden border" style={{ borderColor: 'var(--line)', borderRadius: 999, background: 'var(--surface)' }}>
                       {avatarUrl && !avatarFailed[username] ? (
                         <Image
                           src={avatarUrl}

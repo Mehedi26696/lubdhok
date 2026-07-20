@@ -11,13 +11,13 @@ const footerStats = [
 
 export default function Footer() {
   return (
-    <footer className="border-t" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-      <div className="mx-auto max-w-[92rem] px-4 py-10 sm:px-6 lg:px-8">
+    <footer className="border-t" style={{ borderColor: 'var(--line)', background: 'linear-gradient(180deg, var(--surface-muted), var(--background))' }}>
+      <div className="mx-auto max-w-[92rem] px-4 py-14 sm:px-6 lg:px-8">
         <div className="raw-panel overflow-hidden">
           <div className="grid border-b lg:grid-cols-[1.15fr_1fr]" style={{ borderColor: 'var(--line)' }}>
             <div className="border-b p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10" style={{ borderColor: 'var(--line)' }}>
               <div className="mb-8 flex items-start gap-5">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center border text-5xl font-black" style={{ borderColor: 'var(--line-strong)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 8 }}>
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center border text-5xl font-black shadow-sm" style={{ borderColor: 'var(--line)', background: 'linear-gradient(135deg, var(--accent), var(--accent-secondary))', color: 'var(--accent-contrast)', borderRadius: 16 }}>
                   L
                 </div>
                 <div>
@@ -34,7 +34,7 @@ export default function Footer() {
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 {footerStats.map((item) => (
-                  <div key={item.label} className="flex items-center justify-between gap-4 border p-4" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}>
+                  <div key={item.label} className="flex items-center justify-between gap-4 border p-4" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 12 }}>
                     <span className="mono-label">{item.label}</span>
                     <item.icon className="h-5 w-5" style={{ color: 'var(--accent)' }} />
                   </div>
@@ -60,11 +60,11 @@ export default function Footer() {
                   href="https://github.com/Mehedi26696"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block border p-5 transition-colors"
-                  style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}
+                  className="group block border p-5 transition-colors hover:shadow-[var(--shadow-soft)]"
+                  style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 12 }}
                 >
                   <div className="mb-8 flex items-center gap-5">
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden border" style={{ borderColor: 'var(--line-strong)', borderRadius: 8, background: 'var(--surface-muted)' }}>
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden border" style={{ borderColor: 'var(--line-strong)', borderRadius: 999, background: 'var(--surface-muted)' }}>
                       <Image
                         src="https://github.com/Mehedi26696.png?size=160"
                         alt="H.M. Mehedi Hasan"

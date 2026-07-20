@@ -16,8 +16,8 @@ export default function EventCard({ event }: EventCardProps) {
   const month = !Number.isNaN(startDate.getDate()) ? startDate.toLocaleString('default', { month: 'short' }) : 'Date'
 
   return (
-    <motion.article whileHover={{ y: -3 }} className="surface-card flex h-full flex-col overflow-hidden">
-      <div className="relative h-56 w-full border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+    <motion.article whileHover={{ y: -4 }} className="surface-card flex h-full flex-col overflow-hidden">
+      <div className="relative h-56 w-full overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
         {event.images?.[0] ? (
           <Image
             src={event.images[0]}
@@ -31,13 +31,14 @@ export default function EventCard({ event }: EventCardProps) {
             <Calendar className="h-12 w-12" style={{ color: 'var(--muted)' }} />
           </div>
         )}
-        <div className="absolute left-3 top-3 border px-3 py-2 text-center" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 6 }}>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/48 via-transparent to-transparent" />
+        <div className="absolute left-3 top-3 border px-3 py-2 text-center shadow-sm" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--surface) 88%, transparent)', borderRadius: 10, backdropFilter: 'blur(12px)' }}>
           <span className="block text-2xl font-black leading-none" style={{ color: 'var(--foreground)' }}>
             {day}
           </span>
           <span className="mono-label block">{month}</span>
         </div>
-        <span className="stamp absolute right-3 top-3 capitalize" style={{ background: 'var(--surface)' }}>
+        <span className="stamp absolute right-3 top-3 capitalize shadow-sm" style={{ background: 'color-mix(in srgb, var(--surface) 88%, transparent)', backdropFilter: 'blur(12px)' }}>
           {event.type}
         </span>
       </div>

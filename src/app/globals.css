@@ -3,41 +3,41 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f4efe3;
-  --foreground: #201915;
-  --surface: #fffaf0;
-  --surface-muted: #ebe2d0;
-  --surface-strong: #ded0b7;
-  --muted: #6f6251;
-  --line: #cdbf9f;
-  --line-strong: #9f8f72;
-  --accent: #8b3326;
-  --accent-contrast: #fffaf0;
-  --accent-secondary: #186456;
-  --accent-tertiary: #b77b2e;
-  --shadow: 0 18px 48px rgba(55, 40, 22, 0.13);
-  --shadow-soft: 0 10px 28px rgba(55, 40, 22, 0.09);
-  --nav-bg: rgba(244, 239, 227, 0.86);
-  --texture-opacity: 0.26;
+  --background: #f7f8fb;
+  --foreground: #151923;
+  --surface: #ffffff;
+  --surface-muted: #f0f3f8;
+  --surface-strong: #e2e8f1;
+  --muted: #667085;
+  --line: #dbe2ec;
+  --line-strong: #b9c4d4;
+  --accent: #2563eb;
+  --accent-contrast: #ffffff;
+  --accent-secondary: #0f9f8f;
+  --accent-tertiary: #f59e0b;
+  --shadow: 0 24px 70px rgba(26, 35, 54, 0.12);
+  --shadow-soft: 0 12px 36px rgba(26, 35, 54, 0.08);
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --texture-opacity: 0.16;
 }
 
 .dark {
-  --background: #151513;
-  --foreground: #eee7d8;
-  --surface: #201f1b;
-  --surface-muted: #292720;
-  --surface-strong: #353126;
-  --muted: #b7ab96;
-  --line: #4a4336;
-  --line-strong: #6c604d;
-  --accent: #d05a46;
-  --accent-contrast: #191714;
-  --accent-secondary: #69b59e;
-  --accent-tertiary: #d2a15a;
-  --shadow: 0 22px 58px rgba(0, 0, 0, 0.34);
-  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.26);
-  --nav-bg: rgba(21, 21, 19, 0.86);
-  --texture-opacity: 0.18;
+  --background: #0d111a;
+  --foreground: #eef3fb;
+  --surface: #141a25;
+  --surface-muted: #101722;
+  --surface-strong: #202a3a;
+  --muted: #9aa7bb;
+  --line: #253246;
+  --line-strong: #3b4a62;
+  --accent: #60a5fa;
+  --accent-contrast: #07111f;
+  --accent-secondary: #34d399;
+  --accent-tertiary: #fbbf24;
+  --shadow: 0 26px 80px rgba(0, 0, 0, 0.38);
+  --shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.28);
+  --nav-bg: rgba(13, 17, 26, 0.82);
+  --texture-opacity: 0.12;
 }
 
 * {
@@ -53,20 +53,18 @@ html {
 body {
   min-height: 100vh;
   background:
-    linear-gradient(90deg, rgba(32, 25, 21, 0.035) 1px, transparent 1px),
-    linear-gradient(rgba(32, 25, 21, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30rem),
+    radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--accent-secondary) 10%, transparent), transparent 28rem),
     var(--background);
-  background-size: 42px 42px, 42px 42px, auto;
   color: var(--foreground);
   font-family: var(--font-inter, Arial, Helvetica, sans-serif);
 }
 
 .dark body {
   background:
-    linear-gradient(90deg, rgba(238, 231, 216, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(238, 231, 216, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 16% 10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 30rem),
+    radial-gradient(circle at 84% 12%, color-mix(in srgb, var(--accent-secondary) 12%, transparent), transparent 28rem),
     var(--background);
-  background-size: 42px 42px, 42px 42px, auto;
 }
 
 body::before {
@@ -77,16 +75,13 @@ body::before {
   pointer-events: none;
   opacity: var(--texture-opacity);
   background-image:
-    repeating-linear-gradient(0deg, rgba(32, 25, 21, 0.07) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(90deg, rgba(32, 25, 21, 0.035) 0 1px, transparent 1px 7px);
-  mix-blend-mode: multiply;
+    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--foreground) 8%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 .dark body::before {
-  background-image:
-    repeating-linear-gradient(0deg, rgba(238, 231, 216, 0.08) 0 1px, transparent 1px 5px),
-    repeating-linear-gradient(90deg, rgba(238, 231, 216, 0.04) 0 1px, transparent 1px 8px);
-  mix-blend-mode: screen;
+  opacity: 0.1;
 }
 
 ::selection {
@@ -114,7 +109,7 @@ body::before {
     z-index: 1;
     width: min(100% - 2rem, 80rem);
     margin-inline: auto;
-    padding-block: 8rem 4rem;
+    padding-block: 9rem 5rem;
   }
 
   .narrow-content {
@@ -126,12 +121,13 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border-left: 3px solid var(--accent);
-    padding: 0.35rem 0.75rem;
-    background: color-mix(in srgb, var(--surface) 74%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
     color: var(--accent);
     font-family: var(--font-jetbrains-mono, monospace);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -173,15 +169,21 @@ body::before {
   .surface-card {
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
     box-shadow: var(--shadow-soft);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+
+  .surface-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 26%, var(--line));
+    box-shadow: var(--shadow);
   }
 
   .raw-panel {
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
-      linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-muted) 72%, transparent));
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-muted) 82%, transparent));
     box-shadow: var(--shadow);
   }
 
@@ -195,9 +197,9 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    border: 1px solid var(--line);
+    border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--line));
     border-radius: 999px;
-    background: var(--surface-muted);
+    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
     color: var(--foreground);
     font-family: var(--font-jetbrains-mono, monospace);
     font-size: 0.75rem;
@@ -213,17 +215,19 @@ body::before {
     gap: 0.55rem;
     min-height: 2.75rem;
     border: 1px solid color-mix(in srgb, var(--accent) 74%, black);
-    border-radius: 6px;
-    background: var(--accent);
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, var(--accent-secondary)));
     color: var(--accent-contrast);
     font-weight: 800;
     padding: 0.78rem 1.05rem;
     text-align: center;
-    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    box-shadow: 0 12px 24px color-mix(in srgb, var(--accent) 22%, transparent);
+    transition: transform 180ms ease, filter 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
 
   .btn-primary:hover {
-    background: color-mix(in srgb, var(--accent) 86%, black);
+    filter: saturate(1.08) brightness(1.02);
+    box-shadow: 0 16px 32px color-mix(in srgb, var(--accent) 28%, transparent);
     transform: translateY(-1px);
   }
 
@@ -234,7 +238,7 @@ body::before {
     gap: 0.55rem;
     min-height: 2.75rem;
     border: 1px solid var(--line-strong);
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--surface-strong);
     color: var(--foreground);
     font-weight: 800;
@@ -256,8 +260,8 @@ body::before {
     gap: 0.55rem;
     min-height: 2.75rem;
     border: 1px solid var(--line-strong);
-    border-radius: 6px;
-    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
     color: var(--foreground);
     font-weight: 800;
     padding: 0.78rem 1.05rem;
@@ -278,7 +282,7 @@ body::before {
     width: 2.5rem;
     height: 2.5rem;
     border: 1px solid var(--line);
-    border-radius: 6px;
+    border-radius: 8px;
     background: color-mix(in srgb, var(--surface) 86%, transparent);
     color: var(--foreground);
     transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
@@ -293,7 +297,7 @@ body::before {
   .form-field {
     width: 100%;
     border: 1px solid var(--line);
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--surface);
     color: var(--foreground);
     padding: 0.85rem 1rem;

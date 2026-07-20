@@ -144,28 +144,28 @@ function EntryPointCard({ entry, index }: { entry: EntryPoint; index: number }) 
       transition={{ delay: index * 0.06 }}
       className="surface-card group grid min-h-[330px] grid-rows-[auto_1fr_auto] overflow-hidden"
     >
-      <div className="flex items-center justify-between gap-4 border-b px-5 py-4" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+      <div className="flex items-center justify-between gap-4 border-b px-5 py-4" style={{ borderColor: 'var(--line)', background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), color-mix(in srgb, var(--accent-secondary) 8%, var(--surface)))' }}>
         <div className="flex items-center gap-3">
-          <span className="mono-label flex h-9 w-9 items-center justify-center border" style={{ borderColor: 'var(--line-strong)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 6 }}>
+          <span className="mono-label flex h-9 w-9 items-center justify-center border shadow-sm" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 10 }}>
             {entry.code}
           </span>
           <span className="mono-label">{entry.label}</span>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center border" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 6 }}>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center border shadow-sm" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 10 }}>
           <Icon className="h-6 w-6" style={{ color: 'var(--accent)' }} />
         </span>
       </div>
 
       <div className="p-5">
-        <h3 className="mb-4 text-3xl font-black leading-none" style={{ color: 'var(--foreground)' }}>
+        <h3 className="mb-4 text-2xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
           {entry.title}
         </h3>
         <p className="section-copy mb-6 text-sm">{entry.description}</p>
 
         <div className="space-y-2">
           {entry.items.map((item) => (
-            <div key={item} className="flex items-center gap-3 border px-3 py-2 text-sm font-bold" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 6 }}>
-              <span className="h-2 w-2 shrink-0" style={{ background: 'var(--accent)' }} />
+            <div key={item} className="flex items-center gap-3 border px-3 py-2 text-sm font-bold" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', color: 'var(--foreground)', borderRadius: 8 }}>
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: 'var(--accent-secondary)' }} />
               <span>{item}</span>
             </div>
           ))}
@@ -262,84 +262,53 @@ export default function HomePage() {
 
   return (
     <div className="page-shell">
-      <section className="relative min-h-[94vh] overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage:
-              'linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)',
-            backgroundSize: '56px 56px',
-          }}
+      <section className="relative min-h-[92vh] overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+        <Image
+          src="/batch.jpg"
+          alt="Lubdhok 29 batch"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
-        <div className="absolute inset-x-0 top-20 h-px" style={{ background: 'var(--line)' }} />
-        <div className="absolute bottom-12 left-0 right-0 h-px" style={{ background: 'var(--line)' }} />
-        <div className="absolute left-6 top-28 hidden h-[calc(100%-10rem)] w-px lg:block" style={{ background: 'var(--line)' }} />
-        <div className="absolute right-6 top-28 hidden h-[calc(100%-10rem)] w-px lg:block" style={{ background: 'var(--line)' }} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,12,22,0.9),rgba(7,12,22,0.62)_48%,rgba(7,12,22,0.16)),linear-gradient(0deg,rgba(7,12,22,0.82),transparent_42%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[94vh] w-full max-w-[92rem] flex-col justify-end px-4 pb-7 pt-32 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-[92rem] flex-col justify-end px-4 pb-7 pt-32 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="w-full pb-7"
+            className="w-full pb-8"
           >
-            <div className="raw-panel overflow-hidden">
-              <div className="flex flex-col gap-3 border-b px-5 py-4 sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: 'var(--line)' }}>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="eyebrow">CSEDU / 29th Batch</span>
-                </div>
-                
+            <div className="max-w-5xl">
+              <div className="eyebrow mb-6 border-white/20 bg-white/10 text-white backdrop-blur-md">
+                <Sparkles className="h-4 w-4" />
+                CSEDU 29th Batch
               </div>
+              <h1 className="text-[clamp(4.25rem,14vw,11rem)] font-black leading-[0.82] text-white">
+                LUBDHOK
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-white/78 sm:text-xl">
+                A polished academic hub for study materials, course projects, event memories, and batch resources from the Department of Computer Science and Engineering, University of Dhaka.
+              </p>
 
-              <div className="p-6 sm:p-8 lg:p-12">
-                <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
-                  <div>
-                    <h1 className="text-[clamp(4.25rem,13vw,11rem)] font-black leading-[0.78]" style={{ color: 'var(--foreground)' }}>
-                      LUBDHOK
-                    </h1>
-
-                    <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                      {[
-                        { href: '/semesters', label: 'Open Materials', icon: BookOpen, primary: true },
-                        { href: '/projects', label: 'Browse Projects', icon: Code },
-                        { href: '/events', label: 'View Events', icon: Calendar },
-                      ].map((item) => {
-                        const Icon = item.icon
-                        return (
-                          <Link key={item.href} href={item.href} className={item.primary ? 'btn-primary justify-between' : 'btn-outline justify-between'}>
-                            <span className="inline-flex items-center gap-2">
-                              <Icon className="h-4 w-4" />
-                              {item.label}
-                            </span>
-                            <ChevronRight className="h-4 w-4" />
-                          </Link>
-                        )
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="border p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}>
-                    <div className="mb-6 flex items-start justify-between gap-4">
-                      <div>
-                        <div className="text-7xl font-black leading-none" style={{ color: 'var(--accent)' }}>29th</div>
-                        <div className="mono-label mt-2">Batch</div>
-                      </div>
-                      <Users className="h-8 w-8" style={{ color: 'var(--accent-secondary)' }} />
-                    </div>
-
-                    <div className="space-y-3">
-                      {[
-                        ['Dept', 'Department of Computer Science and Engineering'],
-                        ['Home', 'University of Dhaka'],
-                      ].map(([label, value]) => (
-                        <div key={label} className="grid grid-cols-[4rem_1fr] gap-3 border-t pt-3" style={{ borderColor: 'var(--line)' }}>
-                          <span className="mono-label">{label}</span>
-                          <span className="text-sm font-black" style={{ color: 'var(--foreground)' }}>{value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {[
+                  { href: '/semesters', label: 'Open Materials', icon: BookOpen, primary: true },
+                  { href: '/projects', label: 'Browse Projects', icon: Code },
+                  { href: '/events', label: 'View Events', icon: Calendar },
+                ].map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <Link key={item.href} href={item.href} className={item.primary ? 'btn-primary justify-between' : 'btn-outline justify-between border-white/25 bg-white/12 text-white backdrop-blur-md hover:bg-white/18'}>
+                      <span className="inline-flex items-center gap-2">
+                        <Icon className="h-4 w-4" />
+                        {item.label}
+                      </span>
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                  )
+                })}
               </div>
             </div>
 
@@ -354,12 +323,12 @@ export default function HomePage() {
             ].map((stat) => {
               const Icon = stat.icon
               return (
-                <div key={stat.label} className="surface-card flex items-center justify-between gap-4 p-4">
+                <div key={stat.label} className="flex items-center justify-between gap-4 rounded-xl border border-white/14 bg-white/12 p-4 text-white shadow-[var(--shadow-soft)] backdrop-blur-md">
                   <div>
-                    <div className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>{stat.value}</div>
-                    <div className="mono-label">{stat.label}</div>
+                    <div className="text-3xl font-black">{stat.value}</div>
+                    <div className="font-mono text-[0.72rem] font-bold uppercase text-white/68">{stat.label}</div>
                   </div>
-                  <Icon className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+                  <Icon className="h-6 w-6 text-white/76" />
                 </div>
               )
             })}
@@ -375,7 +344,10 @@ export default function HomePage() {
                 <Sparkles className="h-4 w-4" />
                 Archive Index
               </div>
-               
+              <h2 className="section-title">Everything in one place</h2>
+              <p className="section-copy mt-4 max-w-2xl">
+                Fast entry points for the resources students open most: files, projects, events, and batch records.
+              </p>
             </div>
           </div>
 
@@ -396,6 +368,9 @@ export default function HomePage() {
                 Live Ledger
               </div>
               <h2 className="section-title">Recent records</h2>
+              <p className="section-copy mt-4 max-w-2xl">
+                A moving snapshot of the latest events, project entries, and material shelves.
+              </p>
             </div>
           </div>
 
