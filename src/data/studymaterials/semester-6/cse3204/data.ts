@@ -27,6 +27,16 @@ export const subjectData: Subject = {
                             "https://github.com/Mehedi26696/Formal-Language-Automata-and-Computability/tree/main/Lecture%20Slides",
                     },
                     {
+                        id: "cse3204-notes",
+                        title: "Formal Language Automata and Computability - Notes",
+                        description: "Lecture notes for Formal Language Automata and Computability",
+                        type: "note",
+                        subject: "Formal Language Automata and Computability",
+                        uploadDate: "2026-04-28",
+                        viewUrl:
+                            "https://github.com/Mehedi26696/Formal-Language-Automata-and-Computability/tree/main/Notes",
+                    },
+                    {
                         id: "cse3204-assignments",
                         title: "Formal Language Automata and Computability - Assignments",
                         description: "Assignments for Formal Language Automata and Computability",
