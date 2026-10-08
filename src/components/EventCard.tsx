@@ -1,68 +1,72 @@
-'use client'
-
-import Image from 'next/image'
+﻿import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { ArrowRight, Calendar, MapPin } from 'lucide-react'
+import { CalendarDays, Images, MapPin } from 'lucide-react'
 import { type Event } from '@/data/events'
+import CardArrow from './CardArrow'
 
-interface EventCardProps {
-  event: Event
-}
-
-export default function EventCard({ event }: EventCardProps) {
-  const startDate = new Date(event.date.split(' to ')[0])
-  const day = !Number.isNaN(startDate.getDate()) ? startDate.getDate() : '--'
-  const month = !Number.isNaN(startDate.getDate()) ? startDate.toLocaleString('default', { month: 'short' }) : 'Date'
+export default function EventCard({ event }: { event: Event }) {
+  const startDate = event.date.split(' to ')[0]
+  const date = new Date(startDate)
+  const formatted = Number.isNaN(date.getTime())
+    ? startDate
+    : date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      })
 
   return (
-    <motion.article whileHover={{ y: -4 }} className="surface-card flex h-full flex-col overflow-hidden">
-      <div className="relative h-56 w-full overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-        {event.images?.[0] ? (
+    <Link
+      href={`/events/${event.id}`}
+      className="surface-card card-interactive group flex h-full flex-col p-2"
+    >
+      <div className="card-media aspect-[1.6]">
+        {event.images[0] ? (
           <Image
             src={event.images[0]}
             alt={event.title}
             fill
-            className="object-cover transition-transform duration-500 hover:scale-105"
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <Calendar className="h-12 w-12" style={{ color: 'var(--muted)' }} />
-          </div>
+          <CalendarDays className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 muted-text" />
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/48 via-transparent to-transparent" />
-        <div className="absolute left-3 top-3 border px-3 py-2 text-center shadow-sm" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--surface) 88%, transparent)', borderRadius: 10, backdropFilter: 'blur(12px)' }}>
-          <span className="block text-2xl font-black leading-none" style={{ color: 'var(--foreground)' }}>
-            {day}
-          </span>
-          <span className="mono-label block">{month}</span>
-        </div>
-        <span className="stamp absolute right-3 top-3 capitalize shadow-sm" style={{ background: 'color-mix(in srgb, var(--surface) 88%, transparent)', backdropFilter: 'blur(12px)' }}>
-          {event.type}
+        <span className="absolute left-3 top-3 rounded-md border border-white/70 bg-[#ffffff]/95 px-2.5 py-1.5 text-[11px] font-medium capitalize text-[#285c45] shadow-sm">
+          {event.category}
         </span>
+        {event.images.length > 1 && (
+          <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-[#ffffff]/95 px-2 py-1.5 text-[10px] font-medium text-[#242b27]">
+            <Images className="h-3 w-3" />
+            {event.images.length} photos
+          </span>
+        )}
       </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="mb-4 line-clamp-2 text-2xl font-black" style={{ color: 'var(--foreground)' }}>
-          {event.title}
-        </h3>
-        <div className="mb-5 space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
-          <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4" style={{ color: 'var(--accent)' }} />
-            <span>{event.location}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" style={{ color: 'var(--accent)' }} />
-            <span>{event.time}</span>
-          </div>
+      <div className="flex flex-1 flex-col p-4 pb-3 sm:p-5 sm:pb-4">
+        <div className="mb-3 flex items-center justify-between gap-2 text-[11px] muted-text">
+          <time
+            dateTime={startDate}
+            className="inline-flex items-center gap-1.5"
+          >
+            <CalendarDays className="h-3.5 w-3.5" />
+            {formatted}
+          </time>
+          {event.type !== 'past' && (
+            <span className="font-medium capitalize text-[var(--accent)]">
+              {event.type}
+            </span>
+          )}
         </div>
-        <p className="section-copy mb-6 line-clamp-3 text-sm">{event.description}</p>
-        <Link href={`/events/${event.id}`} className="btn-primary mt-auto">
-          View Event
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+        <h3 className="card-title mb-5 line-clamp-2">{event.title}</h3>
+        <div className="card-footer">
+          <span className="flex min-w-0 items-center gap-2 text-xs muted-text">
+            <MapPin className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate">{event.location}</span>
+          </span>
+          <CardArrow />
+        </div>
       </div>
-    </motion.article>
+    </Link>
   )
 }

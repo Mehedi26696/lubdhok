@@ -1,67 +1,74 @@
-'use client'
+﻿import Link from 'next/link'
+import { BookOpen, FileText } from 'lucide-react'
+import { type Semester } from '@/data/studyMaterials'
+import CardArrow from './CardArrow'
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen } from 'lucide-react'
-import { Semester } from '@/data/studyMaterials'
-
-interface SemesterCardProps {
-  semester: Semester
-}
-
-export default function SemesterCard({ semester }: SemesterCardProps) {
-  const regularSubjects = semester.subjects.filter(
-    (subject) => subject.name !== 'Question Banks' && !subject.code.startsWith('QB-')
+export default function SemesterCard({ semester }: { semester: Semester }) {
+  const subjects = semester.subjects.filter(
+    (subject) =>
+      !subject.code.startsWith('QB-') && subject.name !== 'Question Banks'
   )
-
-  const totalMaterials = semester.subjects.reduce((acc, subject) => acc + subject.materials.length, 0)
-  const totalSubjects = regularSubjects.length
-  const theorySubjects = regularSubjects.filter((subject) => subject.type === 'theory').length
-  const labSubjects = regularSubjects.filter((subject) => subject.type === 'lab').length
+  const count = semester.subjects.reduce(
+    (sum, subject) => sum + subject.materials.length,
+    0
+  )
+  const theoryCount = subjects.filter(
+    (subject) => subject.type === 'theory'
+  ).length
+  const labCount = subjects.filter((subject) => subject.type === 'lab').length
+  const preview = subjects.slice(0, 6)
 
   return (
-    <motion.article whileHover={{ y: -4 }} className="surface-card flex h-full flex-col overflow-hidden p-6">
-      <div className="mb-6 flex items-start justify-between gap-4">
-        <div>
-          <span className="stamp mb-4">{totalSubjects} Subjects</span>
-          <h3 className="text-2xl font-black" style={{ color: 'var(--foreground)' }}>
-            {semester.name}
-          </h3>
-        </div>
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center border shadow-sm" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--accent) 8%, var(--surface))', borderRadius: 10 }}>
-          <BookOpen className="h-6 w-6" style={{ color: 'var(--accent)' }} />
+    <Link
+      href={`/semester/${semester.id}`}
+      className="surface-card card-interactive group flex h-full flex-col p-6 sm:p-7"
+    >
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <span className="card-icon">
+          <BookOpen className="h-5 w-5" strokeWidth={1.75} />
         </span>
+        <span className="text-xs muted-text">{subjects.length} courses</span>
       </div>
-
-      <p className="section-copy mb-7 line-clamp-2 text-sm">{semester.description}</p>
-
-      <div className="mb-7 grid grid-cols-2 gap-3">
-        <div className="border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 10 }}>
-          <span className="mono-label block">Materials</span>
-          <span className="mt-1 block text-2xl font-black" style={{ color: 'var(--foreground)' }}>
-            {totalMaterials}
-          </span>
-        </div>
-        <div className="border p-3" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 10 }}>
-          <span className="mono-label block">Theory / Lab</span>
-          <span className="mt-1 block text-2xl font-black" style={{ color: 'var(--foreground)' }}>
-            {theorySubjects} / {labSubjects}
-          </span>
-        </div>
-      </div>
-
-      <div className="mb-7 flex flex-wrap gap-2">
-        {regularSubjects.map((subject) => (
-          <span key={subject.id} className="mono-label rounded-full border px-2.5 py-1" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+      <h2 className="text-[1.65rem] font-semibold tracking-[-.035em]">
+        {semester.name}
+      </h2>
+      <p className="mt-4 text-xs muted-text">
+        {theoryCount} theory{' '}
+        <span className="mx-1.5 text-[var(--line-strong)]">/</span> {labCount}{' '}
+        lab
+      </p>
+      <div
+        className="mb-6 mt-5 flex flex-wrap gap-1.5"
+        aria-label="Course preview"
+      >
+        {preview.map((subject) => (
+          <span key={subject.id} className="card-tag font-mono">
             {subject.code}
           </span>
         ))}
+        {subjects.length > preview.length && (
+          <span className="card-tag">
+            +{subjects.length - preview.length} more
+          </span>
+        )}
       </div>
-
-      <Link href={`/semester/${semester.id}`} className="btn-primary mt-auto">
-        Access Materials
-        <ArrowRight className="h-4 w-4" />
-      </Link>
-    </motion.article>
+      <div className="card-footer">
+        <span className="inline-flex items-center gap-2 text-xs muted-text">
+          <FileText className="h-3.5 w-3.5" />
+          <span>
+            <strong className="font-semibold text-[var(--foreground)]">
+              {count}
+            </strong>{' '}
+            resources
+          </span>
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="text-xs font-medium text-[var(--accent)]">
+            Explore
+          </span>
+          <CardArrow />
+        </span>
+      </div>
+    </Link>
   )
 }

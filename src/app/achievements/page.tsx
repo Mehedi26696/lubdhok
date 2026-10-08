@@ -3,7 +3,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Award, Calendar, ExternalLink, Star, Trophy } from 'lucide-react'
+import {
+  ArrowLeft,
+  Award,
+  Calendar,
+  ExternalLink,
+  Star,
+  Trophy,
+} from 'lucide-react'
 import { achievements } from '@/data/achievements'
 
 export default function AchievementsPage() {
@@ -11,7 +18,11 @@ export default function AchievementsPage() {
     <div className="page-shell">
       <div className="page-content">
         <nav className="mb-10">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold" style={{ color: 'var(--muted)' }}>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 font-bold"
+            style={{ color: 'var(--muted)' }}
+          >
             <ArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
@@ -24,15 +35,25 @@ export default function AchievementsPage() {
           </div>
           <h1 className="section-title">Our Milestones</h1>
           <p className="section-copy mt-5">
-            Competition wins, recognition, and public achievements from the Lubdhok batch.
+            Competition wins, recognition, and public achievements from the
+            Lubdhok batch.
           </p>
         </header>
 
-        <motion.div initial="hidden" animate="visible" className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2"
+        >
           {achievements.length === 0 ? (
             <div className="surface-card col-span-full py-20 text-center">
-              <Award className="mx-auto mb-4 h-12 w-12" style={{ color: 'var(--muted)' }} />
-              <p className="section-copy">The achievement archive is waiting for its next entry.</p>
+              <Award
+                className="mx-auto mb-4 h-12 w-12"
+                style={{ color: 'var(--muted)' }}
+              />
+              <p className="section-copy">
+                The achievement archive is waiting for its next entry.
+              </p>
             </div>
           ) : (
             [...achievements].reverse().map((achievement, index) => (
@@ -41,7 +62,7 @@ export default function AchievementsPage() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="surface-card flex h-full flex-col p-5 md:p-6"
+                className="surface-card card-with-actions flex h-full flex-col p-5 md:p-6"
               >
                 {achievement.coverImage && (
                   <div className="image-frame relative mb-6 aspect-video w-full overflow-hidden">
@@ -61,27 +82,41 @@ export default function AchievementsPage() {
                     Achievement
                   </span>
                 </div>
-                <h3 className="mb-3 text-2xl font-black" style={{ color: 'var(--foreground)' }}>
-                  {achievement.title}
-                </h3>
-                <p className="section-copy mb-6 line-clamp-3 text-sm">{achievement.description}</p>
+                <h3 className="card-title mb-3">{achievement.title}</h3>
 
                 <div className="mt-auto space-y-4">
-                  <div className="flex flex-wrap gap-3 text-sm" style={{ color: 'var(--muted)' }}>
+                  <div
+                    className="flex flex-wrap gap-3 text-sm"
+                    style={{ color: 'var(--muted)' }}
+                  >
                     <span className="inline-flex items-center gap-2">
-                      <Calendar className="h-4 w-4" style={{ color: 'var(--accent)' }} />
-                      {new Date(achievement.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                      <Calendar
+                        className="h-4 w-4"
+                        style={{ color: 'var(--accent)' }}
+                      />
+                      {new Date(achievement.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        year: 'numeric',
+                      })}
                     </span>
                     {achievement.awardedBy && (
                       <span className="inline-flex items-center gap-2">
-                        <Award className="h-4 w-4" style={{ color: 'var(--accent)' }} />
+                        <Award
+                          className="h-4 w-4"
+                          style={{ color: 'var(--accent)' }}
+                        />
                         {achievement.awardedBy}
                       </span>
                     )}
                   </div>
 
                   {achievement.link && (
-                    <a href={achievement.link} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                    <a
+                      href={achievement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="card-action"
+                    >
                       Details
                       <ExternalLink className="h-4 w-4" />
                     </a>

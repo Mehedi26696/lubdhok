@@ -1,5 +1,13 @@
 import Image from 'next/image'
-import { BookOpen, CalendarDays, HeartHandshake, Laptop, Lightbulb, Target, Users } from 'lucide-react'
+import {
+  BookOpen,
+  CalendarDays,
+  HeartHandshake,
+  Laptop,
+  Lightbulb,
+  Target,
+  Users,
+} from 'lucide-react'
 
 export default function AboutPage() {
   const stats = [
@@ -12,27 +20,30 @@ export default function AboutPage() {
   const values = [
     {
       title: 'Academic Excellence',
-      description: 'We support each other to do better work in our Computer Science studies.',
+      description:
+        'We support each other to do better work in our Computer Science studies.',
       icon: Target,
     },
     {
       title: 'Collaboration',
-      description: 'Assignments, projects, and exam preparation become stronger when we work together.',
+      description:
+        'Assignments, projects, and exam preparation become stronger when we work together.',
       icon: HeartHandshake,
     },
     {
       title: 'Learning',
-      description: 'We share notes, code, references, and explanations so nobody has to start from zero.',
+      description:
+        'We share notes, code, references, and explanations so nobody has to start from zero.',
       icon: Lightbulb,
     },
     {
       title: 'Community',
-      description: 'The batch is more than coursework: it is a network of people growing together.',
+      description:
+        'The batch is more than coursework: it is a network of people growing together.',
       icon: Users,
     },
   ]
 
- 
   return (
     <div className="page-shell">
       <div className="page-content">
@@ -44,7 +55,9 @@ export default function AboutPage() {
             </div>
             <h1 className="section-title">Lubdhok 29</h1>
             <p className="section-copy mt-5">
-              We are Department of Computer Science and Engineering students at University of Dhaka, learning, building, competing, and keeping our batch archive alive together.
+              We are Department of Computer Science and Engineering students at
+              University of Dhaka, learning, building, competing, and keeping
+              our batch archive alive together.
             </p>
           </div>
           <div className="image-frame relative h-72 overflow-hidden sm:h-96">
@@ -56,7 +69,9 @@ export default function AboutPage() {
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
             <div className="absolute inset-x-0 bottom-0 bg-stone-950/70 p-5 text-white">
-              <h2 className="text-2xl font-black">Computer Science and Engineering, University of Dhaka</h2>
+              <h2 className="text-2xl font-black">
+                Computer Science and Engineering, University of Dhaka
+              </h2>
               <p className="text-sm font-bold text-stone-200">Lubdhok 29</p>
             </div>
           </div>
@@ -66,9 +81,20 @@ export default function AboutPage() {
           {stats.map((stat) => {
             const Icon = stat.icon
             return (
-              <article key={stat.label} className="surface-card p-5 text-center">
-                <Icon className="mx-auto mb-4 h-6 w-6" style={{ color: 'var(--accent)' }} />
-                <div className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>{stat.value}</div>
+              <article
+                key={stat.label}
+                className="surface-card p-5 text-center"
+              >
+                <Icon
+                  className="mx-auto mb-4 h-6 w-6"
+                  style={{ color: 'var(--accent)' }}
+                />
+                <div
+                  className="text-3xl font-black"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  {stat.value}
+                </div>
                 <div className="mono-label mt-2">{stat.label}</div>
               </article>
             )
@@ -88,9 +114,16 @@ export default function AboutPage() {
               const Icon = value.icon
               return (
                 <article key={value.title} className="surface-card p-5">
-                  <Icon className="mb-5 h-7 w-7" style={{ color: 'var(--accent-secondary)' }} />
-                  <h3 className="mb-2 text-xl font-black" style={{ color: 'var(--foreground)' }}>{value.title}</h3>
-                  <p className="section-copy text-sm">{value.description}</p>
+                  <Icon
+                    className="mb-5 h-7 w-7"
+                    style={{ color: 'var(--accent-secondary)' }}
+                  />
+                  <h3
+                    className="mb-2 text-xl font-black"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    {value.title}
+                  </h3>
                 </article>
               )
             })}

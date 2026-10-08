@@ -1,142 +1,133 @@
-'use client'
-
-import { useState } from 'react'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Code, ExternalLink, FileText, Github, Users } from 'lucide-react'
+﻿import Image from 'next/image'
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Code2,
+  FileText,
+  Github,
+} from 'lucide-react'
 import { type AcademicProject } from '@/data/projects'
-
-interface ProjectCardProps {
-  project: AcademicProject
-}
 
 function initials(name: string) {
   return name
-    .split(' ')
+    .split(/\s+/)
     .filter(Boolean)
     .map((part) => part[0])
-    .join('')
     .slice(0, 2)
+    .join('')
     .toUpperCase()
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-  const [avatarFailed, setAvatarFailed] = useState<Record<string, boolean>>({})
-
+export default function ProjectCard({ project }: { project: AcademicProject }) {
   return (
-    <motion.article
-      whileHover={{ y: -3 }}
-      className="surface-card group flex h-full flex-col overflow-hidden"
-    >
-      <div className="relative h-52 w-full overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+    <article className="surface-card card-with-actions flex h-full flex-col p-2">
+      <div className="card-media aspect-[1.7] border border-[var(--line)]">
         {project.coverImage ? (
           <Image
             src={project.coverImage}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-contain"
+            sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <Code className="h-12 w-12" style={{ color: 'var(--muted)' }} />
-          </div>
-        )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/46 via-transparent to-transparent opacity-80" />
-        {project.courseCode && (
-          <div className="absolute right-3 top-3 stamp shadow-sm" style={{ background: 'color-mix(in srgb, var(--surface) 86%, transparent)', backdropFilter: 'blur(12px)' }}>
-            {project.courseCode}
-          </div>
+          <Code2 className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 muted-text" />
         )}
       </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="mb-2 line-clamp-2 text-xl font-black" style={{ color: 'var(--foreground)' }}>
-          {project.title}
-        </h3>
-        <p className="section-copy mb-4 line-clamp-3 text-sm">{project.description}</p>
-
-        <div className="mb-5 flex flex-wrap gap-2">
-          {project.technologies.slice(0, 5).map((tech) => (
-            <span key={tech} className="mono-label rounded-full border px-2.5 py-1" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-              {tech}
+      <div className="flex flex-1 flex-col p-4 pb-3 sm:p-5 sm:pb-4">
+        <span className="mono-label mb-2 text-[var(--accent)]">
+          {project.courseCode}
+        </span>
+        <h3 className="card-title">{project.title}</h3>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {project.technologies.map((technology) => (
+            <span key={technology} className="card-tag">
+              {technology}
             </span>
           ))}
-          {project.technologies.length > 5 && <span className="mono-label px-2 py-1">+{project.technologies.length - 5}</span>}
         </div>
-
-        <div className="mb-5">
-          <div className="mb-3 flex items-center gap-2">
-            <Users className="h-4 w-4" style={{ color: 'var(--accent-secondary)' }} />
-            <span className="mono-label">Team Members</span>
-          </div>
-          <div className="grid gap-2">
-            {project.teamMembers.map((member) => {
-              const username = member.githubUsername.trim()
-              const avatarUrl = username ? `https://avatars.githubusercontent.com/${encodeURIComponent(username)}?s=64` : null
-
-              return (
-                <div key={`${project.id}-${member.githubUsername}-${member.name}`} className="flex items-center justify-between gap-3 border p-2" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 10 }}>
-                  <div className="flex min-w-0 items-center gap-3">
-                    <div className="relative h-8 w-8 shrink-0 overflow-hidden border" style={{ borderColor: 'var(--line)', borderRadius: 999, background: 'var(--surface)' }}>
-                      {avatarUrl && !avatarFailed[username] ? (
-                        <Image
-                          src={avatarUrl}
-                          alt={member.name}
-                          fill
-                          className="object-cover"
-                          sizes="32px"
-                          unoptimized
-                          onError={() => setAvatarFailed((prev) => ({ ...prev, [username]: true }))}
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-xs font-black" style={{ color: 'var(--accent)' }}>
-                          {initials(member.name)}
-                        </div>
-                      )}
-                    </div>
-                    <span className="truncate text-sm font-bold" style={{ color: 'var(--foreground)' }}>
-                      {member.name}
+        {project.teamMembers.length > 0 && (
+          <details className="mb-4 mt-4 text-xs">
+            <summary className="team-summary">
+              <span className="flex min-w-0 items-center gap-2.5">
+                <span className="flex -space-x-2" aria-hidden="true">
+                  {project.teamMembers.slice(0, 3).map((member) => (
+                    <span key={member.name} className="team-avatar">
+                      {initials(member.name)}
                     </span>
-                  </div>
-                  {username && (
+                  ))}
+                </span>
+                <span className="muted-text">
+                  {project.teamMembers.length} team{' '}
+                  {project.teamMembers.length === 1 ? 'member' : 'members'}
+                </span>
+              </span>
+              <ChevronDown className="h-3.5 w-3.5 shrink-0 muted-text" />
+            </summary>
+            <ul className="mt-2 space-y-1 rounded-lg bg-[var(--background)] p-3">
+              {project.teamMembers.map((member) => (
+                <li key={member.name}>
+                  {member.githubUsername.trim() ? (
                     <a
-                      href={`https://github.com/${username}`}
+                      href={`https://github.com/${member.githubUsername.trim()}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="icon-button h-8 w-8 shrink-0"
-                      title={`${member.name} on GitHub`}
+                      className="flex min-h-9 items-center justify-between gap-2 hover:text-[var(--accent)]"
                     >
-                      <Github className="h-4 w-4" />
+                      {member.name}
+                      <ArrowUpRight className="h-3.5 w-3.5 shrink-0 muted-text" />
                     </a>
+                  ) : (
+                    <span className="block py-2">{member.name}</span>
                   )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        <div className="mt-auto flex items-center justify-between border-t pt-4" style={{ borderColor: 'var(--line)' }}>
-          <span className="mono-label">Details</span>
-          <div className="flex items-center gap-2">
-            {project.sourceCodeUrl && (
-              <a href={project.sourceCodeUrl} target="_blank" rel="noopener noreferrer" className="icon-button" title="GitHub">
-                <Github className="h-4 w-4" />
-              </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+        <div className="card-footer mt-auto flex-wrap justify-start gap-2">
+          {project.sourceCodeUrl && (
+            <a
+              href={project.sourceCodeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-action"
+            >
+              <Github className="h-3.5 w-3.5" />
+              Source code
+            </a>
+          )}
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-action"
+            >
+              Live demo
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          )}
+          {project.documentationUrl && (
+            <a
+              href={project.documentationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-action"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              Docs
+            </a>
+          )}
+          {!project.sourceCodeUrl &&
+            !project.demoUrl &&
+            !project.documentationUrl && (
+              <span className="py-2 text-xs muted-text">
+                Project links coming soon
+              </span>
             )}
-            {project.demoUrl && (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="icon-button" title="Live demo">
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-            {project.documentationUrl && (
-              <a href={project.documentationUrl} target="_blank" rel="noopener noreferrer" className="icon-button" title="Documentation">
-                <FileText className="h-4 w-4" />
-              </a>
-            )}
-          </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }

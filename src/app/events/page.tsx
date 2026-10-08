@@ -1,79 +1,113 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Calendar } from 'lucide-react'
+import { CalendarDays, Search } from 'lucide-react'
 import { events } from '@/data/events'
 import EventCard from '@/components/EventCard'
+import { matchesQuery } from '@/lib/search'
 
 type EventFilter = 'all' | 'upcoming' | 'ongoing' | 'past'
 
 export default function EventsPage() {
   const [filter, setFilter] = useState<EventFilter>('all')
-
-  const filteredEvents = filter === 'all' ? events : events.filter((event) => event.type === filter)
-  const upcomingCount = events.filter((event) => event.type === 'upcoming').length
-  const ongoingCount = events.filter((event) => event.type === 'ongoing').length
-  const pastCount = events.filter((event) => event.type === 'past').length
-
-  const filters = [
-    { key: 'all' as EventFilter, label: 'All Events', count: events.length },
-    { key: 'upcoming' as EventFilter, label: 'Upcoming', count: upcomingCount },
-    { key: 'ongoing' as EventFilter, label: 'Ongoing', count: ongoingCount },
-    { key: 'past' as EventFilter, label: 'Past', count: pastCount },
+  const [query, setQuery] = useState('')
+  const filteredEvents = events
+    .filter(
+      (event) =>
+        (filter === 'all' || event.type === filter) &&
+        matchesQuery(
+          [event.title, event.description, event.location, event.category],
+          query
+        )
+    )
+    .sort((a, b) => b.date.localeCompare(a.date))
+  const filters: { key: EventFilter; label: string; count: number }[] = [
+    { key: 'all', label: 'All events', count: events.length },
+    ...(['upcoming', 'ongoing', 'past'] as const).map((key) => ({
+      key,
+      label: key.charAt(0).toUpperCase() + key.slice(1),
+      count: events.filter((event) => event.type === key).length,
+    })),
   ]
 
   return (
     <div className="page-shell">
       <div className="page-content">
-        <header className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1fr] lg:items-end">
-          <div>
-            <div className="eyebrow mb-5">
-              <Calendar className="h-4 w-4" />
-              Community Events
-            </div>
-            <h1 className="section-title">Our Events</h1>
-          </div>
-          <div>
-            
-            <div className="mt-5 grid grid-cols-4 gap-5">
-              {filters.map(({ key, label, count }) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setFilter(key)}
-                  className={filter === key ? 'btn-primary min-h-0 px-3 py-2 text-sm' : 'btn-outline min-h-0 px-3 py-2 text-sm'}
-                >
-                  <span className="hidden sm:inline">{label}</span>
-                  <span className="sm:hidden">{label.split(' ')[0]}</span>
-                  <span>({count})</span>
-                </button>
-              ))}
-            </div>
-          </div>
+        <header className="mb-10">
+          <p className="eyebrow mb-4">
+            <CalendarDays className="h-4 w-4" /> Beyond the classroom
+          </p>
+          <h1 className="section-title">Events & memories</h1>
+          <p className="section-copy mt-4 max-w-xl">
+            The days we came together. Browse our contests, celebrations, tours,
+            and everything in between.
+          </p>
         </header>
-
-        <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {[...filteredEvents].reverse().map((event) => (
-              <motion.div
-                key={event.id}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.25 }}
+        <div
+          className="mb-7 flex flex-col justify-between gap-4 border-y py-4 lg:flex-row"
+          style={{ borderColor: 'var(--line)' }}
+        >
+          <div
+            className="flex flex-wrap gap-2"
+            role="group"
+            aria-label="Filter events"
+          >
+            {filters.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                className="filter-chip"
+                aria-pressed={filter === item.key}
+                onClick={() => setFilter(item.key)}
               >
-                <EventCard event={event} />
-              </motion.div>
+                {item.label}
+                <span className="text-[10px]">{item.count}</span>
+              </button>
             ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {filteredEvents.length === 0 && (
-          <div className="surface-card py-20 text-center">
-            <h3 className="text-2xl font-black" style={{ color: 'var(--foreground)' }}>No Events Available</h3>
-            <p className="section-copy mx-auto mt-3 max-w-md">Try another filter or check back later.</p>
+          </div>
+          <div className="relative w-full lg:max-w-xs">
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 muted-text" />
+            <input
+              type="search"
+              aria-label="Search events"
+              placeholder="Find an event…"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              className="form-field pl-10"
+            />
+          </div>
+        </div>
+        <p role="status" className="mb-6 text-xs muted-text">
+          {filteredEvents.length}{' '}
+          {filteredEvents.length === 1 ? 'event' : 'events'}{' '}
+          <span className="mx-1">·</span> Most recent first
+        </p>
+        <div className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {filteredEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+        {!filteredEvents.length && (
+          <div className="py-16 text-center">
+            <CalendarDays className="mx-auto mb-4 h-7 w-7 muted-text" />
+            <h2 className="text-xl font-medium">
+              {query
+                ? 'No matching events'
+                : `No ${filter === 'all' ? '' : filter + ' '}events yet`}
+            </h2>
+            <p className="section-copy mt-2">
+              Explore the archive to see what our batch has been up to.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setFilter('all')
+                setQuery('')
+              }}
+              className="btn-outline mt-5"
+            >
+              Show all events
+            </button>
           </div>
         )}
       </div>

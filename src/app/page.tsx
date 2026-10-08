@@ -1,407 +1,280 @@
-'use client'
-
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import {
+  ArrowRight,
   ArrowUpRight,
   BookOpen,
-  Calendar,
-  ChevronRight,
-  Clock,
-  Code,
-  Sparkles,
-  Users,
+  CalendarDays,
+  Code2,
+  FileText,
 } from 'lucide-react'
-import { semesters, type Semester } from '@/data/studyMaterials'
-import { events, type Event } from '@/data/events'
-import { getAllProjects, type AcademicProject } from '@/data/projects'
-
-type DiscoveryItem =
-  | { type: 'semester'; data: Semester }
-  | { type: 'project'; data: AcademicProject }
-  | { type: 'event'; data: Event }
-
-type EntryPoint = {
-  code: string
-  label: string
-  title: string
-  description: string
-  href: string
-  icon: typeof BookOpen
-  meta: string
-  items: string[]
-}
-
-function DiscoveryCard({ item }: { item: DiscoveryItem }) {
-  const card =
-    item.type === 'semester'
-      ? {
-          kind: 'Material Shelf',
-          title: item.data.name,
-          image: null,
-          href: `/semester/${item.data.id}`,
-          external: false,
-          details: [
-            ['Subjects', String(item.data.subjects.length)],
-            [
-              'Files',
-              String(item.data.subjects.reduce((total, subject) => total + subject.materials.length, 0)),
-            ],
-          ],
-        }
-      : item.type === 'project'
-        ? {
-            kind: item.data.courseCode,
-            title: item.data.title,
-            image: item.data.coverImage || null,
-            href: item.data.sourceCodeUrl || '/projects',
-            external: Boolean(item.data.sourceCodeUrl),
-            details: [
-              ['Course', item.data.courseCode],
-              ['Team', `${item.data.teamSize} ${item.data.teamSize === 1 ? 'member' : 'members'}`],
-            ],
-          }
-        : {
-            kind: 'Event',
-            title: item.data.title,
-            image: item.data.images[0] || null,
-            href: `/events/${item.data.id}`,
-            external: false,
-            details: [
-              ['Date', item.data.date],
-              ['Place', item.data.location],
-            ],
-          }
-
-  if (!card.image) {
-    return (
-      <Link
-        href={card.href}
-        target={card.external ? '_blank' : undefined}
-        rel={card.external ? 'noreferrer' : undefined}
-        className="surface-card group grid h-full grid-rows-[auto_1fr_auto] overflow-hidden"
-        aria-label={card.title}
-      >
-        <div className="flex items-center justify-between gap-4 border-b px-4 py-3" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-          <span className="mono-label">{card.kind}</span>
-          <ArrowUpRight className="h-4 w-4" style={{ color: 'var(--accent)' }} />
-        </div>
-        <div className="p-4">
-          <h3 className="mb-5 line-clamp-3 text-2xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
-            {card.title}
-          </h3>
-          <div className="space-y-2">
-            {card.details.map(([label, value]) => (
-              <div key={label} className="grid grid-cols-[4.5rem_1fr] gap-3 border-t pt-2 text-sm" style={{ borderColor: 'var(--line)' }}>
-                <span className="mono-label">{label}</span>
-                <span className="truncate font-bold" style={{ color: 'var(--foreground)' }}>
-                  {value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="border-t px-4 py-3" style={{ borderColor: 'var(--line)' }}>
-          <span className="mono-label">Open Record</span>
-        </div>
-      </Link>
-    )
-  }
-
-  return (
-    <Link
-      href={card.href}
-      target={card.external ? '_blank' : undefined}
-      rel={card.external ? 'noreferrer' : undefined}
-      className="surface-card group relative block h-full overflow-hidden"
-      aria-label={card.title}
-    >
-      <Image
-        src={card.image}
-        alt={card.title}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="288px"
-      />
-      <div className="absolute inset-x-0 bottom-0 border-t p-4" style={{ borderColor: 'var(--line)', background: 'color-mix(in srgb, var(--surface) 88%, transparent)' }}>
-        <h3 className="line-clamp-2 text-xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
-          {card.title}
-        </h3>
-      </div>
-    </Link>
-  )
-}
-
-function EntryPointCard({ entry, index }: { entry: EntryPoint; index: number }) {
-  const Icon = entry.icon
-
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.06 }}
-      className="surface-card group grid min-h-[330px] grid-rows-[auto_1fr_auto] overflow-hidden"
-    >
-      <div className="flex items-center justify-between gap-4 border-b px-5 py-4" style={{ borderColor: 'var(--line)', background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), color-mix(in srgb, var(--accent-secondary) 8%, var(--surface)))' }}>
-        <div className="flex items-center gap-3">
-          <span className="mono-label flex h-9 w-9 items-center justify-center border shadow-sm" style={{ borderColor: 'var(--line)', background: 'var(--surface)', color: 'var(--foreground)', borderRadius: 10 }}>
-            {entry.code}
-          </span>
-          <span className="mono-label">{entry.label}</span>
-        </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center border shadow-sm" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 10 }}>
-          <Icon className="h-6 w-6" style={{ color: 'var(--accent)' }} />
-        </span>
-      </div>
-
-      <div className="p-5">
-        <h3 className="mb-4 text-2xl font-black leading-tight" style={{ color: 'var(--foreground)' }}>
-          {entry.title}
-        </h3>
-        <p className="section-copy mb-6 text-sm">{entry.description}</p>
-
-        <div className="space-y-2">
-          {entry.items.map((item) => (
-            <div key={item} className="flex items-center gap-3 border px-3 py-2 text-sm font-bold" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', color: 'var(--foreground)', borderRadius: 8 }}>
-              <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: 'var(--accent-secondary)' }} />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between gap-4 border-t px-5 py-4" style={{ borderColor: 'var(--line)' }}>
-        <span className="mono-label">{entry.meta}</span>
-        <Link href={entry.href} className="btn-outline min-h-0 px-3 py-2 text-sm" aria-label={`Open ${entry.title}`}>
-          Open
-          <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
-    </motion.article>
-  )
-}
+import { semesters } from '@/data/studyMaterials'
+import { events } from '@/data/events'
+import { getAllProjects } from '@/data/projects'
+import EventCard from '@/components/EventCard'
+import CardArrow from '@/components/CardArrow'
 
 export default function HomePage() {
-  const allProjects = getAllProjects()
-
-  const sortedEvents = [...events].sort((a, b) => {
-    const dateA = new Date(a.date.split(' to ')[0])
-    const dateB = new Date(b.date.split(' to ')[0])
-    return dateB.getTime() - dateA.getTime()
-  })
-  const recentEvents = sortedEvents.slice(0, 8)
-
-  const allStudyMaterials = semesters
+  const projects = getAllProjects()
+  const materialCount = semesters.reduce(
+    (sum, semester) =>
+      sum +
+      semester.subjects.reduce(
+        (total, subject) => total + subject.materials.length,
+        0
+      ),
+    0
+  )
+  const recentMaterials = semesters
     .flatMap((semester) =>
       semester.subjects.flatMap((subject) =>
-        subject.materials.map((material) => ({ ...material, semesterName: semester.name, semesterId: semester.id }))
+        subject.materials.map((material) => ({
+          ...material,
+          courseCode: subject.code,
+          semesterId: semester.id,
+          subjectId: subject.id,
+        }))
       )
     )
-    .sort((a, b) => new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime())
-
-  const recentMaterialsBySemester = allStudyMaterials
-    .slice(0, 12)
-    .reduce((acc, material) => {
-      const semester = semesters.find((item) => item.name === material.semesterName)
-      if (semester && !acc.find((item) => item.id === semester.id)) {
-        acc.push(semester)
-      }
-      return acc
-    }, [] as Semester[])
+    .sort((a, b) => b.uploadDate.localeCompare(a.uploadDate))
     .slice(0, 4)
-
-  const materialCount = semesters.reduce(
-    (acc, semester) => acc + semester.subjects.reduce((total, subject) => total + subject.materials.length, 0),
-    0
-  )
-  const subjectCount = semesters.reduce(
-    (acc, semester) => acc + semester.subjects.filter((subject) => !subject.code.startsWith('QB-')).length,
-    0
-  )
-
-  const entryPoints: EntryPoint[] = [
+  const recentEvents = [...events]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3)
+  const latestSemester = semesters[semesters.length - 1]
+  const entryPoints = [
     {
-      code: '01',
-      label: 'Academic Shelf',
-      title: 'Study Materials',
-      description: 'Semester-wise resources grouped for fast lookup before class, lab, or exam week.',
       href: '/semesters',
+      label: 'Study materials',
+      meta: `${materialCount} resources`,
       icon: BookOpen,
-      meta: `${materialCount} files`,
-      items: ['Notes and slides', 'Lab code', 'Question banks'],
     },
     {
-      code: '02',
-      label: 'Workshop Ledger',
-      title: 'Project Archive',
-      description: 'A clean record of coursework builds with source links, stacks, teams, and course context.',
       href: '/projects',
-      icon: Code,
-      meta: `${allProjects.length} builds`,
-      items: ['Source links', 'Tech stacks', 'Team records'],
+      label: 'Made by our batch',
+      meta: `${projects.length} projects`,
+      icon: Code2,
     },
     {
-      code: '03',
-      label: 'Batch Timeline',
-      title: 'Events & Moments',
-      description: 'Department memories, programs, contests, tours, and batch moments arranged by time.',
       href: '/events',
-      icon: Calendar,
-      meta: `${events.length} entries`,
-      items: ['Chronology', 'Locations', 'Highlights'],
+      label: 'Life beyond class',
+      meta: `${events.length} events`,
+      icon: CalendarDays,
     },
-  ]
-
-  const rollingItems: DiscoveryItem[] = [
-    ...recentEvents.map((event) => ({ type: 'event' as const, data: event })),
-    ...recentMaterialsBySemester.map((semester) => ({ type: 'semester' as const, data: semester })),
-    ...allProjects.slice(-6).reverse().map((project) => ({ type: 'project' as const, data: project })),
   ]
 
   return (
     <div className="page-shell">
-      <section className="relative min-h-[92vh] overflow-hidden border-b" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-        <Image
-          src="/batch.jpg"
-          alt="Lubdhok 29 batch"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,12,22,0.9),rgba(7,12,22,0.62)_48%,rgba(7,12,22,0.16)),linear-gradient(0deg,rgba(7,12,22,0.82),transparent_42%)]" />
-
-        <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-[92rem] flex-col justify-end px-4 pb-7 pt-32 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="w-full pb-8"
-          >
-            <div className="max-w-5xl">
-              <div className="eyebrow mb-6 border-white/20 bg-white/10 text-white backdrop-blur-md">
-                <Sparkles className="h-4 w-4" />
-                CSEDU 29th Batch
-              </div>
-              <h1 className="text-[clamp(4.25rem,14vw,11rem)] font-black leading-[0.82] text-white">
-                LUBDHOK
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-white/78 sm:text-xl">
-                A polished academic hub for study materials, course projects, event memories, and batch resources from the Department of Computer Science and Engineering, University of Dhaka.
-              </p>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                {[
-                  { href: '/semesters', label: 'Open Materials', icon: BookOpen, primary: true },
-                  { href: '/projects', label: 'Browse Projects', icon: Code },
-                  { href: '/events', label: 'View Events', icon: Calendar },
-                ].map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <Link key={item.href} href={item.href} className={item.primary ? 'btn-primary justify-between' : 'btn-outline justify-between border-white/25 bg-white/12 text-white backdrop-blur-md hover:bg-white/18'}>
-                      <span className="inline-flex items-center gap-2">
-                        <Icon className="h-4 w-4" />
-                        {item.label}
-                      </span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  )
-                })}
-              </div>
+      <section className="content-width pb-10 pt-32 sm:pb-14 sm:pt-40">
+        <div className="grid items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="eyebrow mb-6">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />{' '}
+              CSEDU · 29th batch
+            </p>
+            <h1
+              className="text-[clamp(3.5rem,8vw,6.5rem)] leading-[1.05] tracking-[-.065em]"
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+            >
+              Lubdhok<span style={{ color: 'var(--accent)' }}>.</span>
+            </h1>
+            <p className="mt-5 text-xl font-medium tracking-tight sm:text-2xl">
+              A batch. A shared journey.
+            </p>
+            <p className="section-copy mt-4 max-w-md">
+              The notes we share, the things we build, and the moments we keep.
+              A home for the 29th batch of CSE, University of Dhaka.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-5">
+              <Link href="/semesters" className="btn-primary">
+                Find study materials <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/about" className="text-link">
+                Meet Lubdhok <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
-
-          </motion.div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: 'Semesters', value: semesters.length, icon: BookOpen },
-              { label: 'Subjects', value: subjectCount, icon: Clock },
-              { label: 'Projects', value: allProjects.length, icon: Code },
-              { label: 'Events', value: events.length, icon: Calendar },
-            ].map((stat) => {
-              const Icon = stat.icon
-              return (
-                <div key={stat.label} className="flex items-center justify-between gap-4 rounded-xl border border-white/14 bg-white/12 p-4 text-white shadow-[var(--shadow-soft)] backdrop-blur-md">
-                  <div>
-                    <div className="text-3xl font-black">{stat.value}</div>
-                    <div className="font-mono text-[0.72rem] font-bold uppercase text-white/68">{stat.label}</div>
-                  </div>
-                  <Icon className="h-6 w-6 text-white/76" />
-                </div>
-              )
-            })}
           </div>
+          <figure>
+            <div className="relative aspect-[1.8] overflow-hidden rounded-lg bg-[var(--surface-muted)] lg:aspect-[1.65]">
+              <Image
+                src="/batch.jpg"
+                alt="The Lubdhok 29th batch together on campus"
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+              />
+              <span className="absolute bottom-4 left-4 rounded bg-[#f7f7f2] px-2.5 py-1.5 text-[10px] tracking-[.1em] text-[#285c45]">
+                THE PEOPLE BEHIND LUBDHOK
+              </span>
+            </div>
+            <figcaption className="mt-3 flex justify-between gap-3 text-[11px] muted-text">
+              <span>A little chaos. A lot of good company.</span>
+              <span>CSEDU / 29</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div
+          className="mt-12 grid grid-cols-2 gap-y-6 border-y py-6 sm:mt-16 sm:grid-cols-4"
+          style={{ borderColor: 'var(--line)' }}
+        >
+          {[
+            [semesters.length, 'semesters of learning'],
+            [materialCount, 'shared resources'],
+            [projects.length, 'student projects'],
+            [events.length, 'batch memories'],
+          ].map(([value, label]) => (
+            <div key={label} className="flex items-baseline gap-3 pr-4">
+              <span className="text-2xl font-medium tracking-tight">
+                {value}
+              </span>
+              <span className="text-xs muted-text">{label}</span>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 grid gap-6 lg:grid-cols-[0.9fr_22rem] lg:items-end">
-            <div>
-              <div className="eyebrow mb-5">
-                <Sparkles className="h-4 w-4" />
-                Archive Index
-              </div>
-              <h2 className="section-title">Everything in one place</h2>
-              <p className="section-copy mt-4 max-w-2xl">
-                Fast entry points for the resources students open most: files, projects, events, and batch records.
-              </p>
-            </div>
+      <section
+        className="content-width pb-14 sm:pb-20"
+        aria-labelledby="explore-heading"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow mb-3">The batch archive</p>
+            <h2 id="explore-heading">A good place to start.</h2>
           </div>
+          <span className="mono-label hidden sm:block">
+            Learn / Build / Remember
+          </span>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {entryPoints.map((entry, index) => (
+            <Link
+              key={entry.href}
+              href={entry.href}
+              className="surface-card card-interactive group flex flex-col p-6 sm:p-8"
+            >
+              <div className="mb-7 flex items-center justify-between">
+                <span className="card-icon">
+                  <entry.icon className="h-5 w-5" strokeWidth={1.75} />
+                </span>
+                <span className="mono-label">0{index + 1}</span>
+              </div>
+              <h3 className="card-title mb-6">{entry.label}</h3>
+              <div className="card-footer">
+                <span className="text-xs muted-text">{entry.meta}</span>
+                <CardArrow />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-            {entryPoints.map((entry, index) => (
-              <EntryPointCard key={entry.title} entry={entry} index={index} />
+      <section
+        className="border-y py-12 sm:py-16"
+        style={{ borderColor: 'var(--line)', background: 'var(--surface)' }}
+        aria-labelledby="resources-heading"
+      >
+        <div className="content-width grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p className="eyebrow mb-4">For your next class</p>
+            <h2
+              id="resources-heading"
+              className="text-3xl font-medium leading-tight tracking-tight"
+            >
+              Less searching.
+              <br />
+              More studying.
+            </h2>
+            <p className="section-copy mt-4 max-w-sm">
+              Find a lecture, revisit a lab, or prepare for an exam. Start with
+              a semester and take it from there.
+            </p>
+            <Link href="/semesters" className="text-link mt-6">
+              Browse all semesters <ArrowRight className="h-4 w-4" />
+            </Link>
+            {latestSemester && (
+              <Link
+                href={`/semester/${latestSemester.id}`}
+                className="mt-8 flex items-center justify-between gap-3 rounded-lg border p-4"
+                style={{
+                  borderColor: 'var(--line)',
+                  background: 'var(--background)',
+                }}
+              >
+                <div>
+                  <span className="mono-label">
+                    Latest semester in the archive
+                  </span>
+                  <span className="mt-1 block text-sm font-medium">
+                    {latestSemester.name}
+                  </span>
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-[var(--accent)]" />
+              </Link>
+            )}
+          </div>
+          <div>
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-medium">Recently added</h3>
+              <span className="mono-label">Resources</span>
+            </div>
+            {recentMaterials.map((material) => (
+              <Link
+                key={`${material.semesterId}-${material.subjectId}-${material.id}`}
+                href={`/semester/${material.semesterId}?subject=${material.subjectId}#${material.subjectId}`}
+                className="group flex items-center gap-4 border-t py-5"
+                style={{ borderColor: 'var(--line)' }}
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--background)]">
+                  <FileText
+                    className="h-4 w-4 text-[var(--accent)]"
+                    strokeWidth={1.5}
+                  />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium group-hover:text-[var(--accent)]">
+                    {material.title}
+                  </p>
+                  <p className="mt-1 text-xs muted-text">
+                    {material.courseCode} <span className="mx-1">·</span>{' '}
+                    {material.type === 'slide'
+                      ? 'Slides'
+                      : material.type === 'books'
+                        ? 'Book'
+                        : material.type.charAt(0).toUpperCase() +
+                          material.type.slice(1)}
+                  </p>
+                </div>
+                <ArrowUpRight className="h-4 w-4 shrink-0 muted-text" />
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="discover" className="border-y py-24" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_22rem] lg:items-end">
+      {recentEvents.length > 0 && (
+        <section
+          className="content-width py-14 sm:py-20"
+          aria-labelledby="moments-heading"
+        >
+          <div className="section-heading">
             <div>
-              <div className="eyebrow mb-5">
-                <Users className="h-4 w-4" />
-                Live Ledger
-              </div>
-              <h2 className="section-title">Recent records</h2>
-              <p className="section-copy mt-4 max-w-2xl">
-                A moving snapshot of the latest events, project entries, and material shelves.
-              </p>
+              <p className="eyebrow mb-3">Outside the classroom</p>
+              <h2 id="moments-heading">The moments that stay.</h2>
+              <p>A few recent pages from our batch story.</p>
             </div>
+            <Link href="/events" className="text-link">
+              All events <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-
-          <div className="relative overflow-hidden border" style={{ borderColor: 'var(--line)', background: 'var(--surface)', borderRadius: 8 }}>
-            
-
-            <div className="moving-shelf relative py-6">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16" style={{ background: 'linear-gradient(90deg, var(--surface), transparent)' }} />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16" style={{ background: 'linear-gradient(270deg, var(--surface), transparent)' }} />
-              <div
-                className="moving-shelf-track flex gap-4 px-5"
-                style={{
-                  width: 'fit-content',
-                  animationDuration: `${Math.max(44, rollingItems.length * 4)}s`,
-                }}
-              >
-                {rollingItems.map((item, index) => (
-                  <div key={`roll-1-${item.type}-${index}`} className="moving-shelf-card h-[300px] w-72 shrink-0">
-                    <DiscoveryCard item={item} />
-                  </div>
-                ))}
-                {rollingItems.map((item, index) => (
-                  <div key={`roll-2-${item.type}-${index}`} className="moving-shelf-card h-[300px] w-72 shrink-0">
-                    <DiscoveryCard item={item} />
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {recentEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   )
 }

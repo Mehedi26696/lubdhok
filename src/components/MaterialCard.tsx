@@ -1,76 +1,78 @@
-'use client'
-
-import {
+﻿import {
   BookOpen,
   Code,
-  Eye,
   FileQuestion,
   FileText,
   GraduationCap,
   Layers,
   NotebookPen,
 } from 'lucide-react'
-import { StudyMaterial } from '@/data/studyMaterials'
-
-interface MaterialCardProps {
-  material: StudyMaterial
-}
+import { type StudyMaterial } from '@/data/studyMaterials'
+import CardArrow from './CardArrow'
 
 const materialTypeConfig = {
-  lecture: { icon: GraduationCap, label: 'Lecture', color: 'var(--accent-secondary)' },
-  slide: { icon: Layers, label: 'Slides', color: 'var(--accent-tertiary)' },
-  note: { icon: NotebookPen, label: 'Notes', color: 'var(--accent)' },
-  assignment: { icon: FileText, label: 'Assignment', color: 'var(--accent-tertiary)' },
-  code: { icon: Code, label: 'Code', color: 'var(--accent-secondary)' },
-  books: { icon: BookOpen, label: 'Books', color: 'var(--accent)' },
-  question: { icon: FileQuestion, label: 'Questions', color: 'var(--accent)' },
-  other: { icon: FileText, label: 'Other', color: 'var(--muted)' },
+  lecture: { icon: GraduationCap, label: 'Lecture' },
+  slide: { icon: Layers, label: 'Slides' },
+  note: { icon: NotebookPen, label: 'Notes' },
+  assignment: { icon: FileText, label: 'Assignment' },
+  code: { icon: Code, label: 'Code' },
+  books: { icon: BookOpen, label: 'Book' },
+  question: { icon: FileQuestion, label: 'Questions' },
+  other: { icon: FileText, label: 'Resource' },
 }
 
-export default function MaterialCard({ material }: MaterialCardProps) {
-  const config = materialTypeConfig[material.type] || materialTypeConfig.other
-  const Icon = config.icon
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    })
-  }
-
-  const handleAction = (url: string | undefined) => {
-    if (url && url !== '#') {
-      window.open(url, '_blank')
-    } else {
-      alert('This material link has not been added yet.')
-    }
-  }
-
-  return (
-    <article className="surface-card p-5 transition-transform duration-200 hover:-translate-y-0.5">
-      <div className="mb-4 flex items-start justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center border" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', borderRadius: 6 }}>
-            <Icon className="h-5 w-5" style={{ color: config.color }} />
-          </span>
-          <span className="stamp">{config.label}</span>
-        </div>
-        <time className="mono-label shrink-0">{formatDate(material.uploadDate)}</time>
+export default function MaterialCard({
+  material,
+}: {
+  material: StudyMaterial
+}) {
+  const { icon: Icon, label } =
+    materialTypeConfig[material.type] || materialTypeConfig.other
+  const date = new Date(material.uploadDate)
+  const formattedDate = Number.isNaN(date.getTime())
+    ? ''
+    : date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      })
+  const available = Boolean(material.viewUrl && material.viewUrl !== '#')
+  const content = (
+    <>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <span className="card-icon h-10 w-10 rounded-[10px]">
+          <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+        </span>
+        <span className="card-tag">{label}</span>
       </div>
-
-      <h3 className="mb-2 line-clamp-2 text-lg font-black" style={{ color: 'var(--foreground)' }}>
+      <h4 className="text-[15px] font-semibold leading-6 tracking-[-.015em]">
         {material.title}
-      </h3>
-
-      <p className="section-copy mb-5 line-clamp-3 text-sm">{material.description}</p>
-
-      {material.viewUrl && (
-        <button type="button" onClick={() => handleAction(material.viewUrl)} className="btn-outline w-full">
-          <Eye className="h-4 w-4" />
-          View Material
-        </button>
-      )}
-    </article>
+      </h4>
+      <div className="mt-auto flex min-h-9 items-center justify-between gap-3 pt-3">
+        <span className="text-[11px] muted-text">
+          {available
+            ? formattedDate && (
+                <time dateTime={material.uploadDate}>{formattedDate}</time>
+              )
+            : 'Link coming soon'}
+        </span>
+        {available && <CardArrow />}
+      </div>
+    </>
+  )
+  const className = `surface-card ${available ? 'card-interactive group' : ''} flex h-full flex-col p-5`
+  return available ? (
+    <a
+      href={material.viewUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      aria-label={`Open ${material.title} in a new tab`}
+    >
+      {content}
+    </a>
+  ) : (
+    <article className={className}>{content}</article>
   )
 }

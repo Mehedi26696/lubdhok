@@ -1,42 +1,43 @@
-import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "../components/Footer";
-import ClientChatBotWrapper from "@/components/ClientChatBotWrapper";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import CommandPalette from "@/components/CommandPalette";
-import ScrollProgress from "@/components/ScrollProgress";
-import BackToTop from "@/components/BackToTop";
+import type { Metadata, Viewport } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
+import './globals.css'
+import Header from '@/components/Header'
+import Footer from '../components/Footer'
+import ClientChatBotWrapper from '@/components/ClientChatBotWrapper'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import CommandPalette from '@/components/CommandPalette'
+import BackToTop from '@/components/BackToTop'
+import { MotionConfig } from 'framer-motion'
 
 const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  variable: '--font-inter',
+  subsets: ['latin'],
   display: 'swap',
-});
+})
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  variable: '--font-jetbrains-mono',
+  subsets: ['latin'],
   display: 'swap',
-});
+})
 
 export const metadata: Metadata = {
-  title: "Lubdhok",
-  description: "Official website of Lubdhok university batch. Access study materials, events, projects, and connect with batch members all in one place.",
-  keywords: "Lubdhok batch, university batch, study materials, events, projects, batch members, academic resources",
-};
+  title: 'Lubdhok',
+  description:
+    'Official website of Lubdhok university batch. Access study materials, events, projects, and connect with batch members all in one place.',
+  keywords:
+    'Lubdhok batch, university batch, study materials, events, projects, batch members, academic resources',
+}
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
@@ -50,22 +51,23 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="site-shell flex flex-col min-h-screen">
-            <Header />
-            <ScrollProgress />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-            <CommandPalette />
-            <BackToTop />
-            {/* Floating ChatBot */}
-            <div className="fixed bottom-6 right-6 z-50 max-w-full w-80">
+          <MotionConfig reducedMotion="user">
+            <div className="site-shell flex flex-col min-h-screen">
+              <a href="#main-content" className="skip-link">
+                Skip to content
+              </a>
+              <Header />
+              <main id="main-content" tabIndex={-1} className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+              <CommandPalette />
+              <BackToTop />
               <ClientChatBotWrapper />
             </div>
-          </div>
+          </MotionConfig>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -1,238 +1,269 @@
-'use client'
+﻿'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { notFound, useParams } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { BookOpen, Box, Code, FileText, HelpCircle, Info, Search, Video } from 'lucide-react'
-import { semesters, StudyMaterial } from '@/data/studyMaterials'
+import {
+  notFound,
+  useParams,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation'
+import { ArrowLeft, BookOpen, Code2, HelpCircle, Search } from 'lucide-react'
+import { semesters, type Subject } from '@/data/studyMaterials'
 import MaterialCard from '@/components/MaterialCard'
+import { matchesQuery } from '@/lib/search'
 
-export default function SemesterPage() {
-  const params = useParams()
-  const id = params?.id as string
+const materialTypes = [
+  ['slide', 'Slides'],
+  ['note', 'Notes'],
+  ['assignment', 'Assignments'],
+  ['lecture', 'Lectures'],
+  ['code', 'Code'],
+  ['books', 'Books'],
+  ['question', 'Questions'],
+  ['other', 'Other'],
+]
+
+function SemesterContent() {
+  const { id } = useParams<{ id: string }>()
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedType, setSelectedType] = useState<string | null>(null)
-
+  const [selectedType, setSelectedType] = useState('')
   const semester = semesters.find((item) => item.id === id)
-
-  if (!semester) {
-    notFound()
-  }
-
-  const theorySubjects = semester.subjects.filter((subject) => subject.type === 'theory' && subject.name !== 'Question Banks')
-  const labSubjects = semester.subjects.filter((subject) => subject.type === 'lab')
-  const questionSubjects = semester.subjects.filter((subject) => subject.name === 'Question Banks')
-
-  const materialTypes = [
-    { id: 'slide', label: 'Slides', icon: Box },
-    { id: 'note', label: 'Notes', icon: FileText },
-    { id: 'assignment', label: 'Assignments', icon: FileText },
-    { id: 'lecture', label: 'Lectures', icon: Video },
-    { id: 'code', label: 'Code', icon: Code },
-    { id: 'books', label: 'Books', icon: BookOpen },
-    { id: 'question', label: 'Questions', icon: HelpCircle },
-  ]
-
-  const filterMaterials = useCallback(
-    (materials: StudyMaterial[]) =>
-      materials.filter((material) => {
-        const matchesSearch = material.title.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesType = !selectedType || material.type === selectedType
-        return matchesSearch && matchesType
-      }),
-    [searchQuery, selectedType]
+  if (!semester) notFound()
+  const requestedSubject = searchParams.get('subject') || ''
+  const subjectFilter = semester.subjects.some(
+    (subject) => subject.id === requestedSubject
   )
-
-  const filteredTheorySubjects = useMemo(() => {
-    return theorySubjects
-      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
-      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [theorySubjects, searchQuery, selectedType, filterMaterials])
-
-  const filteredLabSubjects = useMemo(() => {
-    return labSubjects
-      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
-      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [labSubjects, searchQuery, selectedType, filterMaterials])
-
-  const filteredQuestionSubjects = useMemo(() => {
-    return questionSubjects
-      .map((subject) => ({ ...subject, materials: filterMaterials(subject.materials) }))
-      .filter((subject) => subject.materials.length > 0 || (searchQuery === '' && !selectedType))
-  }, [questionSubjects, searchQuery, selectedType, filterMaterials])
-
-  const organizeMaterials = (materials: StudyMaterial[]) => ({
-    slides: materials.filter((material) => material.type === 'slide'),
-    notes: materials.filter((material) => material.type === 'note'),
-    assignments: materials.filter((material) => material.type === 'assignment'),
-    lectures: materials.filter((material) => material.type === 'lecture'),
-    code: materials.filter((material) => material.type === 'code'),
-    books: materials.filter((material) => material.type === 'books'),
-    questions: materials.filter((material) => material.type === 'question'),
-  })
+    ? requestedSubject
+    : ''
+  const query = searchQuery.trim().toLowerCase()
+  const isFiltering = Boolean(query || selectedType || subjectFilter)
+  const availableTypes = new Set<string>(
+    semester.subjects.flatMap((subject) =>
+      subject.materials.map((material) => material.type)
+    )
+  )
+  const subjects = semester.subjects
+    .filter((subject) => !subjectFilter || subject.id === subjectFilter)
+    .map((subject) => ({
+      ...subject,
+      materials: subject.materials.filter(
+        (material) =>
+          (!selectedType || material.type === selectedType) &&
+          matchesQuery(
+            [material.title, material.description, subject.name, subject.code],
+            query
+          )
+      ),
+    }))
+    .filter(
+      (subject) => subject.materials.length > 0 || (!query && !selectedType)
+    )
+  const groups = [
+    {
+      label: 'Theory courses',
+      icon: BookOpen,
+      subjects: subjects.filter(
+        (subject) =>
+          subject.type === 'theory' &&
+          !subject.code.startsWith('QB-') &&
+          subject.name !== 'Question Banks'
+      ),
+    },
+    {
+      label: 'Lab courses',
+      icon: Code2,
+      subjects: subjects.filter(
+        (subject) =>
+          subject.type === 'lab' &&
+          !subject.code.startsWith('QB-') &&
+          subject.name !== 'Question Banks'
+      ),
+    },
+    {
+      label: 'Question banks',
+      icon: HelpCircle,
+      subjects: subjects.filter(
+        (subject) =>
+          subject.code.startsWith('QB-') || subject.name === 'Question Banks'
+      ),
+    },
+  ]
+  const resultCount = subjects.reduce(
+    (total, subject) => total + subject.materials.length,
+    0
+  )
+  const selectSubject = (subjectId: string) =>
+    router.replace(
+      subjectId
+        ? `/semester/${id}?subject=${encodeURIComponent(subjectId)}`
+        : `/semester/${id}`,
+      { scroll: false }
+    )
+  const reset = () => {
+    setSearchQuery('')
+    setSelectedType('')
+    selectSubject('')
+  }
+  const renderSubject = (subject: Subject) => (
+    <article
+      key={subject.id}
+      id={subject.id}
+      className="scroll-mt-28 border-t pt-6"
+      style={{ borderColor: 'var(--line)' }}
+    >
+      <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <span className="mono-label text-[var(--accent)]">
+            {subject.code}
+          </span>
+          <h3 className="mt-1.5 text-xl font-medium tracking-tight">
+            {subject.name}
+          </h3>
+        </div>
+        <span className="text-xs muted-text">
+          {subject.credits} credits <span className="mx-1">·</span>{' '}
+          {subject.materials.length} resources
+        </span>
+      </div>
+      {subject.materials.length ? (
+        <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {subject.materials.map((material) => (
+            <MaterialCard key={material.id} material={material} />
+          ))}
+        </div>
+      ) : (
+        <p className="rounded-lg bg-[var(--surface-muted)] p-4 text-sm muted-text">
+          Resources for this course will appear here when added.
+        </p>
+      )}
+    </article>
+  )
 
   return (
     <div className="page-shell">
       <div className="page-content">
-        <nav className="mb-10 text-sm" aria-label="Breadcrumb">
-          <Link href="/" className="font-bold" style={{ color: 'var(--muted)' }}>Home</Link>
-          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
-          <Link href="/semesters" className="font-bold" style={{ color: 'var(--muted)' }}>Resources</Link>
-          <span className="mx-2" style={{ color: 'var(--line-strong)' }}>/</span>
-          <span className="font-bold" style={{ color: 'var(--foreground)' }}>{semester.name}</span>
-        </nav>
-
-        <header className="mb-12">
-          <div className="eyebrow mb-5">
-            <BookOpen className="h-4 w-4" />
-            Semester Archive
-          </div>
+        <Link href="/semesters" className="text-link mb-7">
+          <ArrowLeft className="h-4 w-4" /> All semesters
+        </Link>
+        <header className="mb-9">
+          <p className="eyebrow mb-4">Study materials</p>
           <h1 className="section-title">{semester.name}</h1>
-          <p className="section-copy mt-5 max-w-3xl">{semester.description}</p>
+          <p className="section-copy mt-3">{semester.description}</p>
         </header>
-
-        <div className="sticky top-24 z-30 mb-16 rounded-lg border p-4 shadow-[var(--shadow-soft)]" style={{ borderColor: 'var(--line)', background: 'var(--nav-bg)', backdropFilter: 'blur(18px)' }}>
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-            <div className="relative w-full lg:max-w-sm">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" style={{ color: 'var(--muted)' }} />
+        <div
+          className="mb-10 rounded-lg border bg-[var(--surface)] p-4 sm:p-5"
+          style={{ borderColor: 'var(--line)' }}
+        >
+          <div className="grid gap-3 sm:grid-cols-[1fr_1fr]">
+            <div className="relative">
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 muted-text" />
               <input
-                type="text"
-                placeholder="Search materials..."
+                type="search"
+                aria-label="Search materials in this semester"
+                placeholder="Search resources or course codes…"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                className="form-field pl-12"
+                className="form-field pl-10"
               />
             </div>
-
-            <div className="flex flex-wrap gap-2">
-              {materialTypes.map((type) => {
-                const Icon = type.icon
-                return (
-                  <button
-                    key={type.id}
-                    type="button"
-                    onClick={() => setSelectedType(selectedType === type.id ? null : type.id)}
-                    className={selectedType === type.id ? 'btn-primary min-h-0 px-3 py-2 text-sm' : 'btn-outline min-h-0 px-3 py-2 text-sm'}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {type.label}
-                  </button>
-                )
-              })}
-            </div>
+            <select
+              aria-label="Filter by course"
+              value={subjectFilter}
+              onChange={(event) => selectSubject(event.target.value)}
+              className="form-field"
+            >
+              <option value="">All courses</option>
+              {semester.subjects.map((subject) => (
+                <option key={subject.id} value={subject.id}>
+                  {subject.code} — {subject.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div
+            className="mt-4 flex flex-wrap gap-2"
+            role="group"
+            aria-label="Filter by resource type"
+          >
+            <button
+              type="button"
+              className="filter-chip"
+              aria-pressed={!selectedType}
+              onClick={() => setSelectedType('')}
+            >
+              All resources
+            </button>
+            {materialTypes
+              .filter(([type]) => availableTypes.has(type))
+              .map(([type, label]) => (
+                <button
+                  key={type}
+                  type="button"
+                  className="filter-chip"
+                  aria-pressed={selectedType === type}
+                  onClick={() => setSelectedType(type)}
+                >
+                  {label}
+                </button>
+              ))}
           </div>
         </div>
-
-        {filteredTheorySubjects.length > 0 && (
-          <section className="mb-20">
-            <div className="mb-8 flex items-center gap-3">
-              <BookOpen className="h-6 w-6" style={{ color: 'var(--accent)' }} />
-              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Theory Courses</h2>
-            </div>
-
-            <div className="space-y-8">
-              {filteredTheorySubjects.map((subject) => {
-                const organized = organizeMaterials(subject.materials)
-                return (
-                  <motion.article layout key={subject.id} className="surface-card p-6">
-                    <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                      <div>
-                        <span className="stamp mb-3">{subject.code}</span>
-                        <h3 className="text-2xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
-                      </div>
-                      <div className="inline-flex items-center gap-2 text-sm" style={{ color: 'var(--muted)' }}>
-                        <Info className="h-4 w-4" />
-                        <span>{subject.credits} credits / {subject.materials.length} items</span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {Object.entries(organized).map(([type, items]) =>
-                        items.length > 0 ? (
-                          <div key={type} className="space-y-3">
-                            <h4 className="mono-label">{type}</h4>
-                            {items.map((item) => (
-                              <motion.div layout key={item.id}>
-                                <MaterialCard material={item} />
-                              </motion.div>
-                            ))}
-                          </div>
-                        ) : null
-                      )}
-                    </div>
-                  </motion.article>
-                )
-              })}
-            </div>
-          </section>
-        )}
-
-        {filteredLabSubjects.length > 0 && (
-          <section className="mb-20">
-            <div className="mb-8 flex items-center gap-3">
-              <Code className="h-6 w-6" style={{ color: 'var(--accent-secondary)' }} />
-              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Lab Courses</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {filteredLabSubjects.map((subject) => (
-                <motion.article layout key={subject.id} className="surface-card p-6">
-                  <div className="mb-6 flex items-start justify-between gap-4">
-                    <div>
-                      <span className="stamp mb-3">{subject.code}</span>
-                      <h3 className="text-xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
-                    </div>
-                    <span className="mono-label">{subject.credits} credit</span>
-                  </div>
-                  <div className="space-y-3">
-                    {subject.materials.map((item) => (
-                      <motion.div layout key={item.id}>
-                        <MaterialCard material={item} />
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {filteredQuestionSubjects.length > 0 && (
-          <section className="mb-20">
-            <div className="mb-8 flex items-center gap-3">
-              <HelpCircle className="h-6 w-6" style={{ color: 'var(--accent)' }} />
-              <h2 className="text-3xl font-black" style={{ color: 'var(--foreground)' }}>Question Banks</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {filteredQuestionSubjects.map((subject) => (
-                <motion.article layout key={subject.id} className="surface-card p-6">
-                  <div className="mb-6 flex items-start justify-between gap-4">
-                    <div>
-                      <span className="stamp mb-3">{subject.code}</span>
-                      <h3 className="text-xl font-black" style={{ color: 'var(--foreground)' }}>{subject.name}</h3>
-                    </div>
-                    <span className="mono-label">{subject.materials.length} items</span>
-                  </div>
-                  <div className="space-y-3">
-                    {subject.materials.map((item) => (
-                      <motion.div layout key={item.id}>
-                        <MaterialCard material={item} />
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {filteredTheorySubjects.length === 0 && filteredLabSubjects.length === 0 && filteredQuestionSubjects.length === 0 && (
-          <div className="surface-card py-24 text-center">
-            <h3 className="mb-2 text-2xl font-black" style={{ color: 'var(--foreground)' }}>No materials found</h3>
-            <p className="section-copy">Try adjusting your search or filters.</p>
+        <div className="mb-8 flex items-center justify-between gap-3 text-xs">
+          <span role="status" className="muted-text">
+            {resultCount} resources in {subjects.length} courses
+          </span>
+          {isFiltering && (
+            <button type="button" onClick={reset} className="text-link text-xs">
+              Clear all filters
+            </button>
+          )}
+        </div>
+        {groups
+          .filter((group) => group.subjects.length > 0)
+          .map((group) => (
+            <section key={group.label} className="mb-12">
+              <h2 className="mb-6 flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
+                <group.icon className="h-4 w-4" />
+                {group.label}
+              </h2>
+              <div className="space-y-8">
+                {group.subjects.map(renderSubject)}
+              </div>
+            </section>
+          ))}
+        {subjects.length === 0 && (
+          <div className="py-16 text-center">
+            <Search className="mx-auto mb-4 h-7 w-7 muted-text" />
+            <h2 className="text-xl font-medium">No matching resources</h2>
+            <p className="section-copy mt-2">
+              Try another course, a different resource type, or a shorter
+              search.
+            </p>
+            <button type="button" onClick={reset} className="btn-outline mt-5">
+              Clear all filters
+            </button>
           </div>
         )}
       </div>
     </div>
+  )
+}
+
+export default function SemesterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="page-content">
+          <p role="status" className="section-copy">
+            Loading study materials…
+          </p>
+        </div>
+      }
+    >
+      <SemesterContent />
+    </Suspense>
   )
 }
