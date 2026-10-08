@@ -8,10 +8,11 @@ import { subjectData as cse3212 } from './cse3212/data'
 import { subjectData as cse3216 } from './cse3216/data'
 import { subjectData as eng3217 } from './eng3217/data'
 import { subjectData as stat3205 } from './stat3205/data'
+import { subjectData as questions6 } from './questions-6/data'
 
 export const semester6: Semester = {
   id: 'semester-6',
   name: 'Semester VI',
   description: 'Sixth Semester - (19.5 Credits)',
-  subjects: [cse3201, cse3202, cse3203, cse3204, cse3211, cse3212, cse3216, eng3217, stat3205],
+  subjects: [cse3201, cse3202, cse3203, cse3204, cse3211, cse3212, cse3216, eng3217, stat3205, questions6],
 }
